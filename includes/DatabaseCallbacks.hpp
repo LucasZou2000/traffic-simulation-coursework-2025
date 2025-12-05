@@ -5,45 +5,45 @@
 #include <sqlite3.h>
 
 // -------------------------------------------------
-// 数据库查询回调函数（用于兼容旧代码或特定用途）
-// 注意：新的DatabaseManager主要使用prepared statements，这些回调函数为兼容性保留
+// Database query callback functions (for compatibility with old code or specific uses)
+// Note: New DatabaseManager mainly uses prepared statements, these callback functions are kept for compatibility
 
-// 通用物品回调函数
+// General item callback function
 int item_callback(void* data, int argc, char** argv, char** azColName);
 
-// 建筑回调函数
+// Building callback function
 int building_callback(void* data, int argc, char** argv, char** azColName);
 
-// 资源点回调函数
+// Resource point callback function
 int resource_point_callback(void* data, int argc, char** argv, char** azColName);
 
-// 合成配方材料回调函数
+// Crafting recipe material callback function
 int crafting_material_callback(void* data, int argc, char** argv, char** azColName);
 
-// 合成配方产出回调函数
+// Crafting recipe product callback function
 int crafting_product_callback(void* data, int argc, char** argv, char** azColName);
 
 // -------------------------------------------------
-// 实用工具函数
+// Utility functions
 namespace DatabaseUtils {
-    // 安全获取字符串值
-    std::string get_string_safe(sqlite3_stmt* stmt, int col);
-    
-    // 安全获取整数值
-    int get_int_safe(sqlite3_stmt* stmt, int col, int default_val = 0);
-    
-    // 执行简单查询并返回单行结果
-    bool execute_single_row_query(sqlite3* db, const std::string& sql, 
-                                 std::vector<std::string>& results);
-    
-    // 检查表是否存在
-    bool table_exists(sqlite3* db, const std::string& table_name);
-    
-    // 获取表的行数
-    int get_table_row_count(sqlite3* db, const std::string& table_name);
-    
-    // 创建索引以提高查询性能
-    bool create_performance_indexes(sqlite3* db);
+	// Safely get string value
+	std::string get_string_safe(sqlite3_stmt* stmt, int col);
+	
+	// Safely get integer value
+	int get_int_safe(sqlite3_stmt* stmt, int col, int default_val = 0);
+	
+	// Execute simple query and return single row result
+	bool execute_single_row_query(sqlite3* db, const std::string& sql, 
+	                             std::vector<std::string>& results);
+	
+	// Check if table exists
+	bool table_exists(sqlite3* db, const std::string& table_name);
+	
+	// Get table row count
+	int get_table_row_count(sqlite3* db, const std::string& table_name);
+	
+	// Create indexes to improve query performance
+	bool create_performance_indexes(sqlite3* db);
 }
 
 #endif // DATABASE_CALLBACKS_HPP

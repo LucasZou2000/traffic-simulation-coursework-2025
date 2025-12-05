@@ -6,38 +6,49 @@
 #include <vector>
 
 struct NPC {
-    int id;
-    int x;
-    int y;
-    std::vector<int> task_bundle;  // 任务捆绑
+	int id;
+	int x;
+	int y;
+	std::vector<int> task_bundle;  // Task bundle
 };
 
 class WorldState {
 public:
-    WorldState(DatabaseManager& db_mgr);
-    
-    // 随机生成世界
-    void CreateRandomWorld(int world_width, int world_height);
-    
-    // 显示世界状态
-    void DisplayWorldState();
-    
-    // 访问方法（供HTN规划器使用）
-    ResourcePoint* getResourcePoint(int resource_id);
-    Building* getBuilding(int building_id);
-    Item* getItem(int item_id);
-    const CraftingSystem& getCraftingSystem() const;
-    int getResourceCount() const;
-
+	WorldState(DatabaseManager& db_mgr);
+	
+	// Generate random world
+	void CreateRandomWorld(int world_width, int world_height);
+	
+	// Display world state
+	void DisplayWorldState();
+	
+	// Access methods (for HTN planner use)
+	ResourcePoint* getResourcePoint(int resource_id);
+	Building* getBuilding(int building_id);
+	Item* getItem(int item_id);
+	CraftingSystem& getCraftingSystem();
+	int getResourceCount() const;
+	int getBuildingCount() const;
+	int getItemCount() const;
+	const std::map<int, ResourcePoint>& getResourcePoints() const;
+	const std::map<int, Building>& getBuildings() const;
+	const std::map<int, Item>& getItems() const;
+	
 private:
-    DatabaseManager& db_manager;
-    CraftingSystem crafting_system;  // 合成系统
-    
-    std::map<int, Item> items;  // 使用统一物品模型
-    std::map<int, Building> buildings;
-    std::map<int, ResourcePoint> resource_points;
-    std::vector<NPC> npc_list;
-    Building storage_building;
+	DatabaseManager& db_manager;
+	
+	// World state data
+	std::map<int, ResourcePoint> resource_points;
+	std::map<int, Building> buildings;
+	std::map<int, Item> items;
+	std::vector<NPC> npcs;
+	CraftingSystem crafting_system;
+	
+	// Generate specific world elements
+	void GenerateResourcePoints(int count, int world_width, int world_height);
+	void GenerateBuildings(int count, int world_width, int world_height);
+	void GenerateNPCs(int count, int world_width, int world_height);
+	void InitializeCraftingSystem();
 };
 
 #endif // WORLD_STATE_HPP

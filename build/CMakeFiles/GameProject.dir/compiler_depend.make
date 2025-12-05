@@ -1325,7 +1325,6 @@ CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o: /Users/lucas/Desktop/T
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/optional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stddef.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdexcept \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/stdint.h \
@@ -1476,7 +1475,6 @@ CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o: /Users/lucas/Desktop/T
   /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include/stdint.h \
-  /Users/lucas/Desktop/TaskAllocation/includes/DatabaseCallbacks.hpp \
   /Users/lucas/Desktop/TaskAllocation/includes/DatabaseInitializer.hpp \
   /Users/lucas/Desktop/TaskAllocation/includes/objects.hpp
 
@@ -4954,8 +4952,6 @@ CMakeFiles/GameProject.dir/src/objects.cpp.o: /Users/lucas/Desktop/TaskAllocatio
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/assume_aligned.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/find_if_not.h:
-
-/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/comp.h:
 
