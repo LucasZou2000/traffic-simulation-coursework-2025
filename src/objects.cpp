@@ -14,7 +14,7 @@ Item::Item(int id, const std::string& itemName, int itemQuantity, bool resource,
 void Item::addQuantity(int amount) {
 	quantity += amount;
 }
-//.
+
 bool Item::consumeQuantity(int amount) {
 	if (quantity >= amount) {
 		quantity -= amount;
