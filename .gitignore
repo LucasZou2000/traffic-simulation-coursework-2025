@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# my modifications
+.DS_Store
+build/
