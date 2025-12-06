@@ -129,6 +129,30 @@ GameProject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/build
 .PHONY : GameProject/fast
 
+src/AgentImplementation.o: src/AgentImplementation.cpp.o
+.PHONY : src/AgentImplementation.o
+
+# target to build an object file
+src/AgentImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o
+.PHONY : src/AgentImplementation.cpp.o
+
+src/AgentImplementation.i: src/AgentImplementation.cpp.i
+.PHONY : src/AgentImplementation.i
+
+# target to preprocess a source file
+src/AgentImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.i
+.PHONY : src/AgentImplementation.cpp.i
+
+src/AgentImplementation.s: src/AgentImplementation.cpp.s
+.PHONY : src/AgentImplementation.s
+
+# target to generate assembly for a file
+src/AgentImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.s
+.PHONY : src/AgentImplementation.cpp.s
+
 src/DatabaseCallbacks.o: src/DatabaseCallbacks.cpp.o
 .PHONY : src/DatabaseCallbacks.o
 
@@ -176,6 +200,54 @@ src/DatabaseInitializer.s: src/DatabaseInitializer.cpp.s
 src/DatabaseInitializer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.s
 .PHONY : src/DatabaseInitializer.cpp.s
+
+src/TaskManagerImplementation.o: src/TaskManagerImplementation.cpp.o
+.PHONY : src/TaskManagerImplementation.o
+
+# target to build an object file
+src/TaskManagerImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o
+.PHONY : src/TaskManagerImplementation.cpp.o
+
+src/TaskManagerImplementation.i: src/TaskManagerImplementation.cpp.i
+.PHONY : src/TaskManagerImplementation.i
+
+# target to preprocess a source file
+src/TaskManagerImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.i
+.PHONY : src/TaskManagerImplementation.cpp.i
+
+src/TaskManagerImplementation.s: src/TaskManagerImplementation.cpp.s
+.PHONY : src/TaskManagerImplementation.s
+
+# target to generate assembly for a file
+src/TaskManagerImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.s
+.PHONY : src/TaskManagerImplementation.cpp.s
+
+src/TaskTreeImplementation.o: src/TaskTreeImplementation.cpp.o
+.PHONY : src/TaskTreeImplementation.o
+
+# target to build an object file
+src/TaskTreeImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o
+.PHONY : src/TaskTreeImplementation.cpp.o
+
+src/TaskTreeImplementation.i: src/TaskTreeImplementation.cpp.i
+.PHONY : src/TaskTreeImplementation.i
+
+# target to preprocess a source file
+src/TaskTreeImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.i
+.PHONY : src/TaskTreeImplementation.cpp.i
+
+src/TaskTreeImplementation.s: src/TaskTreeImplementation.cpp.s
+.PHONY : src/TaskTreeImplementation.s
+
+# target to generate assembly for a file
+src/TaskTreeImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.s
+.PHONY : src/TaskTreeImplementation.cpp.s
 
 src/WorldState.o: src/WorldState.cpp.o
 .PHONY : src/WorldState.o
@@ -258,12 +330,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GameProject"
+	@echo "... src/AgentImplementation.o"
+	@echo "... src/AgentImplementation.i"
+	@echo "... src/AgentImplementation.s"
 	@echo "... src/DatabaseCallbacks.o"
 	@echo "... src/DatabaseCallbacks.i"
 	@echo "... src/DatabaseCallbacks.s"
 	@echo "... src/DatabaseInitializer.o"
 	@echo "... src/DatabaseInitializer.i"
 	@echo "... src/DatabaseInitializer.s"
+	@echo "... src/TaskManagerImplementation.o"
+	@echo "... src/TaskManagerImplementation.i"
+	@echo "... src/TaskManagerImplementation.s"
+	@echo "... src/TaskTreeImplementation.o"
+	@echo "... src/TaskTreeImplementation.i"
+	@echo "... src/TaskTreeImplementation.s"
 	@echo "... src/WorldState.o"
 	@echo "... src/WorldState.i"
 	@echo "... src/WorldState.s"

@@ -736,4 +736,6 @@ CMakeFiles/GameProject.dir/src/WorldState.cpp.o: \
   /Users/lucas/Desktop/TaskAllocation/includes/objects.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1/set \
+  /Users/lucas/Desktop/TaskAllocation/includes/TaskNode.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/sqlite3.h

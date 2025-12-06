@@ -8,8 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/lucas/Desktop/TaskAllocation/src/AgentImplementation.cpp" "CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o.d"
   "/Users/lucas/Desktop/TaskAllocation/src/DatabaseCallbacks.cpp" "CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.o.d"
   "/Users/lucas/Desktop/TaskAllocation/src/DatabaseInitializer.cpp" "CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o.d"
+  "/Users/lucas/Desktop/TaskAllocation/src/TaskManagerImplementation.cpp" "CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o.d"
+  "/Users/lucas/Desktop/TaskAllocation/src/TaskTreeImplementation.cpp" "CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o.d"
   "/Users/lucas/Desktop/TaskAllocation/src/WorldState.cpp" "CMakeFiles/GameProject.dir/src/WorldState.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/WorldState.cpp.o.d"
   "/Users/lucas/Desktop/TaskAllocation/src/main.cpp" "CMakeFiles/GameProject.dir/src/main.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/main.cpp.o.d"
   "/Users/lucas/Desktop/TaskAllocation/src/objects.cpp" "CMakeFiles/GameProject.dir/src/objects.cpp.o" "gcc" "CMakeFiles/GameProject.dir/src/objects.cpp.o.d"

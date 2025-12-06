@@ -1,0 +1,266 @@
+Cannot open database: unable to open database file
+Failed to connect to database at: ./resources/game_data.db
+Connected to database at: ../resources/game_data.db
+Loading basic crafting recipes...
+Loaded 2 basic crafting recipes
+Building materials loading skipped (simplified)
+Connected to database successfully.
+Performance mode enabled.
+Performance indexes created successfully.
+Loaded 10 items.
+Loaded 7 buildings.
+Loaded resources.
+World generated: Storage at (982, 1026), 32 resource points, and 6 buildings.
+
+=== World State ===
+
+=== World State ===
+
+Buildings:
+Building[ID:1]: Building 1 at (1898, 770), Status: Under Construction, Construction Time: 0s
+Building[ID:2]: Building 2 at (245, 135), Status: Under Construction, Construction Time: 0s
+Building[ID:3]: Building 3 at (719, 504), Status: Under Construction, Construction Time: 0s
+Building[ID:4]: Building 4 at (200, 968), Status: Under Construction, Construction Time: 0s
+Building[ID:5]: Building 5 at (1525, 1626), Status: Under Construction, Construction Time: 0s
+Building[ID:6]: Building 6 at (1867, 915), Status: Under Construction, Construction Time: 0s
+Building[ID:256]: Storage at (982, 1026), Status: Under Construction, Construction Time: 0s
+
+Resource Points:
+ResourcePoint[ID:1]: Resource Item ID 1, Position(152, 715), Remaining: 1000/1000
+ResourcePoint[ID:2]: Resource Item ID 2, Position(910, 441), Remaining: 1000/1000
+ResourcePoint[ID:3]: Resource Item ID 3, Position(1128, 520), Remaining: 1000/1000
+ResourcePoint[ID:4]: Resource Item ID 4, Position(1068, 1267), Remaining: 1000/1000
+ResourcePoint[ID:5]: Resource Item ID 1, Position(1242, 1805), Remaining: 1000/1000
+ResourcePoint[ID:6]: Resource Item ID 2, Position(1134, 1037), Remaining: 1000/1000
+ResourcePoint[ID:7]: Resource Item ID 3, Position(1200, 1610), Remaining: 1000/1000
+ResourcePoint[ID:8]: Resource Item ID 4, Position(1269, 1190), Remaining: 1000/1000
+ResourcePoint[ID:9]: Resource Item ID 1, Position(933, 1823), Remaining: 1000/1000
+ResourcePoint[ID:10]: Resource Item ID 2, Position(519, 281), Remaining: 1000/1000
+ResourcePoint[ID:11]: Resource Item ID 3, Position(333, 848), Remaining: 1000/1000
+ResourcePoint[ID:12]: Resource Item ID 4, Position(590, 927), Remaining: 1000/1000
+ResourcePoint[ID:13]: Resource Item ID 1, Position(1207, 1698), Remaining: 1000/1000
+ResourcePoint[ID:14]: Resource Item ID 2, Position(1749, 566), Remaining: 1000/1000
+ResourcePoint[ID:15]: Resource Item ID 3, Position(312, 1547), Remaining: 1000/1000
+ResourcePoint[ID:16]: Resource Item ID 4, Position(442, 1442), Remaining: 1000/1000
+ResourcePoint[ID:17]: Resource Item ID 1, Position(1252, 208), Remaining: 1000/1000
+ResourcePoint[ID:18]: Resource Item ID 2, Position(1802, 1143), Remaining: 1000/1000
+ResourcePoint[ID:19]: Resource Item ID 3, Position(1492, 1946), Remaining: 1000/1000
+ResourcePoint[ID:20]: Resource Item ID 4, Position(81, 1932), Remaining: 1000/1000
+ResourcePoint[ID:21]: Resource Item ID 1, Position(691, 1656), Remaining: 1000/1000
+ResourcePoint[ID:22]: Resource Item ID 2, Position(1743, 1162), Remaining: 1000/1000
+ResourcePoint[ID:23]: Resource Item ID 3, Position(551, 1405), Remaining: 1000/1000
+ResourcePoint[ID:24]: Resource Item ID 4, Position(1070, 1879), Remaining: 1000/1000
+ResourcePoint[ID:25]: Resource Item ID 1, Position(823, 744), Remaining: 1000/1000
+ResourcePoint[ID:26]: Resource Item ID 2, Position(1786, 177), Remaining: 1000/1000
+ResourcePoint[ID:27]: Resource Item ID 3, Position(1021, 422), Remaining: 1000/1000
+ResourcePoint[ID:28]: Resource Item ID 4, Position(695, 252), Remaining: 1000/1000
+ResourcePoint[ID:29]: Resource Item ID 1, Position(993, 1916), Remaining: 1000/1000
+ResourcePoint[ID:30]: Resource Item ID 2, Position(1340, 987), Remaining: 1000/1000
+ResourcePoint[ID:31]: Resource Item ID 3, Position(1027, 856), Remaining: 1000/1000
+ResourcePoint[ID:32]: Resource Item ID 4, Position(115, 1245), Remaining: 1000/1000
+
+Available Items:
+Item[ID:1]: Log, Quantity: 0, Type: Product, Requires Building: No
+Item[ID:2]: Stone, Quantity: 0, Type: Product, Requires Building: No
+Item[ID:3]: Sand, Quantity: 0, Type: Product, Requires Building: No
+Item[ID:4]: IronOre, Quantity: 0, Type: Product, Requires Building: No
+Item[ID:5]: WoodenPlanks, Quantity: 0, Type: Product, Requires Building: No
+Item[ID:6]: Anvil, Quantity: 0, Type: Product, Requires Building: Yes (Building ID: 0)
+Item[ID:7]: IronIngot, Quantity: 0, Type: Product, Requires Building: Yes (Building ID: 0)
+Item[ID:8]: IronTools, Quantity: 0, Type: Product, Requires Building: Yes (Building ID: 0)
+Item[ID:9]: Glass, Quantity: 0, Type: Product, Requires Building: Yes (Building ID: 0)
+Item[ID:10]: SolidWoodFurniture, Quantity: 0, Type: Product, Requires Building: Yes (Building ID: 0)
+
+=== All Crafting Recipes ===
+Recipe[ID:1]: Requires: 2 of Item 1 -> Produces: 1 of Item 5 (Time: 5s)
+Recipe[ID:2]: Requires: 1 of Item 2, 1 of Item 3 -> Produces: 1 of Item 6 (Time: 8s) [Requires Building 1]
+Total: 2 recipes
+
+=== World Statistics ===
+Resource Points: 32
+Buildings: 7
+Items: 10
+
+=== 开始HTN+CBBA任务分配模拟 ===
+输出将保存到 simulation.txt
+Harvested 2 from Resource Point 1. Remaining: 998
+Harvested 2 from Resource Point 1. Remaining: 996
+Harvested 2 from Resource Point 1. Remaining: 994
+Harvested 2 from Resource Point 1. Remaining: 992
+Harvested 2 from Resource Point 1. Remaining: 990
+Harvested 2 from Resource Point 1. Remaining: 988
+Harvested 2 from Resource Point 1. Remaining: 986
+Harvested 2 from Resource Point 1. Remaining: 984
+Harvested 2 from Resource Point 1. Remaining: 982
+Harvested 2 from Resource Point 1. Remaining: 980
+Harvested 2 from Resource Point 1. Remaining: 978
+Harvested 2 from Resource Point 1. Remaining: 976
+Harvested 2 from Resource Point 1. Remaining: 974
+Harvested 2 from Resource Point 1. Remaining: 972
+Harvested 2 from Resource Point 1. Remaining: 970
+Harvested 2 from Resource Point 1. Remaining: 968
+Harvested 2 from Resource Point 1. Remaining: 966
+Harvested 2 from Resource Point 1. Remaining: 964
+Harvested 2 from Resource Point 1. Remaining: 962
+Harvested 2 from Resource Point 1. Remaining: 960
+Harvested 2 from Resource Point 1. Remaining: 958
+Harvested 2 from Resource Point 1. Remaining: 956
+Harvested 2 from Resource Point 1. Remaining: 954
+Harvested 2 from Resource Point 1. Remaining: 952
+Harvested 2 from Resource Point 1. Remaining: 950
+Harvested 2 from Resource Point 1. Remaining: 948
+Harvested 2 from Resource Point 1. Remaining: 946
+Harvested 2 from Resource Point 1. Remaining: 944
+Harvested 2 from Resource Point 1. Remaining: 942
+Harvested 2 from Resource Point 1. Remaining: 940
+Harvested 2 from Resource Point 1. Remaining: 938
+Harvested 2 from Resource Point 1. Remaining: 936
+Harvested 2 from Resource Point 1. Remaining: 934
+Harvested 2 from Resource Point 1. Remaining: 932
+Harvested 2 from Resource Point 1. Remaining: 930
+Harvested 2 from Resource Point 1. Remaining: 928
+Harvested 2 from Resource Point 1. Remaining: 926
+Harvested 2 from Resource Point 1. Remaining: 924
+Harvested 2 from Resource Point 1. Remaining: 922
+Harvested 2 from Resource Point 1. Remaining: 920
+Harvested 2 from Resource Point 1. Remaining: 918
+Harvested 2 from Resource Point 1. Remaining: 916
+Harvested 2 from Resource Point 1. Remaining: 914
+Harvested 2 from Resource Point 1. Remaining: 912
+Harvested 2 from Resource Point 1. Remaining: 910
+Harvested 2 from Resource Point 1. Remaining: 908
+Harvested 2 from Resource Point 1. Remaining: 906
+Harvested 2 from Resource Point 1. Remaining: 904
+Harvested 2 from Resource Point 1. Remaining: 902
+Harvested 2 from Resource Point 1. Remaining: 900
+Harvested 2 from Resource Point 1. Remaining: 898
+Harvested 2 from Resource Point 1. Remaining: 896
+Harvested 2 from Resource Point 1. Remaining: 894
+Harvested 2 from Resource Point 1. Remaining: 892
+Harvested 2 from Resource Point 1. Remaining: 890
+Harvested 2 from Resource Point 1. Remaining: 888
+Harvested 2 from Resource Point 1. Remaining: 886
+Harvested 2 from Resource Point 1. Remaining: 884
+Harvested 2 from Resource Point 1. Remaining: 882
+Harvested 2 from Resource Point 1. Remaining: 880
+Harvested 2 from Resource Point 1. Remaining: 878
+Harvested 2 from Resource Point 1. Remaining: 876
+Harvested 2 from Resource Point 1. Remaining: 874
+Harvested 2 from Resource Point 1. Remaining: 872
+Harvested 2 from Resource Point 1. Remaining: 870
+Harvested 2 from Resource Point 1. Remaining: 868
+Harvested 2 from Resource Point 1. Remaining: 866
+Harvested 2 from Resource Point 1. Remaining: 864
+Harvested 2 from Resource Point 1. Remaining: 862
+Harvested 2 from Resource Point 1. Remaining: 860
+Harvested 2 from Resource Point 1. Remaining: 858
+Harvested 2 from Resource Point 1. Remaining: 856
+Harvested 2 from Resource Point 1. Remaining: 854
+Harvested 2 from Resource Point 1. Remaining: 852
+Harvested 2 from Resource Point 1. Remaining: 850
+Harvested 2 from Resource Point 1. Remaining: 848
+Harvested 2 from Resource Point 1. Remaining: 846
+Harvested 2 from Resource Point 1. Remaining: 844
+Harvested 2 from Resource Point 1. Remaining: 842
+Harvested 2 from Resource Point 1. Remaining: 840
+Harvested 2 from Resource Point 1. Remaining: 838
+Harvested 2 from Resource Point 1. Remaining: 836
+Harvested 2 from Resource Point 1. Remaining: 834
+Harvested 2 from Resource Point 1. Remaining: 832
+Harvested 2 from Resource Point 1. Remaining: 830
+Harvested 2 from Resource Point 1. Remaining: 828
+Harvested 2 from Resource Point 1. Remaining: 826
+Harvested 2 from Resource Point 1. Remaining: 824
+Harvested 2 from Resource Point 1. Remaining: 822
+Harvested 2 from Resource Point 1. Remaining: 820
+Harvested 2 from Resource Point 1. Remaining: 818
+Harvested 2 from Resource Point 1. Remaining: 816
+Harvested 2 from Resource Point 1. Remaining: 814
+Harvested 2 from Resource Point 1. Remaining: 812
+Harvested 2 from Resource Point 1. Remaining: 810
+Harvested 2 from Resource Point 1. Remaining: 808
+Harvested 2 from Resource Point 1. Remaining: 806
+Harvested 2 from Resource Point 1. Remaining: 804
+Harvested 2 from Resource Point 1. Remaining: 802
+Harvested 2 from Resource Point 1. Remaining: 800
+Harvested 2 from Resource Point 1. Remaining: 798
+Harvested 2 from Resource Point 1. Remaining: 796
+Harvested 2 from Resource Point 1. Remaining: 794
+Harvested 2 from Resource Point 1. Remaining: 792
+Harvested 2 from Resource Point 1. Remaining: 790
+Harvested 2 from Resource Point 1. Remaining: 788
+Harvested 2 from Resource Point 1. Remaining: 786
+Harvested 2 from Resource Point 1. Remaining: 784
+Harvested 2 from Resource Point 1. Remaining: 782
+Harvested 2 from Resource Point 1. Remaining: 780
+Harvested 2 from Resource Point 1. Remaining: 778
+Harvested 2 from Resource Point 1. Remaining: 776
+Harvested 2 from Resource Point 1. Remaining: 774
+Harvested 2 from Resource Point 1. Remaining: 772
+Harvested 2 from Resource Point 1. Remaining: 770
+Harvested 2 from Resource Point 1. Remaining: 768
+Harvested 2 from Resource Point 1. Remaining: 766
+Harvested 2 from Resource Point 1. Remaining: 764
+Harvested 2 from Resource Point 1. Remaining: 762
+Harvested 2 from Resource Point 1. Remaining: 760
+Harvested 2 from Resource Point 1. Remaining: 758
+Harvested 2 from Resource Point 1. Remaining: 756
+Harvested 2 from Resource Point 1. Remaining: 754
+Harvested 2 from Resource Point 1. Remaining: 752
+Harvested 2 from Resource Point 1. Remaining: 750
+Harvested 2 from Resource Point 1. Remaining: 748
+Harvested 2 from Resource Point 1. Remaining: 746
+Harvested 2 from Resource Point 1. Remaining: 744
+Harvested 2 from Resource Point 1. Remaining: 742
+Harvested 2 from Resource Point 1. Remaining: 740
+Harvested 2 from Resource Point 1. Remaining: 738
+Harvested 2 from Resource Point 1. Remaining: 736
+Harvested 2 from Resource Point 1. Remaining: 734
+Harvested 2 from Resource Point 1. Remaining: 732
+Harvested 2 from Resource Point 1. Remaining: 730
+Harvested 2 from Resource Point 1. Remaining: 728
+Harvested 2 from Resource Point 1. Remaining: 726
+Harvested 2 from Resource Point 1. Remaining: 724
+Harvested 2 from Resource Point 1. Remaining: 722
+Harvested 2 from Resource Point 1. Remaining: 720
+Harvested 2 from Resource Point 1. Remaining: 718
+Harvested 2 from Resource Point 1. Remaining: 716
+Harvested 2 from Resource Point 1. Remaining: 714
+Harvested 2 from Resource Point 1. Remaining: 712
+Harvested 2 from Resource Point 1. Remaining: 710
+Harvested 2 from Resource Point 1. Remaining: 708
+Harvested 2 from Resource Point 1. Remaining: 706
+Harvested 2 from Resource Point 1. Remaining: 704
+Harvested 2 from Resource Point 1. Remaining: 702
+Harvested 2 from Resource Point 1. Remaining: 700
+Harvested 2 from Resource Point 1. Remaining: 698
+Harvested 2 from Resource Point 1. Remaining: 696
+Harvested 2 from Resource Point 1. Remaining: 694
+Harvested 2 from Resource Point 1. Remaining: 692
+Harvested 2 from Resource Point 1. Remaining: 690
+Harvested 2 from Resource Point 1. Remaining: 688
+Harvested 2 from Resource Point 1. Remaining: 686
+Harvested 2 from Resource Point 1. Remaining: 684
+Harvested 2 from Resource Point 1. Remaining: 682
+Harvested 2 from Resource Point 1. Remaining: 680
+Harvested 2 from Resource Point 1. Remaining: 678
+Harvested 2 from Resource Point 1. Remaining: 676
+Harvested 2 from Resource Point 1. Remaining: 674
+Harvested 2 from Resource Point 1. Remaining: 672
+Harvested 2 from Resource Point 1. Remaining: 670
+Harvested 2 from Resource Point 1. Remaining: 668
+Harvested 2 from Resource Point 1. Remaining: 666
+Harvested 2 from Resource Point 1. Remaining: 664
+Harvested 2 from Resource Point 1. Remaining: 662
+Harvested 2 from Resource Point 1. Remaining: 660
+Harvested 2 from Resource Point 1. Remaining: 658
+Harvested 2 from Resource Point 1. Remaining: 656
+Harvested 2 from Resource Point 1. Remaining: 654
+Harvested 2 from Resource Point 1. Remaining: 652
+Harvested 2 from Resource Point 1. Remaining: 650
+Harvested 2 from Resource Point 1. Remaining: 648
+Harvested 2 from Resource Point 1. Remaining: 646
+Harvested 2 from Resource Point 1. Remaining: 644
+Harvested 2 from Resource Point 1. Remaining: 642
+Harvested 2 from Resource Point 1. Remaining: 640
+模拟完成！查看 simulation.txt

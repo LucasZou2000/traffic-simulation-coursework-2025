@@ -142,13 +142,58 @@ CMakeFiles/GameProject.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameProject.dir/src/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/main.cpp -o CMakeFiles/GameProject.dir/src/main.cpp.s
 
+CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o: CMakeFiles/GameProject.dir/flags.make
+CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/TaskTreeImplementation.cpp
+CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o: CMakeFiles/GameProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o -MF CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o.d -o CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/TaskTreeImplementation.cpp
+
+CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/TaskTreeImplementation.cpp > CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.i
+
+CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/TaskTreeImplementation.cpp -o CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.s
+
+CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o: CMakeFiles/GameProject.dir/flags.make
+CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/TaskManagerImplementation.cpp
+CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o: CMakeFiles/GameProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o -MF CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o.d -o CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/TaskManagerImplementation.cpp
+
+CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/TaskManagerImplementation.cpp > CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.i
+
+CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/TaskManagerImplementation.cpp -o CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.s
+
+CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o: CMakeFiles/GameProject.dir/flags.make
+CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/AgentImplementation.cpp
+CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o: CMakeFiles/GameProject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o -MF CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o.d -o CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/AgentImplementation.cpp
+
+CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/AgentImplementation.cpp > CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.i
+
+CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/AgentImplementation.cpp -o CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.s
+
 # Object files for target GameProject
 GameProject_OBJECTS = \
 "CMakeFiles/GameProject.dir/src/objects.cpp.o" \
 "CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o" \
 "CMakeFiles/GameProject.dir/src/WorldState.cpp.o" \
 "CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.o" \
-"CMakeFiles/GameProject.dir/src/main.cpp.o"
+"CMakeFiles/GameProject.dir/src/main.cpp.o" \
+"CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o" \
+"CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o" \
+"CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o"
 
 # External object files for target GameProject
 GameProject_EXTERNAL_OBJECTS =
@@ -158,10 +203,13 @@ GameProject: CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o
 GameProject: CMakeFiles/GameProject.dir/src/WorldState.cpp.o
 GameProject: CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.o
 GameProject: CMakeFiles/GameProject.dir/src/main.cpp.o
+GameProject: CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o
+GameProject: CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o
+GameProject: CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o
 GameProject: CMakeFiles/GameProject.dir/build.make
 GameProject: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd
 GameProject: CMakeFiles/GameProject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable GameProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable GameProject"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GameProject.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

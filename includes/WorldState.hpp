@@ -34,6 +34,11 @@ public:
 	const std::map<int, Building>& getBuildings() const;
 	const std::map<int, Item>& getItems() const;
 	
+	// Global item management
+	bool hasEnoughItems(const std::vector<CraftingMaterial>& materials) const;
+	void addItem(int item_id, int quantity);
+	void removeItem(int item_id, int quantity);
+	
 private:
 	DatabaseManager& db_manager;
 	
