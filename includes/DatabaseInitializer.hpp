@@ -59,14 +59,10 @@ private:
 	bool execute_sql(const char* sql);
 	sqlite3_stmt* prepare_statement(const char* sql);
 	bool finalize_statement(sqlite3_stmt* stmt);
-	
-	// Data loading helpers
-	bool load_items_from_db();
-	bool load_buildings_from_db();
-	bool load_resource_points_from_db();
-	bool load_recipes_from_db();
-	bool load_materials_from_db();
-	
+
+	// Helper to map resource name to item id
+	int get_item_id_by_name(const std::string& name) const;
+
 	// Database setup methods
 	bool setup_database_connection(const char* db_name);
 	void log_database_error(const char* operation);

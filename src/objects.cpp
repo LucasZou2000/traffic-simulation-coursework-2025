@@ -1,4 +1,5 @@
 #include "objects.hpp"
+#include "WorldState.hpp"
 #include <iostream>
 #include <algorithm>
 #include <cmath>
@@ -283,7 +284,7 @@ bool Agent::harvestResource(ResourcePoint& resourcePoint, int amount) {
 	return false;
 }
 
-bool Agent::craftItem(int craftingId) {
+bool Agent::craftItem(int craftingId, WorldState* worldState) {
 	if (!craftingSystem) {
 		std::cout << name << " cannot craft: no crafting system available." << std::endl;
 		return false;
@@ -295,18 +296,19 @@ bool Agent::craftItem(int craftingId) {
 		return false;
 	}
 	
-	if (!recipe->canCraft(inventory)) {
+	// 检查全局物品数量是否足够
+	if (!worldState || !worldState->hasEnoughItems(recipe->materials)) {
 		std::cout << name << " cannot craft: insufficient materials for recipe " << craftingId << std::endl;
 		return false;
 	}
 	
-	// Consume materials
+	// 消耗全局材料
 	for (const auto& material : recipe->materials) {
-		removeItem(material.item_id, material.quantity_required);
+		worldState->removeItem(material.item_id, material.quantity_required);
 	}
 	
-	// Add product
-	addItem(recipe->product_item_id, recipe->quantity_produced);
+	// 添加到全局物品
+	worldState->addItem(recipe->product_item_id, recipe->quantity_produced);
 	
 	std::cout << name << " crafted " << recipe->quantity_produced << " of item " 
 			  << recipe->product_item_id << " using recipe " << craftingId << std::endl;

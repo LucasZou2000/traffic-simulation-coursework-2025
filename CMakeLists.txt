@@ -21,6 +21,9 @@ set(SOURCE_FILES
     src/WorldState.cpp
     src/DatabaseCallbacks.cpp
     src/main.cpp
+    src/TaskTreeImplementation.cpp
+    src/TaskManagerImplementation.cpp
+    src/AgentImplementation.cpp
 )
 
 # Create the executable target

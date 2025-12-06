@@ -1,7 +1,6 @@
 #include "DatabaseInitializer.hpp"
+#include "DatabaseCallbacks.hpp"
 #include <iostream>
-#include <sqlite3.h>
-#include <vector>
 
 DatabaseManager::DatabaseManager() : db(nullptr), is_connected(false) {}
 
@@ -34,99 +33,146 @@ bool DatabaseManager::initialize_all_data() {
 }
 
 bool DatabaseManager::load_items() {
-	const char* sql = "SELECT * FROM Items;";
-	sqlite3_stmt* stmt;
-	
-	if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
-		std::cerr << "Failed to prepare Items query" << std::endl;
+	const char* sql = "SELECT item_id, item_name, building_required FROM Items;";
+	sqlite3_stmt* stmt = prepare_statement(sql);
+	if (!stmt) {
 		return false;
 	}
 	
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Item item(
-			sqlite3_column_int(stmt, 0),  // item_id
-			reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)),  // item_name
-			0,  // quantity (default 0)
-			false,  // is_resource (default false)  
-			sqlite3_column_int(stmt, 2),  // building_required
-			0  // required_building_id (default 0)
-		);
-		item_database[item.item_id] = item;
+		int item_id = sqlite3_column_int(stmt, 0);
+		std::string item_name = DatabaseUtils::get_string_safe(stmt, 1);
+		int building_required = DatabaseUtils::get_int_safe(stmt, 2, 0);
+		
+		bool is_resource = (item_id >= 1 && item_id <= 4);  // First 4 are raw resources
+		bool requires_building = building_required > 0;
+		
+		Item item(item_id, item_name, 0, is_resource, requires_building, building_required);
+		item_database[item_id] = item;
 	}
 	
-	sqlite3_finalize(stmt);
+	finalize_statement(stmt);
 	return true;
 }
 
 bool DatabaseManager::load_buildings() {
-	const char* sql = "SELECT * FROM Buildings;";
-	sqlite3_stmt* stmt;
-	
-	if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
-		std::cerr << "Failed to prepare Buildings query" << std::endl;
+	const char* sql = "SELECT building_id, building_name, construction_time FROM Buildings;";
+	sqlite3_stmt* stmt = prepare_statement(sql);
+	if (!stmt) {
 		return false;
 	}
 	
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Building building(
-			sqlite3_column_int(stmt, 0),  // building_id
-			reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)),  // building_name
-			sqlite3_column_int(stmt, 2)   // construction_time
-		);
-		building_database[building.building_id] = building;
+		int building_id = sqlite3_column_int(stmt, 0);
+		std::string building_name = DatabaseUtils::get_string_safe(stmt, 1);
+		int construction_time = DatabaseUtils::get_int_safe(stmt, 2, 0);
+		
+		Building building(building_id, building_name, construction_time);
+		building_database[building_id] = building;
 	}
 	
-	sqlite3_finalize(stmt);
+	finalize_statement(stmt);
 	return true;
 }
 
 bool DatabaseManager::load_resource_points() {
-	const char* sql = "SELECT * FROM ResourcePoints;";
-	sqlite3_stmt* stmt;
-	
-	if (sqlite3_prepare_v2(db, sql, -1, &stmt, nullptr) != SQLITE_OK) {
-		std::cerr << "Failed to prepare ResourcePoints query" << std::endl;
+	const char* sql = "SELECT resource_point_id, resource_type, generation_rate FROM ResourcePoints;";
+	sqlite3_stmt* stmt = prepare_statement(sql);
+	if (!stmt) {
 		return false;
 	}
-	
+
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		ResourcePoint rp(
-			sqlite3_column_int(stmt, 0),  // resource_point_id
-			sqlite3_column_int(stmt, 2),  // generation_rate (use resource_type later)
-			sqlite3_column_int(stmt, 2)   // generation_rate
-		);
-		// Note: x,y coordinates are not in the database, will be set in WorldState
-		resource_point_database[rp.resource_point_id] = rp;
+		int rp_id = sqlite3_column_int(stmt, 0);
+		std::string resource_name = DatabaseUtils::get_string_safe(stmt, 1);
+		int generation_rate = DatabaseUtils::get_int_safe(stmt, 2, 2);
+		
+		int resource_item_id = get_item_id_by_name(resource_name);
+		if (resource_item_id == 0) {
+			std::cerr << "Warning: resource '" << resource_name << "' not found in Items table." << std::endl;
+		}
+		
+		ResourcePoint rp(rp_id, resource_item_id, generation_rate);
+		resource_point_database[rp_id] = rp;
 	}
 	
-	sqlite3_finalize(stmt);
+	finalize_statement(stmt);
 	return true;
 }
 
 bool DatabaseManager::load_crafting_recipes() {
-	// Simplified implementation for now - create basic recipes
-	std::cout << "Loading basic crafting recipes..." << std::endl;
+	const char* sql = R"(
+		SELECT crafting_id, material_or_product, item_id, quantity_required, quantity_produced, production_time
+		FROM Crafting
+		ORDER BY crafting_id, material_or_product DESC, id
+	)";
+	sqlite3_stmt* stmt = prepare_statement(sql);
+	if (!stmt) {
+		return false;
+	}
 	
-	// Create basic recipe 1: 2 of item 1 -> 1 of item 5
-	CraftingRecipe recipe1(1);
-	recipe1.addMaterial(1, 2);
-	recipe1.setProduct(5, 1, 5, 0);
-	crafting_system.addRecipe(recipe1);
+	std::map<int, CraftingRecipe> temp_recipes;
 	
-	// Create basic recipe 2: 1 of item 2 + 1 of item 3 -> 1 of item 6
-	CraftingRecipe recipe2(2);
-	recipe2.addMaterial(2, 1);
-	recipe2.addMaterial(3, 1);
-	recipe2.setProduct(6, 1, 8, 1);
-	crafting_system.addRecipe(recipe2);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		int crafting_id = sqlite3_column_int(stmt, 0);
+		int is_product = sqlite3_column_int(stmt, 1);
+		int item_id = sqlite3_column_int(stmt, 2);
+		int quantity_required = sqlite3_column_int(stmt, 3);
+		int quantity_produced = sqlite3_column_int(stmt, 4);
+		int production_time = sqlite3_column_int(stmt, 5);
+		
+		CraftingRecipe& recipe = temp_recipes[crafting_id];
+		if (recipe.crafting_id == 0) {
+			recipe.crafting_id = crafting_id;
+		}
+		
+		if (is_product == 1) {
+			int required_building_id = 0;
+			auto item_it = item_database.find(item_id);
+			if (item_it != item_database.end()) {
+				required_building_id = item_it->second.required_building_id;
+			}
+			int output_qty = quantity_produced > 0 ? quantity_produced : 1;
+			int output_time = production_time > 0 ? production_time : 0;
+			recipe.setProduct(item_id, output_qty, output_time, required_building_id);
+		} else {
+			if (quantity_required > 0) {
+				recipe.addMaterial(item_id, quantity_required);
+			}
+		}
+	}
 	
-	std::cout << "Loaded 2 basic crafting recipes" << std::endl;
+	finalize_statement(stmt);
+	
+	for (const auto& pair : temp_recipes) {
+		crafting_system.addRecipe(pair.second);
+	}
+	
+	std::cout << "Loaded " << crafting_system.getAllRecipes().size() << " crafting recipes." << std::endl;
 	return true;
 }
 
 bool DatabaseManager::load_building_materials() {
-	// Simplified implementation - would normally load from BuildingMaterials table
-	std::cout << "Building materials loading skipped (simplified)" << std::endl;
+	const char* sql = "SELECT building_id, material_id, material_quantity FROM BuildingMaterials;";
+	sqlite3_stmt* stmt = prepare_statement(sql);
+	if (!stmt) {
+		return false;
+	}
+	
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		int building_id = sqlite3_column_int(stmt, 0);
+		int material_id = sqlite3_column_int(stmt, 1);
+		int material_quantity = sqlite3_column_int(stmt, 2);
+		
+		auto it = building_database.find(building_id);
+		if (it != building_database.end()) {
+			it->second.addRequiredMaterial(material_id, material_quantity);
+		} else {
+			std::cerr << "Warning: building_id " << building_id << " not found while loading materials." << std::endl;
+		}
+	}
+	
+	finalize_statement(stmt);
 	return true;
 }
 
@@ -157,10 +203,10 @@ void DatabaseManager::enable_performance_mode() {
 void DatabaseManager::create_indexes() {
 	// Create database indexes for better performance
 	if (db && is_connected) {
-		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_items_id ON items(item_id);", nullptr, nullptr, nullptr);
-		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_buildings_id ON buildings(building_id);", nullptr, nullptr, nullptr);
-		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_resource_points_id ON resource_points(resource_point_id);", nullptr, nullptr, nullptr);
-		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_crafting_recipes_id ON crafting_recipes(crafting_id);", nullptr, nullptr, nullptr);
+		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_items_id ON Items(item_id);", nullptr, nullptr, nullptr);
+		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_buildings_id ON Buildings(building_id);", nullptr, nullptr, nullptr);
+		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_resource_points_id ON ResourcePoints(resource_point_id);", nullptr, nullptr, nullptr);
+		sqlite3_exec(db, "CREATE INDEX IF NOT EXISTS idx_crafting_cid ON Crafting(crafting_id);", nullptr, nullptr, nullptr);
 	}
 }
 
@@ -195,6 +241,15 @@ bool DatabaseManager::finalize_statement(sqlite3_stmt* stmt) {
 		return true;
 	}
 	return false;
+}
+
+int DatabaseManager::get_item_id_by_name(const std::string& name) const {
+	for (const auto& pair : item_database) {
+		if (pair.second.name == name) {
+			return pair.first;
+		}
+	}
+	return 0;
 }
 
 void DatabaseManager::log_database_error(const char* operation) {
