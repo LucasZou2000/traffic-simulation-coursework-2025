@@ -5,7 +5,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:12 (find_program)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_UNAME"
     description: "Path to a program."
@@ -20,9 +20,6 @@ events:
     names:
       - "uname"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -34,22 +31,21 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/uname"
-      - "/Users/lucas/.pyenv/shims/uname"
-      - "/opt/homebrew/bin/uname"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/uname"
       - "/usr/local/bin/uname"
       - "/System/Cryptexes/App/usr/bin/uname"
     found: "/usr/bin/uname"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -61,25 +57,28 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "message-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake:212 (message)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       The system is: Darwin - 25.1.0 - arm64
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeUnixFindMake.cmake:5 (find_program)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_MAKE_PROGRAM"
     description: "Path to a program."
@@ -96,9 +95,6 @@ events:
       - "make"
       - "smake"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -110,13 +106,15 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/gmake"
-      - "/Users/lucas/.pyenv/shims/gmake"
-      - "/opt/homebrew/bin/gmake"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/gmake"
       - "/usr/local/bin/gmake"
       - "/System/Cryptexes/App/usr/bin/gmake"
@@ -128,21 +126,20 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/gmake"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/gmake"
       - "/opt/pmk/env/global/bin/gmake"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/gmake"
+      - "/Users/lucas/.codebuddy/bin/gmake"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/gmake"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/gmake"
+      - "/Users/lucas/.pyenv/shims/gmake"
+      - "/opt/homebrew/bin/gmake"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/gmake"
-      - "/Users/lucas/.codebuddy/bin/make"
-      - "/Users/lucas/.pyenv/shims/make"
-      - "/opt/homebrew/bin/make"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/gmake"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/make"
       - "/usr/local/bin/make"
       - "/System/Cryptexes/App/usr/bin/make"
     found: "/usr/bin/make"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -154,19 +151,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:73 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:64 (_cmake_find_compiler)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_C_COMPILER"
     description: "C compiler"
@@ -187,9 +187,6 @@ events:
       - "icx"
       - "clang"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -201,22 +198,21 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/cc"
-      - "/Users/lucas/.pyenv/shims/cc"
-      - "/opt/homebrew/bin/cc"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/cc"
       - "/usr/local/bin/cc"
       - "/System/Cryptexes/App/usr/bin/cc"
     found: "/usr/bin/cc"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -228,12 +224,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
@@ -243,7 +242,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "file"
     variable: "src_in"
     description: "Path to a file."
@@ -262,9 +261,6 @@ events:
     found: "/opt/homebrew/share/cmake/Modules/CMakeCCompilerId.c.in"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -276,12 +272,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "message-v1"
@@ -289,7 +288,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
       Compiler: /usr/bin/cc 
@@ -310,7 +309,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Detecting C compiler apple sysroot: "/usr/bin/cc" "-E" "apple-sdk.c"
         # 1 "apple-sdk.c"
@@ -338,7 +337,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_AR"
     description: "Path to a program."
@@ -354,9 +353,6 @@ events:
       - "ar"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -367,15 +363,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/ar"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -387,19 +385,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_RANLIB"
     description: "Path to a program."
@@ -415,9 +416,6 @@ events:
       - "ranlib"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -428,15 +426,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/ranlib"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -448,19 +448,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_STRIP"
     description: "Path to a program."
@@ -476,9 +479,6 @@ events:
       - "strip"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -489,15 +489,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/strip"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -509,19 +511,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_LINKER"
     description: "Path to a program."
@@ -537,9 +542,6 @@ events:
       - "ld"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -550,15 +552,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/ld"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -570,19 +574,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_NM"
     description: "Path to a program."
@@ -598,9 +605,6 @@ events:
       - "nm"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -611,15 +615,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/nm"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -631,19 +637,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_OBJDUMP"
     description: "Path to a program."
@@ -659,9 +668,6 @@ events:
       - "objdump"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -672,15 +678,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/usr/bin/objdump"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -692,19 +700,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_OBJCOPY"
     description: "Path to a program."
@@ -720,9 +731,6 @@ events:
       - "objcopy"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -733,14 +741,16 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
       - "/usr/bin/objcopy"
-      - "/Users/lucas/.codebuddy/bin/objcopy"
-      - "/Users/lucas/.pyenv/shims/objcopy"
-      - "/opt/homebrew/bin/objcopy"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/objcopy"
       - "/usr/local/bin/objcopy"
       - "/System/Cryptexes/App/usr/bin/objcopy"
@@ -751,15 +761,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/objcopy"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/objcopy"
       - "/opt/pmk/env/global/bin/objcopy"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/objcopy"
+      - "/Users/lucas/.codebuddy/bin/objcopy"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/objcopy"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/objcopy"
+      - "/Users/lucas/.pyenv/shims/objcopy"
+      - "/opt/homebrew/bin/objcopy"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/objcopy"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/objcopy"
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -771,19 +783,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_READELF"
     description: "Path to a program."
@@ -799,9 +814,6 @@ events:
       - "readelf"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -812,14 +824,16 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
       - "/usr/bin/readelf"
-      - "/Users/lucas/.codebuddy/bin/readelf"
-      - "/Users/lucas/.pyenv/shims/readelf"
-      - "/opt/homebrew/bin/readelf"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/readelf"
       - "/usr/local/bin/readelf"
       - "/System/Cryptexes/App/usr/bin/readelf"
@@ -830,15 +844,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/readelf"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/readelf"
       - "/opt/pmk/env/global/bin/readelf"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/readelf"
+      - "/Users/lucas/.codebuddy/bin/readelf"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/readelf"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/readelf"
+      - "/Users/lucas/.pyenv/shims/readelf"
+      - "/opt/homebrew/bin/readelf"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/readelf"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/readelf"
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -850,19 +866,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_DLLTOOL"
     description: "Path to a program."
@@ -878,9 +897,6 @@ events:
       - "dlltool"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -891,14 +907,16 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
       - "/usr/bin/dlltool"
-      - "/Users/lucas/.codebuddy/bin/dlltool"
-      - "/Users/lucas/.pyenv/shims/dlltool"
-      - "/opt/homebrew/bin/dlltool"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/dlltool"
       - "/usr/local/bin/dlltool"
       - "/System/Cryptexes/App/usr/bin/dlltool"
@@ -909,15 +927,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/dlltool"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/dlltool"
       - "/opt/pmk/env/global/bin/dlltool"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/dlltool"
+      - "/Users/lucas/.codebuddy/bin/dlltool"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/dlltool"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/dlltool"
+      - "/Users/lucas/.pyenv/shims/dlltool"
+      - "/opt/homebrew/bin/dlltool"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/dlltool"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/dlltool"
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -929,19 +949,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_ADDR2LINE"
     description: "Path to a program."
@@ -957,9 +980,6 @@ events:
       - "addr2line"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -970,14 +990,16 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
       - "/usr/bin/addr2line"
-      - "/Users/lucas/.codebuddy/bin/addr2line"
-      - "/Users/lucas/.pyenv/shims/addr2line"
-      - "/opt/homebrew/bin/addr2line"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/addr2line"
       - "/usr/local/bin/addr2line"
       - "/System/Cryptexes/App/usr/bin/addr2line"
@@ -988,15 +1010,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/addr2line"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/addr2line"
       - "/opt/pmk/env/global/bin/addr2line"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/addr2line"
+      - "/Users/lucas/.codebuddy/bin/addr2line"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/addr2line"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/addr2line"
+      - "/Users/lucas/.pyenv/shims/addr2line"
+      - "/opt/homebrew/bin/addr2line"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/addr2line"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/addr2line"
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1008,19 +1032,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_TAPI"
     description: "Path to a program."
@@ -1036,9 +1063,6 @@ events:
       - "tapi"
     candidate_directories:
       - "/usr/bin/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -1049,14 +1073,16 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
       - "/usr/bin/tapi"
-      - "/Users/lucas/.codebuddy/bin/tapi"
-      - "/Users/lucas/.pyenv/shims/tapi"
-      - "/opt/homebrew/bin/tapi"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/tapi"
       - "/usr/local/bin/tapi"
       - "/System/Cryptexes/App/usr/bin/tapi"
@@ -1067,15 +1093,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/tapi"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/tapi"
       - "/opt/pmk/env/global/bin/tapi"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/tapi"
+      - "/Users/lucas/.codebuddy/bin/tapi"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/tapi"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/tapi"
+      - "/Users/lucas/.pyenv/shims/tapi"
+      - "/opt/homebrew/bin/tapi"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/tapi"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/tapi"
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1087,19 +1115,22 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake:54 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:69 (_cmake_find_compiler)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_CXX_COMPILER"
     description: "CXX compiler"
@@ -1124,9 +1155,6 @@ events:
     found: "/usr/bin/c++"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1138,12 +1166,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "find-v1"
@@ -1153,7 +1184,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "file"
     variable: "src_in"
     description: "Path to a file."
@@ -1172,9 +1203,6 @@ events:
     found: "/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerId.cpp.in"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1186,12 +1214,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
   -
     kind: "message-v1"
@@ -1199,7 +1230,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
       Compiler: /usr/bin/c++ 
@@ -1220,7 +1251,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake:290 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Detecting CXX compiler apple sysroot: "/usr/bin/c++" "-E" "apple-sdk.cpp"
         # 1 "apple-sdk.cpp"
@@ -1248,7 +1279,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake:76 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake:32 (include)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     mode: "program"
     variable: "CMAKE_INSTALL_NAME_TOOL"
     description: "Path to a program."
@@ -1263,9 +1294,6 @@ events:
     names:
       - "install_name_tool"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -1277,22 +1305,21 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/install_name_tool"
-      - "/Users/lucas/.pyenv/shims/install_name_tool"
-      - "/opt/homebrew/bin/install_name_tool"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/install_name_tool"
       - "/usr/local/bin/install_name_tool"
       - "/System/Cryptexes/App/usr/bin/install_name_tool"
     found: "/usr/bin/install_name_tool"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1304,12 +1331,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
   -
@@ -1317,12 +1347,12 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ"
-      binary: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ"
+      source: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6"
+      binary: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -1334,18 +1364,18 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ'
+        Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_620c5/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_620c5.dir/build.make CMakeFiles/cmTC_620c5.dir/build
-        Building C object CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f1d84/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_f1d84.dir/build.make CMakeFiles/cmTC_f1d84.dir/build
+        Building C object CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -Wl,-v -MD -MT CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin25.1.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
         clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
-         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6 -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6 -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c
         clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin25.1.0
         ignoring nonexistent directory "/usr/local/include"
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
@@ -1357,13 +1387,13 @@ events:
          /Library/Developer/CommandLineTools/usr/include
          /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
         End of search list.
-        Linking C executable cmTC_620c5
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_620c5.dir/link.txt --verbose=1
+        Linking C executable cmTC_f1d84
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1d84.dir/link.txt --verbose=1
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin25.1.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
-         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_620c5 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_f1d84 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld  PROJECT:ld64-857.1
         BUILD 16:59:58 Feb 24 2023
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -1371,7 +1401,7 @@ events:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
         Framework search paths:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
-        /usr/bin/cc  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -o cmTC_620c5
+        /usr/bin/cc -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -o cmTC_f1d84
         
       exitCode: 0
   -
@@ -1379,7 +1409,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Effective list of requested architectures (possibly empty)  : ""
       Effective list of architectures found in the ABI info binary: "arm64"
@@ -1388,7 +1418,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Parsed C implicit include dir info: rv=done
         found start of include info
@@ -1408,23 +1438,23 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ']
+        ignore line: [Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_620c5/fast]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_620c5.dir/build.make CMakeFiles/cmTC_620c5.dir/build]
-        ignore line: [Building C object CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_f1d84/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_f1d84.dir/build.make CMakeFiles/cmTC_f1d84.dir/build]
+        ignore line: [Building C object CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -Wl -v -MD -MT CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin25.1.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
         ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-9rIMnZ -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6 -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-Syekl6 -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -no-opaque-pointers -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin25.1.0]
         ignore line: [ignoring nonexistent directory "/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
@@ -1436,13 +1466,13 @@ events:
         ignore line: [ /Library/Developer/CommandLineTools/usr/include]
         ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking C executable cmTC_620c5]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_620c5.dir/link.txt --verbose=1]
+        ignore line: [Linking C executable cmTC_f1d84]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1d84.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin25.1.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_620c5 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_f1d84 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
           arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -1457,12 +1487,12 @@ events:
           arg [-syslibroot] ==> ignore
           arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_620c5] ==> ignore
+          arg [cmTC_f1d84] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_620c5.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_f1d84.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lSystem] ==> lib [System]
           arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
         linker tool for 'C': /Library/Developer/CommandLineTools/usr/bin/ld
@@ -1485,7 +1515,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Running the C compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
       @(#)PROGRAM:ld  PROJECT:ld64-857.1
@@ -1498,12 +1528,12 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc"
-      binary: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc"
+      source: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b"
+      binary: "/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -1516,18 +1546,18 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc'
+        Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b'
         
-        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bca04/fast
-        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_bca04.dir/build.make CMakeFiles/cmTC_bca04.dir/build
-        Building CXX object CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -arch arm64   -v -Wl,-v -MD -MT CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_244d7/fast
+        /Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_244d7.dir/build.make CMakeFiles/cmTC_244d7.dir/build
+        Building CXX object CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -Wl,-v -MD -MT CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin25.1.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
         clang: warning: -Wl,-v: 'linker' input unused [-Wunused-command-line-argument]
-         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin25.1.0
         ignoring nonexistent directory "/usr/local/include"
         ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"
@@ -1540,13 +1570,13 @@ events:
          /Library/Developer/CommandLineTools/usr/include
          /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)
         End of search list.
-        Linking CXX executable cmTC_bca04
-        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bca04.dir/link.txt --verbose=1
+        Linking CXX executable cmTC_244d7
+        /opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_244d7.dir/link.txt --verbose=1
         Apple clang version 14.0.3 (clang-1403.0.22.14.1)
         Target: arm64-apple-darwin25.1.0
         Thread model: posix
         InstalledDir: /Library/Developer/CommandLineTools/usr/bin
-         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_bca04 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
+         "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_244d7 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a
         @(#)PROGRAM:ld  PROJECT:ld64-857.1
         BUILD 16:59:58 Feb 24 2023
         configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
@@ -1554,7 +1584,7 @@ events:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
         Framework search paths:
         	/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/
-        /usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_bca04
+        /usr/bin/c++ -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -v -Wl,-v CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_244d7
         
       exitCode: 0
   -
@@ -1562,7 +1592,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:122 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Effective list of requested architectures (possibly empty)  : ""
       Effective list of architectures found in the ABI info binary: "arm64"
@@ -1571,7 +1601,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Parsed CXX implicit include dir info: rv=done
         found start of include info
@@ -1593,23 +1623,23 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
         linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
-        ignore line: [Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc']
+        ignore line: [Change Dir: '/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b']
         ignore line: []
-        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_bca04/fast]
-        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_bca04.dir/build.make CMakeFiles/cmTC_bca04.dir/build]
-        ignore line: [Building CXX object CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -arch arm64   -v -Wl -v -MD -MT CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /opt/homebrew/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_244d7/fast]
+        ignore line: [/Library/Developer/CommandLineTools/usr/bin/make  -f CMakeFiles/cmTC_244d7.dir/build.make CMakeFiles/cmTC_244d7.dir/build]
+        ignore line: [Building CXX object CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -Wl -v -MD -MT CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin25.1.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
         ignore line: [clang: warning: -Wl -v: 'linker' input unused [-Wunused-command-line-argument]]
-        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-T2QSTc -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/Library/Developer/CommandLineTools/usr/bin/clang" -cc1 -triple arm64-apple-macosx13.3.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -ffp-contract=on -fno-rounding-math -funwind-tables=1 -fobjc-msgsend-selector-stubs -target-sdk-version=13.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +crc -target-feature +lse -target-feature +rdm -target-feature +crypto -target-feature +dotprod -target-feature +fp-armv8 -target-feature +neon -target-feature +fp16fml -target-feature +ras -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=lldb -target-linker-version 857.1 -v -fcoverage-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b -resource-dir /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3 -dependency-file CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -I/usr/local/include -stdlib=libc++ -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/c++/v1 -internal-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include -internal-isystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/include -internal-externc-isystem /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -internal-externc-isystem /Library/Developer/CommandLineTools/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -fdeprecated-macro -fdebug-compilation-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles/CMakeScratch/TryCompile-F85D3b -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -no-opaque-pointers -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 14.0.3 (clang-1403.0.22.14.1) default target arm64-apple-darwin25.1.0]
         ignore line: [ignoring nonexistent directory "/usr/local/include"]
         ignore line: [ignoring nonexistent directory "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/local/include"]
@@ -1622,13 +1652,13 @@ events:
         ignore line: [ /Library/Developer/CommandLineTools/usr/include]
         ignore line: [ /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks (framework directory)]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_bca04]
-        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bca04.dir/link.txt --verbose=1]
+        ignore line: [Linking CXX executable cmTC_244d7]
+        ignore line: [/opt/homebrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_244d7.dir/link.txt --verbose=1]
         ignore line: [Apple clang version 14.0.3 (clang-1403.0.22.14.1)]
         ignore line: [Target: arm64-apple-darwin25.1.0]
         ignore line: [Thread model: posix]
         ignore line: [InstalledDir: /Library/Developer/CommandLineTools/usr/bin]
-        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_bca04 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
+        link line: [ "/Library/Developer/CommandLineTools/usr/bin/ld" -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 13.3.0 13.3 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk -o cmTC_244d7 -L/usr/local/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
           arg [/Library/Developer/CommandLineTools/usr/bin/ld] ==> ignore
           arg [-demangle] ==> ignore
           arg [-lto_library] ==> ignore, skip following value
@@ -1643,12 +1673,12 @@ events:
           arg [-syslibroot] ==> ignore
           arg [/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_bca04] ==> ignore
+          arg [cmTC_244d7] ==> ignore
           arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
           arg [-search_paths_first] ==> ignore
           arg [-headerpad_max_install_names] ==> ignore
           arg [-v] ==> ignore
-          arg [CMakeFiles/cmTC_bca04.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_244d7.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lc++] ==> lib [c++]
           arg [-lSystem] ==> lib [System]
           arg [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a] ==> lib [/Library/Developer/CommandLineTools/usr/lib/clang/14.0.3/lib/darwin/libclang_rt.osx.a]
@@ -1672,7 +1702,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake:38 (message)"
       - "/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:299 (cmake_determine_linker_id)"
       - "/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:4 (project)"
     message: |
       Running the CXX compiler's linker: "/Library/Developer/CommandLineTools/usr/bin/ld" "-v"
       @(#)PROGRAM:ld  PROJECT:ld64-857.1
@@ -1685,7 +1715,7 @@ events:
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake:517 (find_program)"
       - "/opt/homebrew/share/cmake/Modules/FindSQLite3.cmake:61 (find_package)"
-      - "CMakeLists.txt:11 (find_package)"
+      - "CMakeLists.txt:7 (find_package)"
     mode: "program"
     variable: "PKG_CONFIG_EXECUTABLE"
     description: "pkg-config executable"
@@ -1701,9 +1731,6 @@ events:
       - "pkg-config"
       - "pkgconf"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -1715,9 +1742,14 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/bin/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/sbin/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
@@ -1750,16 +1782,41 @@ events:
       - "/Users/lucas/Applications/"
       - "/Applications/"
     searched_directories:
+      - "/Library/Frameworks/Python.framework/Versions/3.10/bin/pkg-config"
+      - "/Library/Frameworks/Python.framework/Versions/3.10/bin/pkgconf"
+      - "/usr/local/bin/pkg-config"
+      - "/usr/local/bin/pkgconf"
+      - "/System/Cryptexes/App/usr/bin/pkg-config"
+      - "/System/Cryptexes/App/usr/bin/pkgconf"
+      - "/usr/bin/pkg-config"
+      - "/usr/bin/pkgconf"
+      - "/bin/pkg-config"
+      - "/bin/pkgconf"
+      - "/usr/sbin/pkg-config"
+      - "/usr/sbin/pkgconf"
+      - "/sbin/pkg-config"
+      - "/sbin/pkgconf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/pkg-config"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin/pkgconf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/pkg-config"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/pkgconf"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/pkg-config"
+      - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/pkgconf"
+      - "/opt/pmk/env/global/bin/pkg-config"
+      - "/opt/pmk/env/global/bin/pkgconf"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/pkg-config"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/pkgconf"
       - "/Users/lucas/.codebuddy/bin/pkg-config"
       - "/Users/lucas/.codebuddy/bin/pkgconf"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/pkg-config"
+      - "/opt/homebrew/Caskroom/miniconda/base/bin/pkgconf"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/pkg-config"
+      - "/opt/homebrew/Caskroom/miniconda/base/condabin/pkgconf"
       - "/Users/lucas/.pyenv/shims/pkg-config"
       - "/Users/lucas/.pyenv/shims/pkgconf"
     found: "/opt/homebrew/bin/pkg-config"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1771,12 +1828,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
@@ -1803,7 +1863,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake:1149 (_pkg_recalculate)"
       - "/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake:1166 (_pkg_check_modules_internal)"
       - "/opt/homebrew/share/cmake/Modules/FindSQLite3.cmake:63 (pkg_check_modules)"
-      - "CMakeLists.txt:11 (find_package)"
+      - "CMakeLists.txt:7 (find_package)"
     mode: "library"
     variable: "pkgcfg_lib_PC_SQLite3_sqlite3"
     description: "Path to a library."
@@ -1824,9 +1884,6 @@ events:
     found: false
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1838,12 +1895,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
@@ -1879,7 +1939,7 @@ events:
       - "/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake:1149 (_pkg_recalculate)"
       - "/opt/homebrew/share/cmake/Modules/FindPkgConfig.cmake:1166 (_pkg_check_modules_internal)"
       - "/opt/homebrew/share/cmake/Modules/FindSQLite3.cmake:63 (pkg_check_modules)"
-      - "CMakeLists.txt:11 (find_package)"
+      - "CMakeLists.txt:7 (find_package)"
     mode: "library"
     variable: "pkgcfg_lib_PC_SQLite3_sqlite3"
     description: "Path to a library."
@@ -1894,9 +1954,6 @@ events:
     names:
       - "sqlite3"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -1904,9 +1961,14 @@ events:
       - "/bin/"
       - "/usr/sbin/"
       - "/sbin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
       - "/opt/homebrew/lib/"
@@ -1921,9 +1983,6 @@ events:
       - "/Library/Frameworks/"
       - "/System/Library/Frameworks/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -1931,15 +1990,17 @@ events:
       - "/bin/"
       - "/usr/sbin/"
       - "/sbin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -1951,12 +2012,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
@@ -1988,7 +2052,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/FindSQLite3.cmake:67 (find_path)"
-      - "CMakeLists.txt:11 (find_package)"
+      - "CMakeLists.txt:7 (find_package)"
     mode: "path"
     variable: "SQLite3_INCLUDE_DIR"
     description: "Path to a file."
@@ -2003,9 +2067,6 @@ events:
     names:
       - "sqlite3.h"
     candidate_directories:
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -2017,9 +2078,14 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/"
       - "/opt/pmk/env/global/bin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
       - "/opt/homebrew/include/"
@@ -2049,9 +2115,6 @@ events:
       - "/Network/Library/Frameworks/"
       - "/System/Library/Frameworks/"
     searched_directories:
-      - "/Users/lucas/.codebuddy/bin/sqlite3.h"
-      - "/Users/lucas/.pyenv/shims/sqlite3.h"
-      - "/opt/homebrew/bin/sqlite3.h"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/sqlite3.h"
       - "/usr/local/bin/sqlite3.h"
       - "/System/Cryptexes/App/usr/bin/sqlite3.h"
@@ -2063,15 +2126,17 @@ events:
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin/sqlite3.h"
       - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin/sqlite3.h"
       - "/opt/pmk/env/global/bin/sqlite3.h"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/sqlite3.h"
+      - "/Users/lucas/.codebuddy/bin/sqlite3.h"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/sqlite3.h"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/sqlite3.h"
+      - "/Users/lucas/.pyenv/shims/sqlite3.h"
+      - "/opt/homebrew/bin/sqlite3.h"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/sqlite3.h"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/sqlite3.h"
     found: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -2083,12 +2148,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:
@@ -2120,7 +2188,7 @@ events:
     kind: "find-v1"
     backtrace:
       - "/opt/homebrew/share/cmake/Modules/FindSQLite3.cmake:74 (find_library)"
-      - "CMakeLists.txt:11 (find_package)"
+      - "CMakeLists.txt:7 (find_package)"
     mode: "library"
     variable: "SQLite3_LIBRARY"
     description: "Path to a library."
@@ -2137,9 +2205,6 @@ events:
       - "sqlite"
     candidate_directories:
       - "/usr/lib/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -2147,9 +2212,14 @@ events:
       - "/bin/"
       - "/usr/sbin/"
       - "/sbin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/"
       - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/"
       - "/opt/homebrew/lib/"
@@ -2165,9 +2235,6 @@ events:
       - "/System/Library/Frameworks/"
     searched_directories:
       - "/usr/lib/"
-      - "/Users/lucas/.codebuddy/bin/"
-      - "/Users/lucas/.pyenv/shims/"
-      - "/opt/homebrew/bin/"
       - "/Library/Frameworks/Python.framework/Versions/3.10/bin/"
       - "/usr/local/bin/"
       - "/System/Cryptexes/App/usr/bin/"
@@ -2175,15 +2242,17 @@ events:
       - "/bin/"
       - "/usr/sbin/"
       - "/sbin/"
+      - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz/"
+      - "/Users/lucas/.codebuddy/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/bin/"
       - "/opt/homebrew/Caskroom/miniconda/base/condabin/"
+      - "/Users/lucas/.pyenv/shims/"
+      - "/opt/homebrew/bin/"
       - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts/"
+      - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64/"
     found: "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd"
     search_context:
       ENV{PATH}:
-        - "/Users/lucas/.codebuddy/bin"
-        - "/Users/lucas/.pyenv/shims"
-        - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/usr/local/bin"
         - "/System/Cryptexes/App/usr/bin"
@@ -2195,12 +2264,15 @@ events:
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
         - "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
         - "/opt/pmk/env/global/bin"
+        - "/var/folders/6d/k00xkcpn5slggqhhyjqhcyz00000gn/T/.tmpJIRIRz"
         - "/Users/lucas/.codebuddy/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/bin"
         - "/opt/homebrew/Caskroom/miniconda/base/condabin"
+        - "/Users/lucas/.pyenv/shims"
         - "/opt/homebrew/bin"
         - "/Library/Frameworks/Python.framework/Versions/3.10/bin"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
+        - "/Users/lucas/.codebuddycn/extensions/openai.chatgpt-0.4.49-universal/bin/macos-aarch64"
         - "/Users/lucas/Library/Application Support/JetBrains/Toolbox/scripts"
       CMAKE_INSTALL_PREFIX: "/usr/local"
       CMAKE_SYSTEM_PREFIX_PATH:

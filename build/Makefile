@@ -117,168 +117,216 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GameProject
+# Target rules for targets named TaskFramework
 
 # Build rule for target.
-GameProject: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GameProject
-.PHONY : GameProject
+TaskFramework: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 TaskFramework
+.PHONY : TaskFramework
 
 # fast build rule for target.
-GameProject/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/build
-.PHONY : GameProject/fast
+TaskFramework/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/build
+.PHONY : TaskFramework/fast
 
-src/AgentImplementation.o: src/AgentImplementation.cpp.o
-.PHONY : src/AgentImplementation.o
-
-# target to build an object file
-src/AgentImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.o
-.PHONY : src/AgentImplementation.cpp.o
-
-src/AgentImplementation.i: src/AgentImplementation.cpp.i
-.PHONY : src/AgentImplementation.i
-
-# target to preprocess a source file
-src/AgentImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.i
-.PHONY : src/AgentImplementation.cpp.i
-
-src/AgentImplementation.s: src/AgentImplementation.cpp.s
-.PHONY : src/AgentImplementation.s
-
-# target to generate assembly for a file
-src/AgentImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/AgentImplementation.cpp.s
-.PHONY : src/AgentImplementation.cpp.s
-
-src/DatabaseCallbacks.o: src/DatabaseCallbacks.cpp.o
-.PHONY : src/DatabaseCallbacks.o
+old/src/AgentImplementation.o: old/src/AgentImplementation.cpp.o
+.PHONY : old/src/AgentImplementation.o
 
 # target to build an object file
-src/DatabaseCallbacks.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.o
-.PHONY : src/DatabaseCallbacks.cpp.o
+old/src/AgentImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o
+.PHONY : old/src/AgentImplementation.cpp.o
 
-src/DatabaseCallbacks.i: src/DatabaseCallbacks.cpp.i
-.PHONY : src/DatabaseCallbacks.i
+old/src/AgentImplementation.i: old/src/AgentImplementation.cpp.i
+.PHONY : old/src/AgentImplementation.i
 
 # target to preprocess a source file
-src/DatabaseCallbacks.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.i
-.PHONY : src/DatabaseCallbacks.cpp.i
+old/src/AgentImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.i
+.PHONY : old/src/AgentImplementation.cpp.i
 
-src/DatabaseCallbacks.s: src/DatabaseCallbacks.cpp.s
-.PHONY : src/DatabaseCallbacks.s
+old/src/AgentImplementation.s: old/src/AgentImplementation.cpp.s
+.PHONY : old/src/AgentImplementation.s
 
 # target to generate assembly for a file
-src/DatabaseCallbacks.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseCallbacks.cpp.s
-.PHONY : src/DatabaseCallbacks.cpp.s
+old/src/AgentImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.s
+.PHONY : old/src/AgentImplementation.cpp.s
 
-src/DatabaseInitializer.o: src/DatabaseInitializer.cpp.o
-.PHONY : src/DatabaseInitializer.o
+old/src/DatabaseCallbacks.o: old/src/DatabaseCallbacks.cpp.o
+.PHONY : old/src/DatabaseCallbacks.o
 
 # target to build an object file
-src/DatabaseInitializer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.o
-.PHONY : src/DatabaseInitializer.cpp.o
+old/src/DatabaseCallbacks.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o
+.PHONY : old/src/DatabaseCallbacks.cpp.o
 
-src/DatabaseInitializer.i: src/DatabaseInitializer.cpp.i
-.PHONY : src/DatabaseInitializer.i
+old/src/DatabaseCallbacks.i: old/src/DatabaseCallbacks.cpp.i
+.PHONY : old/src/DatabaseCallbacks.i
 
 # target to preprocess a source file
-src/DatabaseInitializer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.i
-.PHONY : src/DatabaseInitializer.cpp.i
+old/src/DatabaseCallbacks.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.i
+.PHONY : old/src/DatabaseCallbacks.cpp.i
 
-src/DatabaseInitializer.s: src/DatabaseInitializer.cpp.s
-.PHONY : src/DatabaseInitializer.s
+old/src/DatabaseCallbacks.s: old/src/DatabaseCallbacks.cpp.s
+.PHONY : old/src/DatabaseCallbacks.s
 
 # target to generate assembly for a file
-src/DatabaseInitializer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/DatabaseInitializer.cpp.s
-.PHONY : src/DatabaseInitializer.cpp.s
+old/src/DatabaseCallbacks.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.s
+.PHONY : old/src/DatabaseCallbacks.cpp.s
 
-src/TaskManagerImplementation.o: src/TaskManagerImplementation.cpp.o
-.PHONY : src/TaskManagerImplementation.o
+old/src/DatabaseInitializer.o: old/src/DatabaseInitializer.cpp.o
+.PHONY : old/src/DatabaseInitializer.o
 
 # target to build an object file
-src/TaskManagerImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.o
-.PHONY : src/TaskManagerImplementation.cpp.o
+old/src/DatabaseInitializer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o
+.PHONY : old/src/DatabaseInitializer.cpp.o
 
-src/TaskManagerImplementation.i: src/TaskManagerImplementation.cpp.i
-.PHONY : src/TaskManagerImplementation.i
+old/src/DatabaseInitializer.i: old/src/DatabaseInitializer.cpp.i
+.PHONY : old/src/DatabaseInitializer.i
 
 # target to preprocess a source file
-src/TaskManagerImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.i
-.PHONY : src/TaskManagerImplementation.cpp.i
+old/src/DatabaseInitializer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.i
+.PHONY : old/src/DatabaseInitializer.cpp.i
 
-src/TaskManagerImplementation.s: src/TaskManagerImplementation.cpp.s
-.PHONY : src/TaskManagerImplementation.s
+old/src/DatabaseInitializer.s: old/src/DatabaseInitializer.cpp.s
+.PHONY : old/src/DatabaseInitializer.s
 
 # target to generate assembly for a file
-src/TaskManagerImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskManagerImplementation.cpp.s
-.PHONY : src/TaskManagerImplementation.cpp.s
+old/src/DatabaseInitializer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.s
+.PHONY : old/src/DatabaseInitializer.cpp.s
 
-src/TaskTreeImplementation.o: src/TaskTreeImplementation.cpp.o
-.PHONY : src/TaskTreeImplementation.o
+old/src/WorldState.o: old/src/WorldState.cpp.o
+.PHONY : old/src/WorldState.o
 
 # target to build an object file
-src/TaskTreeImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.o
-.PHONY : src/TaskTreeImplementation.cpp.o
+old/src/WorldState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o
+.PHONY : old/src/WorldState.cpp.o
 
-src/TaskTreeImplementation.i: src/TaskTreeImplementation.cpp.i
-.PHONY : src/TaskTreeImplementation.i
+old/src/WorldState.i: old/src/WorldState.cpp.i
+.PHONY : old/src/WorldState.i
 
 # target to preprocess a source file
-src/TaskTreeImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.i
-.PHONY : src/TaskTreeImplementation.cpp.i
+old/src/WorldState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.i
+.PHONY : old/src/WorldState.cpp.i
 
-src/TaskTreeImplementation.s: src/TaskTreeImplementation.cpp.s
-.PHONY : src/TaskTreeImplementation.s
+old/src/WorldState.s: old/src/WorldState.cpp.s
+.PHONY : old/src/WorldState.s
 
 # target to generate assembly for a file
-src/TaskTreeImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/TaskTreeImplementation.cpp.s
-.PHONY : src/TaskTreeImplementation.cpp.s
+old/src/WorldState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.s
+.PHONY : old/src/WorldState.cpp.s
 
-src/WorldState.o: src/WorldState.cpp.o
-.PHONY : src/WorldState.o
+old/src/objects.o: old/src/objects.cpp.o
+.PHONY : old/src/objects.o
 
 # target to build an object file
-src/WorldState.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/WorldState.cpp.o
-.PHONY : src/WorldState.cpp.o
+old/src/objects.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o
+.PHONY : old/src/objects.cpp.o
 
-src/WorldState.i: src/WorldState.cpp.i
-.PHONY : src/WorldState.i
+old/src/objects.i: old/src/objects.cpp.i
+.PHONY : old/src/objects.i
 
 # target to preprocess a source file
-src/WorldState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/WorldState.cpp.i
-.PHONY : src/WorldState.cpp.i
+old/src/objects.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.i
+.PHONY : old/src/objects.cpp.i
 
-src/WorldState.s: src/WorldState.cpp.s
-.PHONY : src/WorldState.s
+old/src/objects.s: old/src/objects.cpp.s
+.PHONY : old/src/objects.s
 
 # target to generate assembly for a file
-src/WorldState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/WorldState.cpp.s
-.PHONY : src/WorldState.cpp.s
+old/src/objects.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.s
+.PHONY : old/src/objects.cpp.s
+
+src/Scheduler.o: src/Scheduler.cpp.o
+.PHONY : src/Scheduler.o
+
+# target to build an object file
+src/Scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/Scheduler.cpp.o
+.PHONY : src/Scheduler.cpp.o
+
+src/Scheduler.i: src/Scheduler.cpp.i
+.PHONY : src/Scheduler.i
+
+# target to preprocess a source file
+src/Scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/Scheduler.cpp.i
+.PHONY : src/Scheduler.cpp.i
+
+src/Scheduler.s: src/Scheduler.cpp.s
+.PHONY : src/Scheduler.s
+
+# target to generate assembly for a file
+src/Scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/Scheduler.cpp.s
+.PHONY : src/Scheduler.cpp.s
+
+src/TaskGraph.o: src/TaskGraph.cpp.o
+.PHONY : src/TaskGraph.o
+
+# target to build an object file
+src/TaskGraph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskGraph.cpp.o
+.PHONY : src/TaskGraph.cpp.o
+
+src/TaskGraph.i: src/TaskGraph.cpp.i
+.PHONY : src/TaskGraph.i
+
+# target to preprocess a source file
+src/TaskGraph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskGraph.cpp.i
+.PHONY : src/TaskGraph.cpp.i
+
+src/TaskGraph.s: src/TaskGraph.cpp.s
+.PHONY : src/TaskGraph.s
+
+# target to generate assembly for a file
+src/TaskGraph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskGraph.cpp.s
+.PHONY : src/TaskGraph.cpp.s
+
+src/TaskTree.o: src/TaskTree.cpp.o
+.PHONY : src/TaskTree.o
+
+# target to build an object file
+src/TaskTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.o
+.PHONY : src/TaskTree.cpp.o
+
+src/TaskTree.i: src/TaskTree.cpp.i
+.PHONY : src/TaskTree.i
+
+# target to preprocess a source file
+src/TaskTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.i
+.PHONY : src/TaskTree.cpp.i
+
+src/TaskTree.s: src/TaskTree.cpp.s
+.PHONY : src/TaskTree.s
+
+# target to generate assembly for a file
+src/TaskTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.s
+.PHONY : src/TaskTree.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -286,7 +334,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -294,32 +342,8 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/objects.o: src/objects.cpp.o
-.PHONY : src/objects.o
-
-# target to build an object file
-src/objects.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/objects.cpp.o
-.PHONY : src/objects.cpp.o
-
-src/objects.i: src/objects.cpp.i
-.PHONY : src/objects.i
-
-# target to preprocess a source file
-src/objects.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/objects.cpp.i
-.PHONY : src/objects.cpp.i
-
-src/objects.s: src/objects.cpp.s
-.PHONY : src/objects.s
-
-# target to generate assembly for a file
-src/objects.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GameProject.dir/build.make CMakeFiles/GameProject.dir/src/objects.cpp.s
-.PHONY : src/objects.cpp.s
 
 # Help Target
 help:
@@ -329,31 +353,34 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... GameProject"
-	@echo "... src/AgentImplementation.o"
-	@echo "... src/AgentImplementation.i"
-	@echo "... src/AgentImplementation.s"
-	@echo "... src/DatabaseCallbacks.o"
-	@echo "... src/DatabaseCallbacks.i"
-	@echo "... src/DatabaseCallbacks.s"
-	@echo "... src/DatabaseInitializer.o"
-	@echo "... src/DatabaseInitializer.i"
-	@echo "... src/DatabaseInitializer.s"
-	@echo "... src/TaskManagerImplementation.o"
-	@echo "... src/TaskManagerImplementation.i"
-	@echo "... src/TaskManagerImplementation.s"
-	@echo "... src/TaskTreeImplementation.o"
-	@echo "... src/TaskTreeImplementation.i"
-	@echo "... src/TaskTreeImplementation.s"
-	@echo "... src/WorldState.o"
-	@echo "... src/WorldState.i"
-	@echo "... src/WorldState.s"
+	@echo "... TaskFramework"
+	@echo "... old/src/AgentImplementation.o"
+	@echo "... old/src/AgentImplementation.i"
+	@echo "... old/src/AgentImplementation.s"
+	@echo "... old/src/DatabaseCallbacks.o"
+	@echo "... old/src/DatabaseCallbacks.i"
+	@echo "... old/src/DatabaseCallbacks.s"
+	@echo "... old/src/DatabaseInitializer.o"
+	@echo "... old/src/DatabaseInitializer.i"
+	@echo "... old/src/DatabaseInitializer.s"
+	@echo "... old/src/WorldState.o"
+	@echo "... old/src/WorldState.i"
+	@echo "... old/src/WorldState.s"
+	@echo "... old/src/objects.o"
+	@echo "... old/src/objects.i"
+	@echo "... old/src/objects.s"
+	@echo "... src/Scheduler.o"
+	@echo "... src/Scheduler.i"
+	@echo "... src/Scheduler.s"
+	@echo "... src/TaskGraph.o"
+	@echo "... src/TaskGraph.i"
+	@echo "... src/TaskGraph.s"
+	@echo "... src/TaskTree.o"
+	@echo "... src/TaskTree.i"
+	@echo "... src/TaskTree.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/objects.o"
-	@echo "... src/objects.i"
-	@echo "... src/objects.s"
 .PHONY : help
 
 

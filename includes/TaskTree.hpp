@@ -1,45 +1,54 @@
-#ifndef TASKTREE_HPP
-#define TASKTREE_HPP
+#ifndef TASKFRAMEWORK_TASKTREE_HPP
+#define TASKFRAMEWORK_TASKTREE_HPP
 
-#include "objects.hpp"
-#include <vector>
+#include "TaskGraph.hpp"
+#include "../old/includes/WorldState.hpp"
 #include <map>
-#include <string>
+#include <set>
 
-// -------------------------------------------------
-// TaskTree class implementation
-class TaskTree {
-private:
-	std::vector<TaskNode> nodes;
-	std::map<int, int> item_to_task;  // item_id -> task index
-	
-public:
-	// Grant TaskManager access to private members
-	friend class TaskManager;
-	
-	// Add task node to tree
-	int addTask(int item_id, const std::string& item_name, int quantity, bool is_leaf = false, 
-	            int crafting_id = 0, int building_type = 0, std::pair<int, int> location = std::make_pair(0, 0));
-	
-	// Add edge between tasks
-	void addDependency(int father_item, int son_item);
-	
-	// Update quantities
-	void addQuantity(int item_id, int amount);
-	bool checkRequirements(int task_id) const;
-	
-	// Getters
-	TaskNode& getTask(int task_id) { return nodes[task_id]; }
-	const TaskNode& getTask(int task_id) const { return nodes[task_id]; }
-	int getTaskByItem(int item_id) const { return item_to_task.at(item_id); }
-	const std::vector<TaskNode>& getAllNodes() const { return nodes; }
-	
-	// Tree operations
-	std::vector<int> getExecutableTasks() const;
-	std::vector<int> getFathers(int task_id) const;
-	
-	// Debug
-	void display() const;
+// Task event info
+struct TaskInfo {
+	int type; // 1: construction complete, 2: item produced, 3: building spawned/pending
+	int target_id; // building_id or task_id depending on type
+	int item_id;
+	int quantity;
+	std::pair<int, int> coord;
 };
 
-#endif // TASKTREE_HPP
+// One-stop task manager: stores graph, demands, building coords, event handling
+class TaskTree {
+public:
+	// Build from database data
+	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings);
+
+	// Query
+	std::vector<int> ready() const;
+	TFNode& get(int id);
+	const TFNode& get(int id) const;
+	const std::vector<TFNode>& nodes() const;
+	const TaskGraph& graph() const { return graph_; }
+	TaskGraph& graphMutable() { return graph_; }
+
+	// Requirements
+	void addItemRequire(int item_id, int require);
+	void addBuildingRequire(int building_type, const std::pair<int,int>& coord);
+
+	// Event handling (external feedback)
+	void applyEvent(const TaskInfo& info, WorldState& world);
+
+	// Queries
+	int getItemDemand(int item_id) const;
+	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
+
+private:
+	int addNode(const TFNode& node);
+	void addEdge(int parent, int child);
+	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting); // internal helper
+
+	TaskGraph graph_;
+	std::map<int, int> item_require_; // item_id -> total required
+	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
+	std::set<int> completed_buildings_;
+};
+
+#endif

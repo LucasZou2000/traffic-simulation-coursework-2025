@@ -1,33 +1,27 @@
 # Set the minimum CMake version required
 cmake_minimum_required(VERSION 3.10)
 
-# Set the project name
-project(GameProject)
-
-# Set C++ standard
+project(TaskFramework)
 set(CMAKE_CXX_STANDARD 17)
 
-# Find SQLite3 package
 find_package(SQLite3 REQUIRED)
 
-# Include directories for header files
 include_directories(${CMAKE_SOURCE_DIR}/includes)
+include_directories(${CMAKE_SOURCE_DIR}/old/includes)
 include_directories(${SQLite3_INCLUDE_DIRS})
 
-# Add source files
 set(SOURCE_FILES
-    src/objects.cpp
-    src/DatabaseInitializer.cpp
-    src/WorldState.cpp
-    src/DatabaseCallbacks.cpp
     src/main.cpp
-    src/TaskTreeImplementation.cpp
-    src/TaskManagerImplementation.cpp
-    src/AgentImplementation.cpp
+    src/TaskGraph.cpp
+    src/Scheduler.cpp
+    src/TaskTree.cpp
+    # Reuse DB/world utilities from old/
+    old/src/objects.cpp
+    old/src/DatabaseInitializer.cpp
+    old/src/WorldState.cpp
+    old/src/DatabaseCallbacks.cpp
+    old/src/AgentImplementation.cpp
 )
 
-# Create the executable target
-add_executable(GameProject ${SOURCE_FILES})
-
-# Link the SQLite3 library
-target_link_libraries(GameProject ${SQLite3_LIBRARIES})
+add_executable(TaskFramework ${SOURCE_FILES})
+target_link_libraries(TaskFramework ${SQLite3_LIBRARIES})
