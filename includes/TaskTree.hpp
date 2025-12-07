@@ -3,7 +3,6 @@
 
 #include "WorldState.hpp"
 #include <map>
-#include <set>
 #include <vector>
 #include <string>
 
@@ -50,15 +49,13 @@ public:
 	// Sync node produced values with world inventory/buildings (greedy fill)
 	void syncWithWorld(WorldState& world);
 
-	// Requirements
-	void addItemRequire(int item_id, int require);
+	// Requirements (building coords only)
 	void addBuildingRequire(int building_type, const std::pair<int,int>& coord);
 
 	// Event handling (external feedback)
 	void applyEvent(const TaskInfo& info, WorldState& world);
 
 	// Queries
-	int getItemDemand(int item_id) const;
 	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
 
 private:
@@ -68,9 +65,7 @@ private:
 	bool isCompleted(int id) const;
 
 	std::vector<TFNode> nodes_;
-	std::map<int, int> item_require_; // item_id -> total required
 	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
-	std::set<int> completed_buildings_;
 };
 
 #endif

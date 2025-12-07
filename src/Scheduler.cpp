@@ -115,14 +115,66 @@ void Scheduler::stepExecute(const std::vector<std::pair<int, int> >& plan, TaskT
 		TFNode& node = tree.get(task_id);
 
 		if (node.type == TaskType::Gather) {
-			agent_status[agent_id] = "采集物品" + std::to_string(node.item_id);
-			node.produced += 1; // 占位进度
+			int need = node.demand - node.produced;
+			if (need <= 0) continue;
+			int best_dist = 1e9;
+			ResourcePoint* best_rp = nullptr;
+			for (std::map<int, ResourcePoint>::iterator it = world_.getResourcePoints().begin(); it != world_.getResourcePoints().end(); ++it) {
+				if (it->second.resource_item_id != node.item_id || it->second.remaining_resource <= 0) continue;
+				int d = agents[agent_id]->getDistanceTo(it->second.x, it->second.y);
+				if (d < best_dist) { best_dist = d; best_rp = &(it->second); }
+			}
+			if (!best_rp) continue;
+			int dist_before = agents[agent_id]->getDistanceTo(best_rp->x, best_rp->y);
+			if (dist_before > 0) {
+				agents[agent_id]->moveStep(best_rp->x, best_rp->y);
+				agent_status[agent_id] = "移动至资源";
+				continue; // 本 tick 只移动，不执行采集
+			}
+			int harvest = std::min(10, std::min(need, best_rp->remaining_resource));
+			if (harvest > 0) {
+				best_rp->remaining_resource -= harvest;
+				world_.addItem(node.item_id, harvest);
+				node.produced += harvest;
+				agent_status[agent_id] = "采集物品" + std::to_string(node.item_id);
+			}
 		} else if (node.type == TaskType::Craft) {
-			agent_status[agent_id] = "合成物品" + std::to_string(node.item_id);
-			node.produced = node.demand;
+			const CraftingRecipe* recipe = world_.getCraftingSystem().getRecipe(node.crafting_id);
+			if (!recipe) continue;
+			if (world_.hasEnoughItems(recipe->materials)) {
+				for (size_t mi = 0; mi < recipe->materials.size(); ++mi) {
+					world_.removeItem(recipe->materials[mi].item_id, recipe->materials[mi].quantity_required);
+				}
+				world_.addItem(recipe->product_item_id, recipe->quantity_produced);
+				node.produced = node.demand;
+				agent_status[agent_id] = "合成物品" + std::to_string(node.item_id);
+			}
 		} else {
-			agent_status[agent_id] = "建造" + std::to_string(node.building_id);
-			node.produced = node.demand;
+			Building* b = world_.getBuilding(node.building_id);
+			if (!b || b->isCompleted) {
+				node.produced = node.demand;
+				continue;
+			}
+			int dist_before = agents[agent_id]->getDistanceTo(b->x, b->y);
+			if (dist_before > 0) {
+				agents[agent_id]->moveStep(b->x, b->y);
+				agent_status[agent_id] = "移动至建造";
+				continue; // 本 tick 只移动
+			}
+			std::vector<CraftingMaterial> mats;
+			for (size_t mi = 0; mi < b->required_materials.size(); ++mi) {
+				mats.push_back(CraftingMaterial(b->required_materials[mi].first, b->required_materials[mi].second));
+			}
+			if (world_.hasEnoughItems(mats)) {
+				for (size_t mi = 0; mi < mats.size(); ++mi) {
+					world_.removeItem(mats[mi].item_id, mats[mi].quantity_required);
+				}
+				b->completeConstruction();
+				node.produced = node.demand;
+				agent_status[agent_id] = "建造" + std::to_string(node.building_id);
+				// Remove coord entry
+				tree.applyEvent(TaskInfo{1, node.building_id, 0, 0, node.coord}, world_);
+			}
 		}
 		if (node.produced > node.demand) node.produced = node.demand;
 	}

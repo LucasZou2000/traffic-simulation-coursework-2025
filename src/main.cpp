@@ -10,7 +10,6 @@ int main() {
 	// 连接数据库（复用 old/ 下的 DB 逻辑）
 	DatabaseManager db;
 	const char* paths[] = {
-		"old/resources/game_data.db",
 		"resources/game_data.db",
 		"../resources/game_data.db"
 	};

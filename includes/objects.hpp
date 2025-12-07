@@ -24,6 +24,7 @@ struct ResourcePoint {
 	int resource_point_id = 0;
 	int resource_item_id = 0;
 	int x = 0, y = 0;
+	int generation_rate = 0;
 	int remaining_resource = 0;
 	bool harvest(int amount) {
 		if (remaining_resource <= 0) return false;
@@ -52,6 +53,8 @@ struct CraftingRecipe {
 	void setProduct(int itemId, int qty, int time, int buildingId = 0) {
 		product_item_id = itemId; quantity_produced = qty; production_time = time; required_building_id = buildingId;
 	}
+	CraftingRecipe() {}
+	explicit CraftingRecipe(int id) : crafting_id(id) {}
 };
 
 class CraftingSystem {
@@ -69,6 +72,7 @@ private:
 struct Building {
 	int building_id = 0;
 	std::string building_name;
+	int construction_time = 0;
 	int x = 0, y = 0;
 	bool isCompleted = false;
 	std::vector<std::pair<int,int> > required_materials;
@@ -88,6 +92,28 @@ public:
 	std::map<int,int> inventory;
 	Agent(const std::string& n, const std::string& r, int e, int px, int py, CraftingSystem* = nullptr)
 	    : name(n), role(r), energyLevel(e), x(px), y(py) {}
+	// move towards target by at most speed/20 (per tick), Manhattan
+	bool moveStep(int tx, int ty) {
+		int step = speed / 20; // 9 per tick
+		int dx = tx - x;
+		int dy = ty - y;
+		int dist = std::abs(dx) + std::abs(dy);
+		if (dist == 0) return true;
+		if (dist <= step) { x = tx; y = ty; return true; }
+		int move_x = 0, move_y = 0;
+		if (dx != 0) {
+			int take = std::min(std::abs(dx), step);
+			move_x = (dx > 0) ? take : -take;
+			step -= take;
+		}
+		if (step > 0 && dy != 0) {
+			int take = std::min(std::abs(dy), step);
+			move_y = (dy > 0) ? take : -take;
+		}
+		x += move_x;
+		y += move_y;
+		return false;
+	}
 	int getDistanceTo(int tx, int ty) const { return std::abs(tx - x) + std::abs(ty - y); }
 };
 
