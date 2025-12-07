@@ -14,6 +14,7 @@ set(SOURCE_FILES
     src/Scheduler.cpp
     src/TaskTree.cpp
     src/Simulator.cpp
+    src/WorkerInit.cpp
     src/objects.cpp
     src/DatabaseInitializer.cpp
     src/WorldState.cpp

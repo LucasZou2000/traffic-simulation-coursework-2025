@@ -16,6 +16,9 @@ private:
 	TaskTree& tree_;
 	Scheduler& scheduler_;
 	std::vector<Agent*>& agents_;
+	std::vector<int> current_task_;
+	std::vector<int> ticks_left_;
+	std::vector<int> harvested_since_leave_;
 };
 
 #endif

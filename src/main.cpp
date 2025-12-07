@@ -5,14 +5,11 @@
 #include "Simulator.hpp"
 #include "DatabaseInitializer.hpp"
 #include "WorldState.hpp"
+#include "WorkerInit.hpp"
 
 int main() {
-	// 连接数据库（复用 old/ 下的 DB 逻辑）
 	DatabaseManager db;
-	const char* paths[] = {
-		"resources/game_data.db",
-		"../resources/game_data.db"
-	};
+	const char* paths[] = {"resources/game_data.db", "../resources/game_data.db"};
 	bool connected = false;
 	for (const char* p : paths) {
 		if (db.connect(p)) { connected = true; break; }
@@ -36,13 +33,11 @@ int main() {
 	// 从数据库数据生成任务图
 	task_tree.buildFromDatabase(world.getCraftingSystem(), world.getBuildings());
 
-	// 创建几个 Agent
-	std::vector<Agent*> agents;
-	agents.push_back(new Agent("工人A", "采集者", 100, 1000, 1000, &world.getCraftingSystem()));
-	agents.push_back(new Agent("工人B", "建造者", 100, 1020, 990, &world.getCraftingSystem()));
+	// 创建 NPC（默认参数，后续修改只需调整 init 函数）
+	std::vector<Agent*> agents = initDefaultWorkers(2, &world.getCraftingSystem());
 
 	Simulator sim(world, task_tree, scheduler, agents);
-	sim.run(10); // 示例跑10个tick
+	sim.run(200);
 
 	for (Agent* ag : agents) delete ag;
 	return 0;
