@@ -1,27 +1,42 @@
 #include "../includes/TaskTree.hpp"
 
 std::vector<int> TaskTree::ready() const {
-	return graph_.ready();
+	std::vector<int> res;
+	for (size_t i = 0; i < nodes_.size(); ++i) {
+		if (isCompleted(static_cast<int>(i))) continue;
+		bool ok = true;
+		for (size_t j = 0; j < nodes_[i].children.size(); ++j) {
+			if (!isCompleted(nodes_[i].children[j])) { ok = false; break; }
+		}
+		if (ok) res.push_back(static_cast<int>(i));
+	}
+	return res;
 }
 
 TFNode& TaskTree::get(int id) {
-	return graph_.get(id);
+	return nodes_[id];
 }
 
 const TFNode& TaskTree::get(int id) const {
-	return graph_.get(id);
+	return nodes_[id];
 }
 
 const std::vector<TFNode>& TaskTree::nodes() const {
-	return graph_.all();
+	return nodes_;
 }
 
 int TaskTree::addNode(const TFNode& node) {
-	return graph_.addNode(node);
+	TFNode copy = node;
+	copy.id = static_cast<int>(nodes_.size());
+	nodes_.push_back(copy);
+	return copy.id;
 }
 
 void TaskTree::addEdge(int parent, int child) {
-	graph_.addEdge(parent, child);
+	if (parent < 0 || child < 0) return;
+	if (parent >= static_cast<int>(nodes_.size()) || child >= static_cast<int>(nodes_.size())) return;
+	nodes_[parent].children.push_back(child);
+	nodes_[child].parents.push_back(parent);
 }
 
 void TaskTree::addItemRequire(int item_id, int require) {
@@ -55,8 +70,8 @@ void TaskTree::syncWithWorld(WorldState& world) {
 		available[it->first] = it->second.quantity;
 	}
 
-	for (size_t i = 0; i < graph_.all().size(); ++i) {
-		TFNode& n = graph_.get(static_cast<int>(i));
+	for (size_t i = 0; i < nodes_.size(); ++i) {
+		TFNode& n = nodes_[i];
 		if (n.type == TaskType::Build) {
 			Building* b = world.getBuilding(n.building_id);
 			if (b && b->isCompleted) {
@@ -65,8 +80,8 @@ void TaskTree::syncWithWorld(WorldState& world) {
 		}
 	}
 
-	for (size_t i = 0; i < graph_.all().size(); ++i) {
-		TFNode& n = graph_.get(static_cast<int>(i));
+	for (size_t i = 0; i < nodes_.size(); ++i) {
+		TFNode& n = nodes_[i];
 		if (n.type == TaskType::Build) continue;
 		int need = n.demand - n.produced;
 		if (need <= 0) continue;
@@ -134,7 +149,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 }
 
 void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings) {
-	graph_ = TaskGraph();
+	nodes_.clear();
 	item_require_.clear();
 	building_cons_.clear();
 	completed_buildings_.clear();
@@ -160,4 +175,9 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 			addEdge(build_id, child);
 		}
 	}
+}
+
+bool TaskTree::isCompleted(int id) const {
+	if (id < 0 || id >= static_cast<int>(nodes_.size())) return false;
+	return nodes_[id].produced >= nodes_[id].demand;
 }

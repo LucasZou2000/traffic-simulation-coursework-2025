@@ -31,5 +31,7 @@
 *.out
 *.app
 
+# My Modifications
 build
 .DS_Store
+.vscode

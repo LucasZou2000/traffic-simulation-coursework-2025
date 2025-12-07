@@ -1,10 +1,30 @@
 #ifndef TASKFRAMEWORK_TASKTREE_HPP
 #define TASKFRAMEWORK_TASKTREE_HPP
 
-#include "TaskGraph.hpp"
 #include "WorldState.hpp"
 #include <map>
 #include <set>
+#include <vector>
+#include <string>
+
+// Node definition (unified for scheduler/task tree)
+enum class TaskType { Gather, Craft, Build };
+
+struct TFNode {
+	int id;
+	TaskType type;
+	int item_id;
+	int demand;
+	int produced;
+	int crafting_id;
+	int building_id;
+	std::pair<int,int> coord;
+	bool unique_target;
+	std::vector<int> parents;
+	std::vector<int> children;
+	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
+	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
+};
 
 // Task event info
 struct TaskInfo {
@@ -26,9 +46,7 @@ public:
 	TFNode& get(int id);
 	const TFNode& get(int id) const;
 	const std::vector<TFNode>& nodes() const;
-	const TaskGraph& graph() const { return graph_; }
-	TaskGraph& graphMutable() { return graph_; }
-	
+
 	// Sync node produced values with world inventory/buildings (greedy fill)
 	void syncWithWorld(WorldState& world);
 
@@ -47,8 +65,9 @@ private:
 	int addNode(const TFNode& node);
 	void addEdge(int parent, int child);
 	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting); // internal helper
+	bool isCompleted(int id) const;
 
-	TaskGraph graph_;
+	std::vector<TFNode> nodes_;
 	std::map<int, int> item_require_; // item_id -> total required
 	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
 	std::set<int> completed_buildings_;

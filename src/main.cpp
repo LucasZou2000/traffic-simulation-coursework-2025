@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
-#include "TaskGraph.hpp"
 #include "Scheduler.hpp"
 #include "TaskTree.hpp"
+#include "Simulator.hpp"
 #include "DatabaseInitializer.hpp"
 #include "WorldState.hpp"
 
@@ -42,19 +42,8 @@ int main() {
 	agents.push_back(new Agent("工人A", "采集者", 100, 1000, 1000, &world.getCraftingSystem()));
 	agents.push_back(new Agent("工人B", "建造者", 100, 1020, 990, &world.getCraftingSystem()));
 
-	// 简单演示一次分配+执行
-	task_tree.syncWithWorld(world);
-	std::map<int, int> shortage = scheduler.computeShortage(task_tree.graph(), world.getItems());
-	std::vector<int> ready = task_tree.ready();
-	std::vector<std::pair<int,int> > plan = scheduler.assign(task_tree.graph(), ready, agents, shortage);
-	std::vector<std::string> status;
-	scheduler.stepExecute(plan, task_tree.graphMutable(), agents, status);
-
-	std::cout << "框架初始化完成。下面是一次分配结果示例：" << std::endl;
-	for (size_t i = 0; i < plan.size(); ++i) {
-		std::cout << "Agent " << plan[i].second << " -> Task " << plan[i].first
-		          << " 状态:" << status[plan[i].second] << std::endl;
-	}
+	Simulator sim(world, task_tree, scheduler, agents);
+	sim.run(10); // 示例跑10个tick
 
 	for (Agent* ag : agents) delete ag;
 	return 0;

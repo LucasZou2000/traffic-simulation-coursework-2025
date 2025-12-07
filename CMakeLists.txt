@@ -11,9 +11,9 @@ include_directories(${SQLite3_INCLUDE_DIRS})
 
 set(SOURCE_FILES
     src/main.cpp
-    src/TaskGraph.cpp
     src/Scheduler.cpp
     src/TaskTree.cpp
+    src/Simulator.cpp
     src/objects.cpp
     src/DatabaseInitializer.cpp
     src/WorldState.cpp
