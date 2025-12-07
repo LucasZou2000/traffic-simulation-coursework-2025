@@ -2,7 +2,7 @@
 #define TASKFRAMEWORK_TASKTREE_HPP
 
 #include "TaskGraph.hpp"
-#include "../old/includes/WorldState.hpp"
+#include "WorldState.hpp"
 #include <map>
 #include <set>
 
@@ -28,6 +28,9 @@ public:
 	const std::vector<TFNode>& nodes() const;
 	const TaskGraph& graph() const { return graph_; }
 	TaskGraph& graphMutable() { return graph_; }
+	
+	// Sync node produced values with world inventory/buildings (greedy fill)
+	void syncWithWorld(WorldState& world);
 
 	// Requirements
 	void addItemRequire(int item_id, int require);

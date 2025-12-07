@@ -1,4 +1,0 @@
-/Users/lucas/Desktop/TaskAllocation/CMakeFiles/GameProject.dir
-/Users/lucas/Desktop/TaskAllocation/CMakeFiles/GameProject_new.dir
-/Users/lucas/Desktop/TaskAllocation/CMakeFiles/edit_cache.dir
-/Users/lucas/Desktop/TaskAllocation/CMakeFiles/rebuild_cache.dir

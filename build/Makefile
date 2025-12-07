@@ -129,125 +129,29 @@ TaskFramework/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/build
 .PHONY : TaskFramework/fast
 
-old/src/AgentImplementation.o: old/src/AgentImplementation.cpp.o
-.PHONY : old/src/AgentImplementation.o
+src/DatabaseInitializer.o: src/DatabaseInitializer.cpp.o
+.PHONY : src/DatabaseInitializer.o
 
 # target to build an object file
-old/src/AgentImplementation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o
-.PHONY : old/src/AgentImplementation.cpp.o
+src/DatabaseInitializer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o
+.PHONY : src/DatabaseInitializer.cpp.o
 
-old/src/AgentImplementation.i: old/src/AgentImplementation.cpp.i
-.PHONY : old/src/AgentImplementation.i
-
-# target to preprocess a source file
-old/src/AgentImplementation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.i
-.PHONY : old/src/AgentImplementation.cpp.i
-
-old/src/AgentImplementation.s: old/src/AgentImplementation.cpp.s
-.PHONY : old/src/AgentImplementation.s
-
-# target to generate assembly for a file
-old/src/AgentImplementation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.s
-.PHONY : old/src/AgentImplementation.cpp.s
-
-old/src/DatabaseCallbacks.o: old/src/DatabaseCallbacks.cpp.o
-.PHONY : old/src/DatabaseCallbacks.o
-
-# target to build an object file
-old/src/DatabaseCallbacks.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o
-.PHONY : old/src/DatabaseCallbacks.cpp.o
-
-old/src/DatabaseCallbacks.i: old/src/DatabaseCallbacks.cpp.i
-.PHONY : old/src/DatabaseCallbacks.i
+src/DatabaseInitializer.i: src/DatabaseInitializer.cpp.i
+.PHONY : src/DatabaseInitializer.i
 
 # target to preprocess a source file
-old/src/DatabaseCallbacks.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.i
-.PHONY : old/src/DatabaseCallbacks.cpp.i
+src/DatabaseInitializer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.i
+.PHONY : src/DatabaseInitializer.cpp.i
 
-old/src/DatabaseCallbacks.s: old/src/DatabaseCallbacks.cpp.s
-.PHONY : old/src/DatabaseCallbacks.s
-
-# target to generate assembly for a file
-old/src/DatabaseCallbacks.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.s
-.PHONY : old/src/DatabaseCallbacks.cpp.s
-
-old/src/DatabaseInitializer.o: old/src/DatabaseInitializer.cpp.o
-.PHONY : old/src/DatabaseInitializer.o
-
-# target to build an object file
-old/src/DatabaseInitializer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o
-.PHONY : old/src/DatabaseInitializer.cpp.o
-
-old/src/DatabaseInitializer.i: old/src/DatabaseInitializer.cpp.i
-.PHONY : old/src/DatabaseInitializer.i
-
-# target to preprocess a source file
-old/src/DatabaseInitializer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.i
-.PHONY : old/src/DatabaseInitializer.cpp.i
-
-old/src/DatabaseInitializer.s: old/src/DatabaseInitializer.cpp.s
-.PHONY : old/src/DatabaseInitializer.s
+src/DatabaseInitializer.s: src/DatabaseInitializer.cpp.s
+.PHONY : src/DatabaseInitializer.s
 
 # target to generate assembly for a file
-old/src/DatabaseInitializer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.s
-.PHONY : old/src/DatabaseInitializer.cpp.s
-
-old/src/WorldState.o: old/src/WorldState.cpp.o
-.PHONY : old/src/WorldState.o
-
-# target to build an object file
-old/src/WorldState.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o
-.PHONY : old/src/WorldState.cpp.o
-
-old/src/WorldState.i: old/src/WorldState.cpp.i
-.PHONY : old/src/WorldState.i
-
-# target to preprocess a source file
-old/src/WorldState.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.i
-.PHONY : old/src/WorldState.cpp.i
-
-old/src/WorldState.s: old/src/WorldState.cpp.s
-.PHONY : old/src/WorldState.s
-
-# target to generate assembly for a file
-old/src/WorldState.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.s
-.PHONY : old/src/WorldState.cpp.s
-
-old/src/objects.o: old/src/objects.cpp.o
-.PHONY : old/src/objects.o
-
-# target to build an object file
-old/src/objects.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o
-.PHONY : old/src/objects.cpp.o
-
-old/src/objects.i: old/src/objects.cpp.i
-.PHONY : old/src/objects.i
-
-# target to preprocess a source file
-old/src/objects.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.i
-.PHONY : old/src/objects.cpp.i
-
-old/src/objects.s: old/src/objects.cpp.s
-.PHONY : old/src/objects.s
-
-# target to generate assembly for a file
-old/src/objects.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/old/src/objects.cpp.s
-.PHONY : old/src/objects.cpp.s
+src/DatabaseInitializer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.s
+.PHONY : src/DatabaseInitializer.cpp.s
 
 src/Scheduler.o: src/Scheduler.cpp.o
 .PHONY : src/Scheduler.o
@@ -321,6 +225,30 @@ src/TaskTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.s
 .PHONY : src/TaskTree.cpp.s
 
+src/WorldState.o: src/WorldState.cpp.o
+.PHONY : src/WorldState.o
+
+# target to build an object file
+src/WorldState.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o
+.PHONY : src/WorldState.cpp.o
+
+src/WorldState.i: src/WorldState.cpp.i
+.PHONY : src/WorldState.i
+
+# target to preprocess a source file
+src/WorldState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/WorldState.cpp.i
+.PHONY : src/WorldState.cpp.i
+
+src/WorldState.s: src/WorldState.cpp.s
+.PHONY : src/WorldState.s
+
+# target to generate assembly for a file
+src/WorldState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/WorldState.cpp.s
+.PHONY : src/WorldState.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -345,6 +273,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/objects.o: src/objects.cpp.o
+.PHONY : src/objects.o
+
+# target to build an object file
+src/objects.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/objects.cpp.o
+.PHONY : src/objects.cpp.o
+
+src/objects.i: src/objects.cpp.i
+.PHONY : src/objects.i
+
+# target to preprocess a source file
+src/objects.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/objects.cpp.i
+.PHONY : src/objects.cpp.i
+
+src/objects.s: src/objects.cpp.s
+.PHONY : src/objects.s
+
+# target to generate assembly for a file
+src/objects.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskFramework.dir/build.make CMakeFiles/TaskFramework.dir/src/objects.cpp.s
+.PHONY : src/objects.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -354,21 +306,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... TaskFramework"
-	@echo "... old/src/AgentImplementation.o"
-	@echo "... old/src/AgentImplementation.i"
-	@echo "... old/src/AgentImplementation.s"
-	@echo "... old/src/DatabaseCallbacks.o"
-	@echo "... old/src/DatabaseCallbacks.i"
-	@echo "... old/src/DatabaseCallbacks.s"
-	@echo "... old/src/DatabaseInitializer.o"
-	@echo "... old/src/DatabaseInitializer.i"
-	@echo "... old/src/DatabaseInitializer.s"
-	@echo "... old/src/WorldState.o"
-	@echo "... old/src/WorldState.i"
-	@echo "... old/src/WorldState.s"
-	@echo "... old/src/objects.o"
-	@echo "... old/src/objects.i"
-	@echo "... old/src/objects.s"
+	@echo "... src/DatabaseInitializer.o"
+	@echo "... src/DatabaseInitializer.i"
+	@echo "... src/DatabaseInitializer.s"
 	@echo "... src/Scheduler.o"
 	@echo "... src/Scheduler.i"
 	@echo "... src/Scheduler.s"
@@ -378,9 +318,15 @@ help:
 	@echo "... src/TaskTree.o"
 	@echo "... src/TaskTree.i"
 	@echo "... src/TaskTree.s"
+	@echo "... src/WorldState.o"
+	@echo "... src/WorldState.i"
+	@echo "... src/WorldState.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/objects.o"
+	@echo "... src/objects.i"
+	@echo "... src/objects.s"
 .PHONY : help
 
 

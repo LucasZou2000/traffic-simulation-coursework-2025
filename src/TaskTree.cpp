@@ -48,6 +48,36 @@ const std::vector<std::pair<int,int> >& TaskTree::getBuildingCoords(int building
 	return building_cons_[building_type];
 }
 
+void TaskTree::syncWithWorld(WorldState& world) {
+	// Greedy fill produced using world inventory; mark completed buildings
+	std::map<int, int> available;
+	for (std::map<int, Item>::const_iterator it = world.getItems().begin(); it != world.getItems().end(); ++it) {
+		available[it->first] = it->second.quantity;
+	}
+
+	for (size_t i = 0; i < graph_.all().size(); ++i) {
+		TFNode& n = graph_.get(static_cast<int>(i));
+		if (n.type == TaskType::Build) {
+			Building* b = world.getBuilding(n.building_id);
+			if (b && b->isCompleted) {
+				n.produced = n.demand;
+			}
+		}
+	}
+
+	for (size_t i = 0; i < graph_.all().size(); ++i) {
+		TFNode& n = graph_.get(static_cast<int>(i));
+		if (n.type == TaskType::Build) continue;
+		int need = n.demand - n.produced;
+		if (need <= 0) continue;
+		std::map<int,int>::iterator it = available.find(n.item_id);
+		if (it == available.end() || it->second <= 0) continue;
+		int take = (it->second >= need) ? need : it->second;
+		n.produced += take;
+		it->second -= take;
+	}
+}
+
 void TaskTree::applyEvent(const TaskInfo& info, WorldState& world) {
 	// Minimal inline handling, assuming data is valid (self-generated)
 	if (info.type == 1) { // construction complete

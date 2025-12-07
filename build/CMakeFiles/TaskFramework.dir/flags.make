@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/lucas/Desktop/TaskAllocation/includes -I/Users/lucas/Desktop/TaskAllocation/old/includes
+CXX_INCLUDES = -I/Users/lucas/Desktop/TaskAllocation/includes
 
 CXX_FLAGS = -std=gnu++17
 

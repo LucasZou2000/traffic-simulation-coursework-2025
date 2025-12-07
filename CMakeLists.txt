@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(SQLite3 REQUIRED)
 
 include_directories(${CMAKE_SOURCE_DIR}/includes)
-include_directories(${CMAKE_SOURCE_DIR}/old/includes)
 include_directories(${SQLite3_INCLUDE_DIRS})
 
 set(SOURCE_FILES
@@ -15,12 +14,9 @@ set(SOURCE_FILES
     src/TaskGraph.cpp
     src/Scheduler.cpp
     src/TaskTree.cpp
-    # Reuse DB/world utilities from old/
-    old/src/objects.cpp
-    old/src/DatabaseInitializer.cpp
-    old/src/WorldState.cpp
-    old/src/DatabaseCallbacks.cpp
-    old/src/AgentImplementation.cpp
+    src/objects.cpp
+    src/DatabaseInitializer.cpp
+    src/WorldState.cpp
 )
 
 add_executable(TaskFramework ${SOURCE_FILES})

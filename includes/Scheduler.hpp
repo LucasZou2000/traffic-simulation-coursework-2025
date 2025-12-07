@@ -2,8 +2,8 @@
 #define TASKFRAMEWORK_SCHEDULER_HPP
 
 #include "TaskGraph.hpp"
-#include "../old/includes/objects.hpp"
-#include "../old/includes/WorldState.hpp"
+#include "objects.hpp"
+#include "WorldState.hpp"
 #include <vector>
 #include <string>
 #include <map>

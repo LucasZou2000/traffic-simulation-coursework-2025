@@ -3,8 +3,8 @@
 #include "TaskGraph.hpp"
 #include "Scheduler.hpp"
 #include "TaskTree.hpp"
-#include "../old/includes/DatabaseInitializer.hpp"
-#include "../old/includes/WorldState.hpp"
+#include "DatabaseInitializer.hpp"
+#include "WorldState.hpp"
 
 int main() {
 	// 连接数据库（复用 old/ 下的 DB 逻辑）
@@ -43,6 +43,7 @@ int main() {
 	agents.push_back(new Agent("工人B", "建造者", 100, 1020, 990, &world.getCraftingSystem()));
 
 	// 简单演示一次分配+执行
+	task_tree.syncWithWorld(world);
 	std::map<int, int> shortage = scheduler.computeShortage(task_tree.graph(), world.getItems());
 	std::vector<int> ready = task_tree.ready();
 	std::vector<std::pair<int,int> > plan = scheduler.assign(task_tree.graph(), ready, agents, shortage);

@@ -128,75 +128,47 @@ CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/TaskTree.cpp -o CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.s
 
-CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
-CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o: /Users/lucas/Desktop/TaskAllocation/old/src/objects.cpp
-CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o -MF CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o.d -o CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o -c /Users/lucas/Desktop/TaskAllocation/old/src/objects.cpp
+CMakeFiles/TaskFramework.dir/src/objects.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
+CMakeFiles/TaskFramework.dir/src/objects.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/objects.cpp
+CMakeFiles/TaskFramework.dir/src/objects.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TaskFramework.dir/src/objects.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/src/objects.cpp.o -MF CMakeFiles/TaskFramework.dir/src/objects.cpp.o.d -o CMakeFiles/TaskFramework.dir/src/objects.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/objects.cpp
 
-CMakeFiles/TaskFramework.dir/old/src/objects.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/old/src/objects.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/old/src/objects.cpp > CMakeFiles/TaskFramework.dir/old/src/objects.cpp.i
+CMakeFiles/TaskFramework.dir/src/objects.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/src/objects.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/objects.cpp > CMakeFiles/TaskFramework.dir/src/objects.cpp.i
 
-CMakeFiles/TaskFramework.dir/old/src/objects.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/old/src/objects.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/old/src/objects.cpp -o CMakeFiles/TaskFramework.dir/old/src/objects.cpp.s
+CMakeFiles/TaskFramework.dir/src/objects.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/src/objects.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/objects.cpp -o CMakeFiles/TaskFramework.dir/src/objects.cpp.s
 
-CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
-CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o: /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseInitializer.cpp
-CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o -MF CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o.d -o CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o -c /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseInitializer.cpp
+CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
+CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/DatabaseInitializer.cpp
+CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o -MF CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o.d -o CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/DatabaseInitializer.cpp
 
-CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseInitializer.cpp > CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.i
+CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/DatabaseInitializer.cpp > CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.i
 
-CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseInitializer.cpp -o CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.s
+CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/DatabaseInitializer.cpp -o CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.s
 
-CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
-CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o: /Users/lucas/Desktop/TaskAllocation/old/src/WorldState.cpp
-CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o -MF CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o.d -o CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o -c /Users/lucas/Desktop/TaskAllocation/old/src/WorldState.cpp
+CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
+CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o: /Users/lucas/Desktop/TaskAllocation/src/WorldState.cpp
+CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o -MF CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o.d -o CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o -c /Users/lucas/Desktop/TaskAllocation/src/WorldState.cpp
 
-CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/old/src/WorldState.cpp > CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.i
+CMakeFiles/TaskFramework.dir/src/WorldState.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/src/WorldState.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/src/WorldState.cpp > CMakeFiles/TaskFramework.dir/src/WorldState.cpp.i
 
-CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/old/src/WorldState.cpp -o CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.s
-
-CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
-CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o: /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseCallbacks.cpp
-CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o -MF CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o.d -o CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o -c /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseCallbacks.cpp
-
-CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseCallbacks.cpp > CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.i
-
-CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/old/src/DatabaseCallbacks.cpp -o CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.s
-
-CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o: CMakeFiles/TaskFramework.dir/flags.make
-CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o: /Users/lucas/Desktop/TaskAllocation/old/src/AgentImplementation.cpp
-CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o: CMakeFiles/TaskFramework.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o -MF CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o.d -o CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o -c /Users/lucas/Desktop/TaskAllocation/old/src/AgentImplementation.cpp
-
-CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/lucas/Desktop/TaskAllocation/old/src/AgentImplementation.cpp > CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.i
-
-CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/old/src/AgentImplementation.cpp -o CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.s
+CMakeFiles/TaskFramework.dir/src/WorldState.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TaskFramework.dir/src/WorldState.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/lucas/Desktop/TaskAllocation/src/WorldState.cpp -o CMakeFiles/TaskFramework.dir/src/WorldState.cpp.s
 
 # Object files for target TaskFramework
 TaskFramework_OBJECTS = \
@@ -204,11 +176,9 @@ TaskFramework_OBJECTS = \
 "CMakeFiles/TaskFramework.dir/src/TaskGraph.cpp.o" \
 "CMakeFiles/TaskFramework.dir/src/Scheduler.cpp.o" \
 "CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.o" \
-"CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o" \
-"CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o" \
-"CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o" \
-"CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o" \
-"CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o"
+"CMakeFiles/TaskFramework.dir/src/objects.cpp.o" \
+"CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o" \
+"CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o"
 
 # External object files for target TaskFramework
 TaskFramework_EXTERNAL_OBJECTS =
@@ -217,15 +187,13 @@ TaskFramework: CMakeFiles/TaskFramework.dir/src/main.cpp.o
 TaskFramework: CMakeFiles/TaskFramework.dir/src/TaskGraph.cpp.o
 TaskFramework: CMakeFiles/TaskFramework.dir/src/Scheduler.cpp.o
 TaskFramework: CMakeFiles/TaskFramework.dir/src/TaskTree.cpp.o
-TaskFramework: CMakeFiles/TaskFramework.dir/old/src/objects.cpp.o
-TaskFramework: CMakeFiles/TaskFramework.dir/old/src/DatabaseInitializer.cpp.o
-TaskFramework: CMakeFiles/TaskFramework.dir/old/src/WorldState.cpp.o
-TaskFramework: CMakeFiles/TaskFramework.dir/old/src/DatabaseCallbacks.cpp.o
-TaskFramework: CMakeFiles/TaskFramework.dir/old/src/AgentImplementation.cpp.o
+TaskFramework: CMakeFiles/TaskFramework.dir/src/objects.cpp.o
+TaskFramework: CMakeFiles/TaskFramework.dir/src/DatabaseInitializer.cpp.o
+TaskFramework: CMakeFiles/TaskFramework.dir/src/WorldState.cpp.o
 TaskFramework: CMakeFiles/TaskFramework.dir/build.make
 TaskFramework: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd
 TaskFramework: CMakeFiles/TaskFramework.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable TaskFramework"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/lucas/Desktop/TaskAllocation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable TaskFramework"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TaskFramework.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
