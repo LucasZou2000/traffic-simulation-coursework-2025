@@ -111,9 +111,16 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 		if (prog != in_progress_cnt.end()) remaining -= prog->second;
 		if (remaining <= 0) continue;
 		int batch = 1;
-		if (n.type == TaskType::Gather) batch = 10; // 每批次采集上限
-		else if (n.type == TaskType::Craft) {
+		if (n.type == TaskType::Gather) {
+			std::map<int,int>::const_iterator itNeed = shortage.find(n.item_id);
+			if (itNeed == shortage.end() || itNeed->second <= 0) continue; // 缺口为0，不采
+			batch = 10;
+		} else if (n.type == TaskType::Craft) {
 			const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+			if (r && r->required_building_id > 0) {
+				Building* bNeed = world_.getBuilding(r->required_building_id);
+				if (!bNeed || !bNeed->isCompleted) continue; // 工作台未完成，暂不分配
+			}
 			if (r && r->quantity_produced > 0) batch = r->quantity_produced;
 		}
 		int units = (remaining + batch - 1) / batch;
@@ -141,6 +148,13 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 					// 缺口为 0 的物品不采
 					std::map<int,int>::const_iterator itNeed = shortage.find(n.item_id);
 					if (itNeed == shortage.end() || itNeed->second <= 0) continue;
+				}
+				if (n.type == TaskType::Craft) {
+					const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+					if (r && r->required_building_id > 0) {
+						Building* bNeed = world_.getBuilding(r->required_building_id);
+						if (!bNeed || !bNeed->isCompleted) continue; // 工作台未建好
+					}
 				}
 				int batch = 1;
 				if (n.type == TaskType::Gather) batch = 10;

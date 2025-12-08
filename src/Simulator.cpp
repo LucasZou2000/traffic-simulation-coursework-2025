@@ -64,6 +64,8 @@ void Simulator::run(int ticks) {
 			if (node.type == TaskType::Gather) {
 				int need = node.demand - node.produced;
 				if (need <= 0) { current_task_[aid] = -1; continue; }
+				// 实时缺口，用于批次结束后是否停止
+				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
 				ResourcePoint* best_rp = nullptr;
 				int best_dist = 1e9;
 				for (std::map<int, ResourcePoint>::iterator it = world_.getResourcePoints().begin(); it != world_.getResourcePoints().end(); ++it) {
@@ -94,7 +96,8 @@ void Simulator::run(int ticks) {
 						harvested_since_leave_[aid] += harvest;
 					}
 					// 如果全局缺口已补足，立即停止采集
-					if (shortage.count(node.item_id) && shortage[node.item_id] <= 0) {
+					live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
+					if (live_shortage.count(node.item_id) && live_shortage[node.item_id] <= 0) {
 						if (harvested_since_leave_[aid] > 0) {
 							log << "[Tick " << t << "] Agent " << aid << " harvested "
 							    << harvested_since_leave_[aid] << " of item " << node.item_id
@@ -127,10 +130,14 @@ void Simulator::run(int ticks) {
 				}
 				ticks_left_[aid]--;
 				if (ticks_left_[aid] == 0) {
-					world_.addItem(recipe->product_item_id, recipe->quantity_produced);
-					node.produced = node.demand;
+					int produced = recipe->quantity_produced > 0 ? recipe->quantity_produced : 1;
+					world_.addItem(recipe->product_item_id, produced);
+					node.produced += produced;
+					if (node.produced > node.demand) node.produced = node.demand;
 					log << "[Tick " << t << "] Agent " << aid << " crafted item " << node.item_id << std::endl;
-					current_task_[aid] = -1;
+					if (node.produced >= node.demand) {
+						current_task_[aid] = -1;
+					}
 				}
 			} else { // Build
 				Building* b = world_.getBuilding(node.building_id);
