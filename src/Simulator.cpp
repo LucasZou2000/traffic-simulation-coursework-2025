@@ -29,10 +29,21 @@ void Simulator::run(int ticks) {
 	}
 
 	for (int t = 0; t < ticks; ++t) {
+		// 每轮分配前，释放所有正在采集的任务（可中断）
+		for (size_t aid = 0; aid < current_task_.size(); ++aid) {
+			if (current_task_[aid] == -1) continue;
+			const TFNode& n = tree_.get(current_task_[aid]);
+			if (n.type == TaskType::Gather) {
+				current_task_[aid] = -1;
+				ticks_left_[aid] = 0;
+				harvested_since_leave_[aid] = 0;
+			}
+		}
+
 		tree_.syncWithWorld(world_);
 		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_.getItems());
 		std::vector<int> ready = tree_.ready();
-		std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_);
+		std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_);
 
 		// assign new tasks to idle agents
 		for (size_t i = 0; i < plan.size(); ++i) {
@@ -46,6 +57,7 @@ void Simulator::run(int ticks) {
 
 		// execute
 		// execute
+		std::map<int,int> rp_owner; // resource_point_id -> agent_id
 		for (size_t aid = 0; aid < agents_.size(); ++aid) {
 			if (current_task_[aid] == -1) continue;
 			TFNode& node = tree_.get(current_task_[aid]);
@@ -65,6 +77,12 @@ void Simulator::run(int ticks) {
 					harvested_since_leave_[aid] = 0;
 					continue;
 				}
+				// at resource point: check occupancy
+				if (rp_owner.count(best_rp->resource_point_id) && rp_owner[best_rp->resource_point_id] != static_cast<int>(aid)) {
+					// occupied by others, wait
+					continue;
+				}
+				rp_owner[best_rp->resource_point_id] = static_cast<int>(aid);
 				if (ticks_left_[aid] == 0) ticks_left_[aid] = 20; // 1s = 20 ticks
 				ticks_left_[aid]--;
 				if (ticks_left_[aid] == 0) {
@@ -74,6 +92,17 @@ void Simulator::run(int ticks) {
 						world_.addItem(node.item_id, harvest);
 						node.produced += harvest;
 						harvested_since_leave_[aid] += harvest;
+					}
+					// 如果全局缺口已补足，立即停止采集
+					if (shortage.count(node.item_id) && shortage[node.item_id] <= 0) {
+						if (harvested_since_leave_[aid] > 0) {
+							log << "[Tick " << t << "] Agent " << aid << " harvested "
+							    << harvested_since_leave_[aid] << " of item " << node.item_id
+							    << " at RP" << best_rp->resource_point_id << " (stopped, shortage filled)" << std::endl;
+						}
+						current_task_[aid] = -1;
+						harvested_since_leave_[aid] = 0;
+						continue;
 					}
 					if (node.produced >= node.demand) {
 						if (harvested_since_leave_[aid] > 0) {

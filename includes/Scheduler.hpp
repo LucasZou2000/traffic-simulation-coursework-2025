@@ -25,7 +25,8 @@ public:
 	std::vector<std::pair<int, int> > assign(const TaskTree& tree, const std::vector<int>& ready,
 	                                         const std::vector<Agent*>& agents,
 	                                         const std::map<int, int>& shortage,
-	                                         const std::vector<int>& current_task);
+	                                         const std::vector<int>& current_task,
+	                                         const std::vector<int>& in_progress);
 
 private:
 	WorldState& world_;
