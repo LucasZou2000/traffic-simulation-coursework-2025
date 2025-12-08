@@ -34,7 +34,7 @@ int main() {
 	task_tree.buildFromDatabase(world.getCraftingSystem(), world.getBuildings());
 
 	// 创建 NPC（默认参数，后续修改只需调整 init 函数）
-	std::vector<Agent*> agents = initDefaultWorkers(2, &world.getCraftingSystem());
+	std::vector<Agent*> agents = initDefaultWorkers(8, &world.getCraftingSystem());
 
 	Simulator sim(world, task_tree, scheduler, agents);
 	sim.run(12000); // 600 秒（20 tick/s）
