@@ -8,6 +8,7 @@ Simulator::Simulator(WorldState& world, TaskTree& tree, Scheduler& scheduler, st
 	current_task_.assign(agents_.size(), -1);
 	ticks_left_.assign(agents_.size(), 0);
 	harvested_since_leave_.assign(agents_.size(), 0);
+	current_batch_.assign(agents_.size(), 0);
 }
 
 void Simulator::run(int ticks) {
@@ -52,6 +53,16 @@ void Simulator::run(int ticks) {
 				if (current_task_[aid] == -1) {
 					current_task_[aid] = plan[i].first;
 					ticks_left_[aid] = 0; // will be set when starts working
+					// 锁定一批
+					const TFNode& n = tree_.get(current_task_[aid]);
+					int batch = 1;
+					if (n.type == TaskType::Gather) batch = 10;
+					else if (n.type == TaskType::Craft) {
+						const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+						if (r && r->quantity_produced > 0) batch = r->quantity_produced;
+					}
+					current_batch_[aid] = batch;
+					tree_.get(current_task_[aid]).allocated += batch;
 				}
 			}
 		}
@@ -65,6 +76,9 @@ void Simulator::run(int ticks) {
 			if (node.type == TaskType::Gather) {
 				int need = node.demand - node.produced;
 				if (need <= 0) { current_task_[aid] = -1; continue; }
+				if (node.allocated > 0 && need < current_batch_[aid]) {
+					node.allocated = std::max(0, node.allocated - (current_batch_[aid] - need));
+				}
 				// 实时缺口，用于批次结束后是否停止
 				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
 				ResourcePoint* best_rp = nullptr;
@@ -96,6 +110,7 @@ void Simulator::run(int ticks) {
 						node.produced += harvest;
 						harvested_since_leave_[aid] += harvest;
 					}
+					node.allocated = std::max(0, node.allocated - harvest);
 					// 如果全局缺口已补足，立即停止采集
 					live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
 					if (live_shortage.count(node.item_id) && live_shortage[node.item_id] <= 0) {
@@ -106,6 +121,7 @@ void Simulator::run(int ticks) {
 						}
 						current_task_[aid] = -1;
 						harvested_since_leave_[aid] = 0;
+						current_batch_[aid] = 0;
 						continue;
 					}
 					if (node.produced >= node.demand) {
@@ -116,6 +132,7 @@ void Simulator::run(int ticks) {
 						}
 						current_task_[aid] = -1;
 						harvested_since_leave_[aid] = 0;
+						current_batch_[aid] = 0;
 					}
 					ticks_left_[aid] = 0;
 				}
@@ -134,11 +151,13 @@ void Simulator::run(int ticks) {
 					int produced = recipe->quantity_produced > 0 ? recipe->quantity_produced : 1;
 					world_.addItem(recipe->product_item_id, produced);
 					node.produced += produced;
+					node.allocated = std::max(0, node.allocated - produced);
 					if (node.produced > node.demand) node.produced = node.demand;
 					log << "[Tick " << t << "] Agent " << aid << " crafted item " << node.item_id << std::endl;
 					if (node.produced >= node.demand) {
 						current_task_[aid] = -1;
 					}
+					current_batch_[aid] = 0;
 				}
 			} else { // Build
 				Building* b = world_.getBuilding(node.building_id);
@@ -156,14 +175,17 @@ void Simulator::run(int ticks) {
 						world_.removeItem(mats[mi].item_id, mats[mi].quantity_required);
 					}
 					ticks_left_[aid] = std::max(1, b->construction_time * 20);
+					current_batch_[aid] = 1;
 				}
 				ticks_left_[aid]--;
 				if (ticks_left_[aid] == 0) {
 					b->completeConstruction();
 					node.produced = node.demand;
+					node.allocated = std::max(0, node.allocated - 1);
 					tree_.applyEvent(TaskInfo{1, node.building_id, 0, 0, node.coord}, world_);
 					log << "[Tick " << t << "] Agent " << aid << " built building " << node.building_id << std::endl;
 					current_task_[aid] = -1;
+					current_batch_[aid] = 0;
 				}
 			}
 		}

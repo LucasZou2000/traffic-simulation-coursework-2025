@@ -1,6 +1,7 @@
 #include "../includes/WorldState.hpp"
 #include "../includes/DatabaseInitializer.hpp"
 #include <cstdlib>
+#include <random>
 
 WorldState::WorldState(DatabaseManager& db) : db_(db) {
 	items = db.item_database;
@@ -14,6 +15,10 @@ WorldState::WorldState(DatabaseManager& db) : db_(db) {
 }
 
 void WorldState::CreateRandomWorld(int world_width, int world_height) {
+	static std::mt19937 rng(114514); // 固定种子，便于复现；后续可调整为参数
+	std::uniform_int_distribution<int> dist_x(0, world_width - 1);
+	std::uniform_int_distribution<int> dist_y(0, world_height - 1);
+
 	const int min_dist = 60;
 	auto dist = [](int x1, int y1, int x2, int y2) {
 		return std::abs(x1 - x2) + std::abs(y1 - y2);
@@ -34,8 +39,8 @@ void WorldState::CreateRandomWorld(int world_width, int world_height) {
 		if (it->first == 256) continue;
 		int attempts = 0;
 		while (attempts < 1000) {
-			int x = std::rand() % world_width;
-			int y = std::rand() % world_height;
+			int x = dist_x(rng);
+			int y = dist_y(rng);
 			bool ok = true;
 			for (std::map<int, Building>::const_iterator b2 = buildings.begin(); b2 != buildings.end(); ++b2) {
 				if (b2->first == 256 && b2->second.x == 0 && b2->second.y == 0) continue;
@@ -55,8 +60,8 @@ void WorldState::CreateRandomWorld(int world_width, int world_height) {
 		for (int k = 0; k < 3; ++k) {
 			int attempts = 0;
 			while (attempts < 1000) {
-				int x = std::rand() % world_width;
-				int y = std::rand() % world_height;
+				int x = dist_x(rng);
+				int y = dist_y(rng);
 				bool ok = true;
 				for (std::map<int, ResourcePoint>::const_iterator rp = resource_points.begin(); rp != resource_points.end(); ++rp) {
 					if (dist(x, y, rp->second.x, rp->second.y) <= min_dist) { ok = false; break; }

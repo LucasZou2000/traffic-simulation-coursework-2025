@@ -19,6 +19,7 @@ private:
 	std::vector<int> current_task_;
 	std::vector<int> ticks_left_;
 	std::vector<int> harvested_since_leave_;
+	std::vector<int> current_batch_;
 };
 
 #endif

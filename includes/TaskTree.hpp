@@ -15,6 +15,7 @@ struct TFNode {
 	int item_id;
 	int demand;
 	int produced;
+	int allocated; // 已分配但未完成的数量（按批计）
 	int crafting_id;
 	int building_id;
 	std::pair<int,int> coord;
@@ -22,6 +23,7 @@ struct TFNode {
 	std::vector<int> parents;
 	std::vector<int> children;
 	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
+	           allocated(0),
 	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
 };
 

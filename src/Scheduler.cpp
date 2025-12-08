@@ -45,7 +45,7 @@ double Scheduler::scoreTask(const TFNode& node, const Agent& ag, const std::map<
 	} else { // Gather
 		std::map<int, int>::const_iterator it = shortage.find(node.item_id);
 		int miss = (it != shortage.end()) ? it->second : 0;
-		value = static_cast<double>(miss);
+		value = static_cast<double>(miss) * 50.0; // 缺口越大越优先
 		int best_dist = 1e9;
 		for (const auto& kv : world_.getResourcePoints()) {
 			if (kv.second.resource_item_id != node.item_id) continue;
@@ -115,7 +115,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 	for (size_t j = 0; j < ready.size(); ++j) {
 		int tid = ready[j];
 		const TFNode& n = tree.get(tid);
-		int remaining = n.demand - n.produced;
+		int remaining = n.demand - n.produced - n.allocated;
 		std::map<int,int>::const_iterator prog = in_progress_cnt.find(tid);
 		if (prog != in_progress_cnt.end()) remaining -= prog->second;
 		if (remaining <= 0) continue;
@@ -151,7 +151,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 		bool changed = false;
 		for (size_t ai = 0; ai < idle.size(); ++ai) {
 			int aid = idle[ai];
-			bool need_resort = (current_tick - last_sort_tick_[aid] > 1) || bundles_[aid].empty();
+			bool need_resort = true; // ready/shortage 变化频繁，直接重算保证正确
 			std::vector<std::pair<double,int> > scored;
 			if (need_resort) {
 				for (std::map<int,int>::const_iterator it = remaining_units.begin(); it != remaining_units.end(); ++it) {
@@ -193,6 +193,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 					if (!feasible) continue;
 
 					double s = scoreTask(n, *agents[aid], shortage);
+					s += 20.0 * static_cast<double>(it->second); // 剩余批次数越多，优先级略高
 					// 简单 bundle 惩罚：已有候选越多，分值略降，鼓励任务分散
 					s -= 50.0 * static_cast<double>(bundles_[aid].size());
 					scored.push_back(std::make_pair(s, tid));
