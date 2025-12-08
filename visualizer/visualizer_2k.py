@@ -1,23 +1,14 @@
 """
-Pygame visualizer for Simulation.log.
+Pygame visualizer for Simulation.log (2K window 2560x1600).
 
 Usage:
-  python visualizer.py [path/to/Simulation.log]
+  python visualizer_2k.py [path/to/Simulation.log]
 
 Controls:
   Space: play/pause
   Right/Left: step forward/backward one frame
   Up/Down: change playback speed (frames per second)
   Esc/Q: quit
-
-What it shows:
-  - Tick (top-left)
-  - Building status top-right: Name (0/1 or 1/1)
-  - Global items bottom-left: I# = inventory (need)
-  - Resource points: solid triangles, 4 distinct colors
-  - Buildings: squares, 6 distinct colors; filled if completed, outline if not;
-    Storage is double size, black outline with label.
-  - NPCs: colored circles, one color per agent (cycled palette)
 """
 import sys
 import re
@@ -38,10 +29,9 @@ def parse_log(path):
     with open(path, "r") as f:
         lines = [ln.rstrip("\n") for ln in f]
 
-    resource_points = []  # list of dict: {id,item,x,y}
-    buildings = {}        # id -> BuildingState
-    frames = []           # list of dict per tick
-
+    resource_points = []
+    buildings = {}
+    frames = []
     state = "start"
     building_done = {}
     tick_re = re.compile(r"\[Tick\s+(\d+)\]\s+NPCs:\s+(.*)")
@@ -73,7 +63,7 @@ def parse_log(path):
                     name = m.group(2)
                     x = int(m.group(3))
                     y = int(m.group(4))
-                    done = (bid == 256)  # Storage is completed at start
+                    done = (bid == 256)
                     buildings[bid] = BuildingState(bid, name, x, y, done)
                     building_done[bid] = done
                 continue
@@ -113,16 +103,9 @@ def world_bounds(resource_points, buildings):
 
 def color_cycle():
     palette = [
-        (230, 57, 70),   # red
-        (29, 161, 242),  # blue
-        (67, 160, 71),   # green
-        (255, 193, 7),   # amber
-        (156, 39, 176),  # purple
-        (0, 150, 136),   # teal
-        (255, 87, 34),   # deep orange
-        (121, 85, 72),   # brown
-        (63, 81, 181),   # indigo
-        (0, 188, 212),   # cyan
+        (230, 57, 70), (29, 161, 242), (67, 160, 71), (255, 193, 7),
+        (156, 39, 176), (0, 150, 136), (255, 87, 34), (121, 85, 72),
+        (63, 81, 181), (0, 188, 212),
     ]
     idx = 0
     while True:
@@ -132,21 +115,13 @@ def color_cycle():
 
 def draw_triangle(surface, color, center, size):
     cx, cy = center
-    pts = [
-        (cx, cy - size),
-        (cx - size, cy + size),
-        (cx + size, cy + size),
-    ]
+    pts = [(cx, cy - size), (cx - size, cy + size), (cx + size, cy + size)]
     pygame.draw.polygon(surface, color, pts)
 
 
 def draw_triangle_outline(surface, color, center, size, width=2):
     cx, cy = center
-    pts = [
-        (cx, cy - size),
-        (cx - size, cy + size),
-        (cx + size, cy + size),
-    ]
+    pts = [(cx, cy - size), (cx - size, cy + size), (cx + size, cy + size)]
     pygame.draw.polygon(surface, color, pts, width)
 
 
@@ -165,7 +140,7 @@ def main():
     font = pygame.font.SysFont(None, 32)
     big_font = pygame.font.SysFont(None, 44)
 
-    win_w, win_h = 1920, 960
+    win_w, win_h = 2560, 1600
     margin = 40
     min_x, max_x, min_y, max_y = world_bounds(resource_points, buildings)
     world_w = float(max_x - min_x + 1)
@@ -181,8 +156,7 @@ def main():
         sy = offset_y + (y - min_y) * scale
         return int(sx), int(sy)
 
-    # Colors
-    res_colors = [(220, 20, 60), (30, 144, 255), (46, 204, 113), (255, 152, 0)]  # resource type keyed
+    res_colors = [(220, 20, 60), (30, 144, 255), (46, 204, 113), (255, 152, 0)]
     bld_colors = [(142, 36, 170), (0, 172, 193), (255, 202, 40),
                   (233, 30, 99), (0, 121, 107), (205, 102, 29)]
     npc_palette = [
@@ -226,14 +200,12 @@ def main():
         frame = frames[idx]
         screen.fill((245, 245, 245))
 
-        # Resource points
         for rp in resource_points:
             color = res_colors[(rp["item"] - 1) % len(res_colors)]
             pos = to_screen(rp["x"], rp["y"])
             draw_triangle(screen, color, pos, 16)
             draw_triangle_outline(screen, (0, 0, 0), pos, 16, 2)
 
-        # Buildings
         for i, b in enumerate(buildings):
             done = frame["building_done"].get(b.id, b.completed)
             size = 32
@@ -250,7 +222,6 @@ def main():
                 label = font.render("Storage", True, (0, 0, 0))
                 screen.blit(label, label.get_rect(center=rect.center))
 
-        # NPCs
         if len(npc_color_map) < len(frame["npcs"]):
             for _ in range(len(frame["npcs"]) - len(npc_color_map)):
                 try:
@@ -262,11 +233,9 @@ def main():
             pygame.draw.circle(screen, npc_color_map[idx_npc], center, 16)
             pygame.draw.circle(screen, (0, 0, 0), center, 16, 2)
 
-        # Text: tick
         tick_text = big_font.render(f"Tick {frame['tick']}", True, (0, 0, 0))
         screen.blit(tick_text, (10, 10))
 
-        # Text: buildings status top-right
         bx = win_w - 240
         by = 12
         for b in sorted(buildings, key=lambda x: x.id):
@@ -276,7 +245,6 @@ def main():
             screen.blit(surf, (bx, by))
             by += 28
 
-        # Text: items bottom-left
         needs = frame["needs"]
         inv = frame["inv"]
         y_items = win_h - 160
