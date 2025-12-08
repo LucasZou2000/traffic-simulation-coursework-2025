@@ -31,14 +31,8 @@
 *.out
 *.app
 
-<<<<<<< HEAD
-# my modifications
-.DS_Store
-build/
-=======
 # My Modifications
 build
 .DS_Store
 .vscode
 Simulation.log
->>>>>>> dev
