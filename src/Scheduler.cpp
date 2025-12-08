@@ -4,18 +4,25 @@
 
 Scheduler::Scheduler(WorldState& world) : world_(world) {}
 
-std::map<int, int> Scheduler::computeShortage(const TaskTree& tree, const std::map<int, Item>& inventory) const {
+std::map<int, int> Scheduler::computeShortage(const TaskTree& tree, const WorldState& world) const {
 	std::map<int, int> need;
 	for (const TFNode& n : tree.nodes()) {
 		if (n.item_id >= 10000) continue; // 建筑节点不计入物资缺口
-		int remaining = n.demand - n.produced;
-		if (remaining > 0) need[n.item_id] += remaining;
-	}
-	for (std::map<int, int>::iterator it = need.begin(); it != need.end(); ++it) {
-		std::map<int, Item>::const_iterator inv = inventory.find(it->first);
-		int have = (inv != inventory.end()) ? inv->second.quantity : 0;
-		it->second -= have;
-		if (it->second < 0) it->second = 0;
+		int remaining = tree.remainingNeed(n, world);
+		if (remaining <= 0) continue;
+		need[n.item_id] += remaining;
+		// 对 Craft 节点，将材料需求也折算到缺口里，驱动采集/前置生产
+		if (n.type == TaskType::Craft) {
+			const CraftingRecipe* r = world.getCraftingSystem().getRecipe(n.crafting_id);
+			if (r) {
+				int batch_out = (r->quantity_produced > 0) ? r->quantity_produced : 1;
+				int batches = (remaining + batch_out - 1) / batch_out;
+				for (size_t mi = 0; mi < r->materials.size(); ++mi) {
+					int need_mat = r->materials[mi].quantity_required * batches;
+					if (need_mat > 0) need[r->materials[mi].item_id] += need_mat;
+				}
+			}
+		}
 	}
 	return need;
 }
@@ -45,7 +52,7 @@ double Scheduler::scoreTask(const TFNode& node, const Agent& ag, const std::map<
 	} else { // Gather
 		std::map<int, int>::const_iterator it = shortage.find(node.item_id);
 		int miss = (it != shortage.end()) ? it->second : 0;
-		value = static_cast<double>(miss);
+		value = static_cast<double>(miss) * 50.0; // 缺口越大越优先
 		int best_dist = 1e9;
 		for (const auto& kv : world_.getResourcePoints()) {
 			if (kv.second.resource_item_id != node.item_id) continue;
@@ -115,7 +122,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 	for (size_t j = 0; j < ready.size(); ++j) {
 		int tid = ready[j];
 		const TFNode& n = tree.get(tid);
-		int remaining = n.demand - n.produced;
+		int remaining = tree.remainingNeed(n, world_);
 		std::map<int,int>::const_iterator prog = in_progress_cnt.find(tid);
 		if (prog != in_progress_cnt.end()) remaining -= prog->second;
 		if (remaining <= 0) continue;
@@ -123,7 +130,8 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 		if (n.type == TaskType::Gather) {
 			std::map<int,int>::const_iterator itNeed = shortage.find(n.item_id);
 			if (itNeed == shortage.end() || itNeed->second <= 0) continue; // 缺口为0，不采
-			batch = 10;
+			int raw_need = tree.remainingNeedRaw(n, world_);
+			batch = std::min(10, raw_need > 0 ? raw_need : 10);
 		} else if (n.type == TaskType::Craft) {
 			const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
 			if (r && r->required_building_id > 0) {
@@ -151,7 +159,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 		bool changed = false;
 		for (size_t ai = 0; ai < idle.size(); ++ai) {
 			int aid = idle[ai];
-			bool need_resort = (current_tick - last_sort_tick_[aid] > 1) || bundles_[aid].empty();
+			bool need_resort = true; // ready/shortage 变化频繁，直接重算保证正确
 			std::vector<std::pair<double,int> > scored;
 			if (need_resort) {
 				for (std::map<int,int>::const_iterator it = remaining_units.begin(); it != remaining_units.end(); ++it) {
@@ -193,6 +201,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 					if (!feasible) continue;
 
 					double s = scoreTask(n, *agents[aid], shortage);
+					s += 20.0 * static_cast<double>(it->second); // 剩余批次数越多，优先级略高
 					// 简单 bundle 惩罚：已有候选越多，分值略降，鼓励任务分散
 					s -= 50.0 * static_cast<double>(bundles_[aid].size());
 					scored.push_back(std::make_pair(s, tid));

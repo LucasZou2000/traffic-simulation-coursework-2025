@@ -19,7 +19,7 @@ public:
 	explicit Scheduler(WorldState& world);
 
 	// 缺口计算
-	std::map<int, int> computeShortage(const TaskTree& tree, const std::map<int, Item>& inventory) const;
+	std::map<int, int> computeShortage(const TaskTree& tree, const WorldState& world) const;
 
 	// 竞价分配，仅给空闲 agent 分配
 	std::vector<std::pair<int, int> > assign(const TaskTree& tree, const std::vector<int>& ready,
@@ -28,6 +28,11 @@ public:
 	                                         const std::vector<int>& current_task,
 	                                         const std::vector<int>& in_progress,
 	                                         int current_tick);
+
+	// 供外部简单估价使用（例如决定是否中断采集）
+	double publicScore(const TFNode& node, const Agent& ag, const std::map<int, int>& shortage) const {
+		return scoreTask(node, ag, shortage);
+	}
 
 private:
 	WorldState& world_;

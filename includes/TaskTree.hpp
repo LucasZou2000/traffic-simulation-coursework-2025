@@ -15,6 +15,7 @@ struct TFNode {
 	int item_id;
 	int demand;
 	int produced;
+	int allocated; // 已分配但未完成的数量（按批计）
 	int crafting_id;
 	int building_id;
 	std::pair<int,int> coord;
@@ -22,6 +23,7 @@ struct TFNode {
 	std::vector<int> parents;
 	std::vector<int> children;
 	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
+	           allocated(0),
 	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
 };
 
@@ -41,7 +43,7 @@ public:
 	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings);
 
 	// Query
-	std::vector<int> ready() const;
+	std::vector<int> ready(const WorldState& world) const;
 	TFNode& get(int id);
 	const TFNode& get(int id) const;
 	const std::vector<TFNode>& nodes() const;
@@ -57,6 +59,9 @@ public:
 
 	// Queries
 	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
+	int remainingNeed(const TFNode& n, const WorldState& world) const;      // 计入 allocated，用于缺口/分配
+	int remainingNeedRaw(const TFNode& n, const WorldState& world) const;   // 不计 allocated，用于判断子任务是否完成
+	bool isCompleted(int id, const WorldState& world) const;
 
 private:
 	int addNode(const TFNode& node);
