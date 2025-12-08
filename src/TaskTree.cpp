@@ -54,13 +54,20 @@ const std::vector<std::pair<int,int> >& TaskTree::getBuildingCoords(int building
 }
 
 void TaskTree::syncWithWorld(WorldState& world) {
-	// Mark completed buildings; produced/allocated of物资节点由执行驱动
+	// Mark completed buildings；当库存已满足且未分配时，直接视为完成
 	for (size_t i = 0; i < nodes_.size(); ++i) {
 		TFNode& n = nodes_[i];
 		if (n.type == TaskType::Build) {
 			Building* b = world.getBuilding(n.building_id);
 			if (b && b->isCompleted) {
 				n.produced = n.demand;
+			}
+		} else {
+			if (n.produced >= n.demand) continue;
+			if (n.allocated > 0) continue; // 已分配的批次等待执行
+			std::map<int, Item>::const_iterator it = world.getItems().find(n.item_id);
+			if (it != world.getItems().end() && it->second.quantity >= n.demand) {
+				n.produced = n.demand; // 库存已满足，直接视为完成
 			}
 		}
 	}

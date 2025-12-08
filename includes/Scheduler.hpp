@@ -29,6 +29,11 @@ public:
 	                                         const std::vector<int>& in_progress,
 	                                         int current_tick);
 
+	// 供外部简单估价使用（例如决定是否中断采集）
+	double publicScore(const TFNode& node, const Agent& ag, const std::map<int, int>& shortage) const {
+		return scoreTask(node, ag, shortage);
+	}
+
 private:
 	WorldState& world_;
 	std::vector<std::vector<int> > bundles_; // 每个 agent 的 bundle

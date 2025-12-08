@@ -34,14 +34,39 @@ void Simulator::run(int ticks) {
 		tree_.syncWithWorld(world_);
 		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_.getItems());
 		if (do_replan) {
-			// 弹出所有采集任务，重新分配
+			// 根据缺口和估价决定是否中断采集任务
 			for (size_t aid = 0; aid < current_task_.size(); ++aid) {
 				if (current_task_[aid] == -1) continue;
 				const TFNode& n = tree_.get(current_task_[aid]);
 				if (n.type == TaskType::Gather) {
-					current_task_[aid] = -1;
-					ticks_left_[aid] = 0;
-					harvested_since_leave_[aid] = 0;
+					std::map<int,int>::const_iterator itNeed = shortage.find(n.item_id);
+					if (itNeed == shortage.end() || itNeed->second <= 0) {
+						current_task_[aid] = -1;
+						ticks_left_[aid] = 0;
+						harvested_since_leave_[aid] = 0;
+						current_batch_[aid] = 0;
+						tree_.get(n.id).allocated = 0;
+						continue;
+					}
+					// 计算当前采集任务的得分，用于与新任务比较
+					double self_score = scheduler_.publicScore(n, *agents_[aid], shortage);
+					bool should_interrupt = false;
+					std::vector<int> ready = tree_.ready();
+					for (size_t j = 0; j < ready.size(); ++j) {
+						const TFNode& cand = tree_.get(ready[j]);
+						double cand_score = scheduler_.publicScore(cand, *agents_[aid], shortage);
+						if (cand_score > self_score + 1e-6) { // 更高优任务，允许中断
+							should_interrupt = true;
+							break;
+						}
+					}
+					if (should_interrupt) {
+						current_task_[aid] = -1;
+						ticks_left_[aid] = 0;
+						harvested_since_leave_[aid] = 0;
+						current_batch_[aid] = 0;
+						tree_.get(n.id).allocated = 0;
+					}
 				}
 			}
 			std::vector<int> ready = tree_.ready();
