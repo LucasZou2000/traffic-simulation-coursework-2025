@@ -1,12 +1,12 @@
 #include "../includes/TaskTree.hpp"
 
-std::vector<int> TaskTree::ready() const {
+std::vector<int> TaskTree::ready(const WorldState& world) const {
 	std::vector<int> res;
 	for (size_t i = 0; i < nodes_.size(); ++i) {
-		if (isCompleted(static_cast<int>(i))) continue;
+		if (isCompleted(static_cast<int>(i), world)) continue;
 		bool ok = true;
 		for (size_t j = 0; j < nodes_[i].children.size(); ++j) {
-			if (!isCompleted(nodes_[i].children[j])) { ok = false; break; }
+			if (!isCompleted(nodes_[i].children[j], world)) { ok = false; break; }
 		}
 		if (ok) res.push_back(static_cast<int>(i));
 	}
@@ -54,20 +54,13 @@ const std::vector<std::pair<int,int> >& TaskTree::getBuildingCoords(int building
 }
 
 void TaskTree::syncWithWorld(WorldState& world) {
-	// Mark completed buildings；当库存已满足且未分配时，直接视为完成
+	// Mark completed buildings；不再用库存判定物品完成
 	for (size_t i = 0; i < nodes_.size(); ++i) {
 		TFNode& n = nodes_[i];
 		if (n.type == TaskType::Build) {
 			Building* b = world.getBuilding(n.building_id);
 			if (b && b->isCompleted) {
 				n.produced = n.demand;
-			}
-		} else {
-			if (n.produced >= n.demand) continue;
-			if (n.allocated > 0) continue; // 已分配的批次等待执行
-			std::map<int, Item>::const_iterator it = world.getItems().find(n.item_id);
-			if (it != world.getItems().end() && it->second.quantity >= n.demand) {
-				n.produced = n.demand; // 库存已满足，直接视为完成
 			}
 		}
 	}
@@ -156,4 +149,22 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 bool TaskTree::isCompleted(int id) const {
 	if (id < 0 || id >= static_cast<int>(nodes_.size())) return false;
 	return nodes_[id].produced >= nodes_[id].demand;
+}
+
+int TaskTree::remainingNeed(const TFNode& n, const WorldState& world) const {
+	if (n.type == TaskType::Build) {
+		const Building* b = world.getBuilding(n.building_id);
+		int done = (b && b->isCompleted) ? n.demand : 0;
+		int rem = n.demand - done - n.allocated;
+		return rem < 0 ? 0 : rem;
+	}
+	std::map<int, Item>::const_iterator it = world.getItems().find(n.item_id);
+	int have = (it != world.getItems().end()) ? it->second.quantity : 0;
+	int rem = n.demand - n.produced - n.allocated - have;
+	return rem < 0 ? 0 : rem;
+}
+
+bool TaskTree::isCompleted(int id, const WorldState& world) const {
+	if (id < 0 || id >= static_cast<int>(nodes_.size())) return false;
+	return remainingNeed(nodes_[id], world) == 0;
 }

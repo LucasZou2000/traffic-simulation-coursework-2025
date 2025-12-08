@@ -94,6 +94,16 @@ Building* WorldState::getBuilding(int id) {
 	return (it == buildings.end()) ? nullptr : &it->second;
 }
 
+const Building* WorldState::getBuilding(int id) const {
+	std::map<int, Building>::const_iterator it = buildings.find(id);
+	return (it == buildings.end()) ? nullptr : &it->second;
+}
+
+const Item* WorldState::getItemMeta(int id) const {
+	std::map<int, Item>::const_iterator it = items.find(id);
+	return (it == items.end()) ? nullptr : &it->second;
+}
+
 void WorldState::addItem(int item_id, int qty) {
 	items[item_id].quantity += qty;
 }

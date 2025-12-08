@@ -32,7 +32,7 @@ void Simulator::run(int ticks) {
 	for (int t = 0; t < ticks; ++t) {
 		bool do_replan = (t % 100 == 0); // 每 5 秒重分配一次
 		tree_.syncWithWorld(world_);
-		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_.getItems());
+		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_);
 		if (do_replan) {
 			// 根据缺口和估价决定是否中断采集任务
 			for (size_t aid = 0; aid < current_task_.size(); ++aid) {
@@ -51,7 +51,7 @@ void Simulator::run(int ticks) {
 					// 计算当前采集任务的得分，用于与新任务比较
 					double self_score = scheduler_.publicScore(n, *agents_[aid], shortage);
 					bool should_interrupt = false;
-					std::vector<int> ready = tree_.ready();
+					std::vector<int> ready = tree_.ready(world_);
 					for (size_t j = 0; j < ready.size(); ++j) {
 						const TFNode& cand = tree_.get(ready[j]);
 						double cand_score = scheduler_.publicScore(cand, *agents_[aid], shortage);
@@ -69,7 +69,7 @@ void Simulator::run(int ticks) {
 					}
 				}
 			}
-			std::vector<int> ready = tree_.ready();
+			std::vector<int> ready = tree_.ready(world_);
 			std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_, t);
 			// assign new tasks to idle agents
 			for (size_t i = 0; i < plan.size(); ++i) {
@@ -105,7 +105,7 @@ void Simulator::run(int ticks) {
 					node.allocated = std::max(0, node.allocated - (current_batch_[aid] - need));
 				}
 				// 实时缺口，用于批次结束后是否停止
-				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
+				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_);
 				ResourcePoint* best_rp = nullptr;
 				int best_dist = 1e9;
 				for (std::map<int, ResourcePoint>::iterator it = world_.getResourcePoints().begin(); it != world_.getResourcePoints().end(); ++it) {
@@ -137,7 +137,7 @@ void Simulator::run(int ticks) {
 					}
 					node.allocated = std::max(0, node.allocated - harvest);
 					// 如果全局缺口已补足，立即停止采集
-					live_shortage = scheduler_.computeShortage(tree_, world_.getItems());
+					live_shortage = scheduler_.computeShortage(tree_, world_);
 					if (live_shortage.count(node.item_id) && live_shortage[node.item_id] <= 0) {
 						if (harvested_since_leave_[aid] > 0) {
 							log << "[Tick " << t << "] Agent " << aid << " harvested "

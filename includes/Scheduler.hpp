@@ -19,7 +19,7 @@ public:
 	explicit Scheduler(WorldState& world);
 
 	// 缺口计算
-	std::map<int, int> computeShortage(const TaskTree& tree, const std::map<int, Item>& inventory) const;
+	std::map<int, int> computeShortage(const TaskTree& tree, const WorldState& world) const;
 
 	// 竞价分配，仅给空闲 agent 分配
 	std::vector<std::pair<int, int> > assign(const TaskTree& tree, const std::vector<int>& ready,

@@ -4,18 +4,18 @@
 
 Scheduler::Scheduler(WorldState& world) : world_(world) {}
 
-std::map<int, int> Scheduler::computeShortage(const TaskTree& tree, const std::map<int, Item>& inventory) const {
+std::map<int, int> Scheduler::computeShortage(const TaskTree& tree, const WorldState& world) const {
 	std::map<int, int> need;
 	for (const TFNode& n : tree.nodes()) {
 		if (n.item_id >= 10000) continue; // 建筑节点不计入物资缺口
-		int remaining = n.demand - n.produced;
+		// 解锁检查：需要工作台但未完成则跳过
+		const Item* meta = world.getItemMeta(n.item_id);
+		if (meta && meta->requires_building) {
+			const Building* req = world.getBuilding(meta->required_building_id);
+			if (!req || !req->isCompleted) continue;
+		}
+		int remaining = tree.remainingNeed(n, world);
 		if (remaining > 0) need[n.item_id] += remaining;
-	}
-	for (std::map<int, int>::iterator it = need.begin(); it != need.end(); ++it) {
-		std::map<int, Item>::const_iterator inv = inventory.find(it->first);
-		int have = (inv != inventory.end()) ? inv->second.quantity : 0;
-		it->second -= have;
-		if (it->second < 0) it->second = 0;
 	}
 	return need;
 }

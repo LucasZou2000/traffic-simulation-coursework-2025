@@ -43,7 +43,7 @@ public:
 	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings);
 
 	// Query
-	std::vector<int> ready() const;
+	std::vector<int> ready(const WorldState& world) const;
 	TFNode& get(int id);
 	const TFNode& get(int id) const;
 	const std::vector<TFNode>& nodes() const;
@@ -59,6 +59,8 @@ public:
 
 	// Queries
 	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
+	int remainingNeed(const TFNode& n, const WorldState& world) const;
+	bool isCompleted(int id, const WorldState& world) const;
 
 private:
 	int addNode(const TFNode& node);

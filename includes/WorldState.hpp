@@ -18,6 +18,8 @@ public:
 	const std::map<int, Building>& getBuildings() const { return buildings; }
 	ResourcePoint* getResourcePoint(int id);
 	Building* getBuilding(int id);
+	const Building* getBuilding(int id) const;
+	const Item* getItemMeta(int id) const;
 	CraftingSystem& getCraftingSystem() { return crafting_system; }
 
 	// inventory ops
