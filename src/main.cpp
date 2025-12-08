@@ -37,7 +37,7 @@ int main() {
 	std::vector<Agent*> agents = initDefaultWorkers(2, &world.getCraftingSystem());
 
 	Simulator sim(world, task_tree, scheduler, agents);
-	sim.run(200);
+	sim.run(12000); // 600 秒（20 tick/s）
 
 	for (Agent* ag : agents) delete ag;
 	return 0;

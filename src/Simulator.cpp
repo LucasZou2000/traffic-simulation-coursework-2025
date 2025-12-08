@@ -29,29 +29,30 @@ void Simulator::run(int ticks) {
 	}
 
 	for (int t = 0; t < ticks; ++t) {
-		// 每轮分配前，释放所有正在采集的任务（可中断）
-		for (size_t aid = 0; aid < current_task_.size(); ++aid) {
-			if (current_task_[aid] == -1) continue;
-			const TFNode& n = tree_.get(current_task_[aid]);
-			if (n.type == TaskType::Gather) {
-				current_task_[aid] = -1;
-				ticks_left_[aid] = 0;
-				harvested_since_leave_[aid] = 0;
-			}
-		}
-
+		bool do_replan = (t % 100 == 0); // 每 5 秒重分配一次
 		tree_.syncWithWorld(world_);
 		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_.getItems());
-		std::vector<int> ready = tree_.ready();
-		std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_);
-
-		// assign new tasks to idle agents
-		for (size_t i = 0; i < plan.size(); ++i) {
-			int aid = plan[i].second;
-			if (aid < 0 || aid >= static_cast<int>(current_task_.size())) continue;
-			if (current_task_[aid] == -1) {
-				current_task_[aid] = plan[i].first;
-				ticks_left_[aid] = 0; // will be set when starts working
+		if (do_replan) {
+			// 弹出所有采集任务，重新分配
+			for (size_t aid = 0; aid < current_task_.size(); ++aid) {
+				if (current_task_[aid] == -1) continue;
+				const TFNode& n = tree_.get(current_task_[aid]);
+				if (n.type == TaskType::Gather) {
+					current_task_[aid] = -1;
+					ticks_left_[aid] = 0;
+					harvested_since_leave_[aid] = 0;
+				}
+			}
+			std::vector<int> ready = tree_.ready();
+			std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_, t);
+			// assign new tasks to idle agents
+			for (size_t i = 0; i < plan.size(); ++i) {
+				int aid = plan[i].second;
+				if (aid < 0 || aid >= static_cast<int>(current_task_.size())) continue;
+				if (current_task_[aid] == -1) {
+					current_task_[aid] = plan[i].first;
+					ticks_left_[aid] = 0; // will be set when starts working
+				}
 			}
 		}
 
@@ -167,12 +168,31 @@ void Simulator::run(int ticks) {
 			}
 		}
 
-		log << "[Tick " << t << "] NPCs: ";
-		for (size_t i = 0; i < agents_.size(); ++i) {
-			log << "(" << agents_[i]->x << "," << agents_[i]->y << ")";
-			if (i + 1 < agents_.size()) log << " ";
+		if (t % 20 == 0) { // 每秒输出一次 NPC 位置和基础需求/存量
+			log << "[Tick " << t << "] NPCs: ";
+			for (size_t i = 0; i < agents_.size(); ++i) {
+				log << "(" << agents_[i]->x << "," << agents_[i]->y << ")";
+				if (i + 1 < agents_.size()) log << " ";
+			}
+			log << " | Needs/Inv: ";
+			// 简单输出前 4 种物资的需求和库存（id 1-4）
+			for (int item_id = 1; item_id <= 4; ++item_id) {
+				std::map<int, Item>::const_iterator it = world_.getItems().find(item_id);
+				int inv = (it != world_.getItems().end()) ? it->second.quantity : 0;
+				int need = 0;
+				for (size_t n = 0; n < tree_.nodes().size(); ++n) {
+					const TFNode& node = tree_.nodes()[n];
+					if (node.type == TaskType::Build) continue;
+					if (node.item_id == item_id) {
+						int rem = node.demand - node.produced;
+						if (rem > 0) need += rem;
+					}
+				}
+				log << "I" << item_id << ":" << inv << "/" << need;
+				if (item_id != 4) log << " ";
+			}
+			log << std::endl;
 		}
-		log << std::endl;
 	}
 	log.close();
 }

@@ -26,12 +26,15 @@ public:
 	                                         const std::vector<Agent*>& agents,
 	                                         const std::map<int, int>& shortage,
 	                                         const std::vector<int>& current_task,
-	                                         const std::vector<int>& in_progress);
+	                                         const std::vector<int>& in_progress,
+	                                         int current_tick);
 
 private:
 	WorldState& world_;
 	std::vector<std::vector<int> > bundles_; // 每个 agent 的 bundle
 	std::vector<WinInfo> winners_;           // task_id -> winner
+	std::vector<int> last_sort_tick_;        // 上次排序的 tick
+	std::vector<std::vector<std::pair<double,int> > > last_scores_; // 缓存上次排序得分
 
 	double scoreTask(const TFNode& node, const Agent& ag, const std::map<int, int>& shortage) const;
 };

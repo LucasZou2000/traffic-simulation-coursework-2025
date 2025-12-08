@@ -54,12 +54,7 @@ const std::vector<std::pair<int,int> >& TaskTree::getBuildingCoords(int building
 }
 
 void TaskTree::syncWithWorld(WorldState& world) {
-	// Greedy fill produced using world inventory; mark completed buildings
-	std::map<int, int> available;
-	for (std::map<int, Item>::const_iterator it = world.getItems().begin(); it != world.getItems().end(); ++it) {
-		available[it->first] = it->second.quantity;
-	}
-
+	// Mark completed buildings; for物资节点，用库存对齐已完成量（不递减库存）
 	for (size_t i = 0; i < nodes_.size(); ++i) {
 		TFNode& n = nodes_[i];
 		if (n.type == TaskType::Build) {
@@ -67,19 +62,14 @@ void TaskTree::syncWithWorld(WorldState& world) {
 			if (b && b->isCompleted) {
 				n.produced = n.demand;
 			}
+		} else {
+			std::map<int, Item>::const_iterator it = world.getItems().find(n.item_id);
+			if (it != world.getItems().end()) {
+				int inv = it->second.quantity;
+				int target = std::min(n.demand, inv);
+				if (target > n.produced) n.produced = target;
+			}
 		}
-	}
-
-	for (size_t i = 0; i < nodes_.size(); ++i) {
-		TFNode& n = nodes_[i];
-		if (n.type == TaskType::Build) continue;
-		int need = n.demand - n.produced;
-		if (need <= 0) continue;
-		std::map<int,int>::iterator it = available.find(n.item_id);
-		if (it == available.end() || it->second <= 0) continue;
-		int take = (it->second >= need) ? need : it->second;
-		n.produced += take;
-		it->second -= take;
 	}
 }
 
