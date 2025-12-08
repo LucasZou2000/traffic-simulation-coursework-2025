@@ -205,6 +205,7 @@ def main():
     screen = pygame.display.set_mode((win_w, win_h))
     clock = pygame.time.Clock()
     fps = 30
+    speed = 15  # ticks per frame step
     paused = False
     idx = 0
 
@@ -229,7 +230,7 @@ def main():
                     fps = max(5, fps - 5)
 
         if not paused:
-            idx = (idx + 1) % len(frames)
+            idx = (idx + speed) % len(frames)
 
         frame = frames[idx]
         screen.fill((245, 245, 245))

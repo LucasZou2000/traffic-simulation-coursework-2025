@@ -18,6 +18,8 @@ void Simulator::run(int ticks) {
 		std::cerr << "Failed to open Simulation.log for writing" << std::endl;
 		return;
 	}
+	// debug_flag: 0 = no debug; 1 = basic (shortage/needs/tasks for visualizer); 2 = verbose (ready/blocked/assign)
+	const int debug_flag = 1;
 
 	log << "ResourcePoints:" << std::endl;
 	for (std::map<int, ResourcePoint>::const_iterator it = world_.getResourcePoints().begin(); it != world_.getResourcePoints().end(); ++it) {
@@ -34,8 +36,8 @@ void Simulator::run(int ticks) {
 		bool do_replan = (t % 100 == 0); // 每 5 秒重分配一次
 		tree_.syncWithWorld(world_);
 		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_);
-		if (do_replan) {
-			// 调试：输出当前缺口与可执行任务
+		if (do_replan && debug_flag >= 1) {
+			// 调试：输出当前缺口
 			log << "[Tick " << t << "] Shortage:";
 			for (std::map<int,int>::const_iterator it = shortage.begin(); it != shortage.end(); ++it) {
 				log << " I" << it->first << ":" << it->second;
@@ -90,41 +92,43 @@ void Simulator::run(int ticks) {
 				}
 			}
 			std::vector<int> ready = tree_.ready(world_);
-			log << "[Tick " << t << "] Ready:";
-			for (size_t i = 0; i < ready.size(); ++i) {
-				const TFNode& n = tree_.get(ready[i]);
-				int need = tree_.remainingNeed(n, world_);
-				log << " #" << ready[i] << "("
-				    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
-				    << "," << n.item_id << ",need=" << need << ")";
-			}
-			log << std::endl;
-
-			// 调试：输出未完成但未 ready 的节点及其未完成子节点
-			int blocked_cnt = 0;
-			for (size_t i = 0; i < tree_.nodes().size(); ++i) {
-				const TFNode& n = tree_.nodes()[i];
-				int raw_need = tree_.remainingNeedRaw(n, world_);
-				if (raw_need <= 0) continue;
-				bool already_ready = false;
-				for (size_t r = 0; r < ready.size(); ++r) {
-					if (ready[r] == static_cast<int>(i)) { already_ready = true; break; }
-				}
-				if (already_ready) continue;
-				log << "[Tick " << t << "] Blocked #" << i << "("
-				    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
-				    << "," << n.item_id << ",need=" << raw_need << ") children:";
-				int printed = 0;
-				for (size_t c = 0; c < n.children.size(); ++c) {
-					const TFNode& ch = tree_.get(n.children[c]);
-					int child_need = tree_.remainingNeedRaw(ch, world_);
-					if (child_need > 0) {
-						log << " #" << ch.id << "(need=" << child_need << ")";
-						if (++printed >= 4) break;
-					}
+			if (debug_flag >= 2) {
+				log << "[Tick " << t << "] Ready:";
+				for (size_t i = 0; i < ready.size(); ++i) {
+					const TFNode& n = tree_.get(ready[i]);
+					int need = tree_.remainingNeed(n, world_);
+					log << " #" << ready[i] << "("
+					    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
+					    << "," << n.item_id << ",need=" << need << ")";
 				}
 				log << std::endl;
-				if (++blocked_cnt >= 20) break; // 防止日志爆炸
+
+				// 调试：输出未完成但未 ready 的节点及其未完成子节点
+				int blocked_cnt = 0;
+				for (size_t i = 0; i < tree_.nodes().size(); ++i) {
+					const TFNode& n = tree_.nodes()[i];
+					int raw_need = tree_.remainingNeedRaw(n, world_);
+					if (raw_need <= 0) continue;
+					bool already_ready = false;
+					for (size_t r = 0; r < ready.size(); ++r) {
+						if (ready[r] == static_cast<int>(i)) { already_ready = true; break; }
+					}
+					if (already_ready) continue;
+					log << "[Tick " << t << "] Blocked #" << i << "("
+					    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
+					    << "," << n.item_id << ",need=" << raw_need << ") children:";
+					int printed = 0;
+					for (size_t c = 0; c < n.children.size(); ++c) {
+						const TFNode& ch = tree_.get(n.children[c]);
+						int child_need = tree_.remainingNeedRaw(ch, world_);
+						if (child_need > 0) {
+							log << " #" << ch.id << "(need=" << child_need << ")";
+							if (++printed >= 4) break;
+						}
+					}
+					log << std::endl;
+					if (++blocked_cnt >= 20) break; // 防止日志爆炸
+				}
 			}
 
 			std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_, t);
@@ -282,7 +286,7 @@ void Simulator::run(int ticks) {
 			}
 		}
 
-		if (t % 20 == 0) { // 每秒输出一次 NPC 位置和基础需求/存量
+		if (true) { // 每 tick 输出一次 NPC 位置和需求/存量/任务
 			log << "[Tick " << t << "] NPCs: ";
 			for (size_t i = 0; i < agents_.size(); ++i) {
 				log << "(" << agents_[i]->x << "," << agents_[i]->y << ")";
