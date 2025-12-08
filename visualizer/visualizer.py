@@ -23,6 +23,7 @@ import sys
 import re
 import pygame
 from copy import deepcopy
+import socket
 
 
 class BuildingState:
@@ -169,6 +170,22 @@ def main():
         print("No frames parsed from log.")
         return
 
+    # ESP bridge (UDP)
+    ESP_ENABLED = True
+    # Set this to your ESP32-S3 IP at runtime (e.g. from REPL `wlan.ifconfig()[0]`)
+    ESP_HOST = "ESP32_IP_HERE"
+    ESP_PORT = 8765
+    esp_sock = None
+    last_sent_status = None
+    if ESP_ENABLED:
+        try:
+            esp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            esp_sock.setblocking(False)
+            print(f"[ESP] UDP bridge enabled -> {ESP_HOST}:{ESP_PORT}")
+        except Exception as e:
+            print(f"[ESP] UDP init failed: {e}")
+            ESP_ENABLED = False
+
     pygame.init()
     font = pygame.font.SysFont(None, 32)
     big_font = pygame.font.SysFont(None, 44)
@@ -314,6 +331,28 @@ def main():
 
         pygame.display.flip()
         clock.tick(fps)
+
+        # Send NPC0 task status to ESP (idle/gather/craft/build)
+        if ESP_ENABLED and esp_sock:
+            status = "idle"
+            tasks = frame.get("tasks", [])
+            for tstr in tasks:
+                if tstr.startswith("A0:"):
+                    if len(tstr) >= 3:
+                        code = tstr[3:].strip()
+                        if code.startswith("G"):
+                            status = "gather"
+                        elif code.startswith("C"):
+                            status = "craft"
+                        elif code.startswith("B"):
+                            status = "build"
+                    break
+            if status != last_sent_status:
+                try:
+                    esp_sock.sendto(status.encode("utf-8"), (ESP_HOST, ESP_PORT))
+                    last_sent_status = status
+                except Exception:
+                    pass
 
 
 if __name__ == "__main__":
