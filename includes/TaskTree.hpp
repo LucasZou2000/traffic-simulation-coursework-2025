@@ -68,6 +68,7 @@ private:
 	void addEdge(int parent, int child);
 	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting); // internal helper
 	bool isCompleted(int id) const;
+	void retireSubtree(int id); // 将节点及其子节点需求清零（用于建造完成后避免重复需求）
 
 	std::vector<TFNode> nodes_;
 	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list

@@ -88,6 +88,15 @@ void TaskTree::applyEvent(const TaskInfo& info, WorldState& world) {
 		}
 		Building* b = world.getBuilding(info.target_id);
 		if (b) b->completeConstruction();
+		// 将该建筑对应任务及其子树需求清零，避免重复采集
+		for (size_t i = 0; i < nodes_.size(); ++i) {
+			if (nodes_[i].type == TaskType::Build && nodes_[i].building_id == info.target_id) {
+				for (size_t c = 0; c < nodes_[i].children.size(); ++c) {
+					retireSubtree(nodes_[i].children[c]);
+				}
+				break;
+			}
+		}
 	} else if (info.type == 2) { // item produced
 		if (info.quantity > 0) {
 			world.addItem(info.item_id, info.quantity);
@@ -157,6 +166,17 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 bool TaskTree::isCompleted(int id) const {
 	if (id < 0 || id >= static_cast<int>(nodes_.size())) return false;
 	return nodes_[id].produced >= nodes_[id].demand;
+}
+
+void TaskTree::retireSubtree(int id) {
+	if (id < 0 || id >= static_cast<int>(nodes_.size())) return;
+	TFNode& n = nodes_[id];
+	n.demand = 0;
+	n.produced = 0;
+	n.allocated = 0;
+	for (size_t i = 0; i < n.children.size(); ++i) {
+		retireSubtree(n.children[i]);
+	}
 }
 
 int TaskTree::remainingNeed(const TFNode& n, const WorldState& world) const {
