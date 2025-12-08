@@ -1,45 +1,71 @@
-#ifndef TASKTREE_HPP
-#define TASKTREE_HPP
+#ifndef TASKFRAMEWORK_TASKTREE_HPP
+#define TASKFRAMEWORK_TASKTREE_HPP
 
-#include "objects.hpp"
-#include <vector>
+#include "WorldState.hpp"
 #include <map>
+#include <vector>
 #include <string>
 
-// -------------------------------------------------
-// TaskTree class implementation
-class TaskTree {
-private:
-	std::vector<TaskNode> nodes;
-	std::map<int, int> item_to_task;  // item_id -> task index
-	
-public:
-	// Grant TaskManager access to private members
-	friend class TaskManager;
-	
-	// Add task node to tree
-	int addTask(int item_id, const std::string& item_name, int quantity, bool is_leaf = false, 
-	            int crafting_id = 0, int building_type = 0, std::pair<int, int> location = std::make_pair(0, 0));
-	
-	// Add edge between tasks
-	void addDependency(int father_item, int son_item);
-	
-	// Update quantities
-	void addQuantity(int item_id, int amount);
-	bool checkRequirements(int task_id) const;
-	
-	// Getters
-	TaskNode& getTask(int task_id) { return nodes[task_id]; }
-	const TaskNode& getTask(int task_id) const { return nodes[task_id]; }
-	int getTaskByItem(int item_id) const { return item_to_task.at(item_id); }
-	const std::vector<TaskNode>& getAllNodes() const { return nodes; }
-	
-	// Tree operations
-	std::vector<int> getExecutableTasks() const;
-	std::vector<int> getFathers(int task_id) const;
-	
-	// Debug
-	void display() const;
+// Node definition (unified for scheduler/task tree)
+enum class TaskType { Gather, Craft, Build };
+
+struct TFNode {
+	int id;
+	TaskType type;
+	int item_id;
+	int demand;
+	int produced;
+	int crafting_id;
+	int building_id;
+	std::pair<int,int> coord;
+	bool unique_target;
+	std::vector<int> parents;
+	std::vector<int> children;
+	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
+	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
 };
 
-#endif // TASKTREE_HPP
+// Task event info
+struct TaskInfo {
+	int type; // 1: construction complete, 2: item produced, 3: building spawned/pending
+	int target_id; // building_id or task_id depending on type
+	int item_id;
+	int quantity;
+	std::pair<int, int> coord;
+};
+
+// One-stop task manager: stores graph, demands, building coords, event handling
+class TaskTree {
+public:
+	// Build from database data
+	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings);
+
+	// Query
+	std::vector<int> ready() const;
+	TFNode& get(int id);
+	const TFNode& get(int id) const;
+	const std::vector<TFNode>& nodes() const;
+
+	// Sync node produced values with world inventory/buildings (greedy fill)
+	void syncWithWorld(WorldState& world);
+
+	// Requirements (building coords only)
+	void addBuildingRequire(int building_type, const std::pair<int,int>& coord);
+
+	// Event handling (external feedback)
+	void applyEvent(const TaskInfo& info, WorldState& world);
+
+	// Queries
+	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
+
+private:
+	int addNode(const TFNode& node);
+	void addEdge(int parent, int child);
+	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting); // internal helper
+	bool isCompleted(int id) const;
+
+	std::vector<TFNode> nodes_;
+	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
+};
+
+#endif
