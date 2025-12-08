@@ -160,7 +160,8 @@ int TaskTree::remainingNeed(const TFNode& n, const WorldState& world) const {
 	}
 	std::map<int, Item>::const_iterator it = world.getItems().find(n.item_id);
 	int have = (it != world.getItems().end()) ? it->second.quantity : 0;
-	int rem = n.demand - n.produced - n.allocated - have;
+	// 对物品节点，不再使用 produced 作为判定；需求 = 总需求 - 已锁定 - 当前库存
+	int rem = n.demand - n.allocated - have;
 	return rem < 0 ? 0 : rem;
 }
 

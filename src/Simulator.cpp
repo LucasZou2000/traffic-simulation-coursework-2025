@@ -99,11 +99,8 @@ void Simulator::run(int ticks) {
 			if (current_task_[aid] == -1) continue;
 			TFNode& node = tree_.get(current_task_[aid]);
 			if (node.type == TaskType::Gather) {
-				int need = node.demand - node.produced;
+				int need = tree_.remainingNeed(node, world_);
 				if (need <= 0) { current_task_[aid] = -1; continue; }
-				if (node.allocated > 0 && need < current_batch_[aid]) {
-					node.allocated = std::max(0, node.allocated - (current_batch_[aid] - need));
-				}
 				// 实时缺口，用于批次结束后是否停止
 				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_);
 				ResourcePoint* best_rp = nullptr;
@@ -155,7 +152,9 @@ void Simulator::run(int ticks) {
 							    << harvested_since_leave_[aid] << " of item " << node.item_id
 							    << " at RP" << best_rp->resource_point_id << std::endl;
 						}
-						current_task_[aid] = -1;
+						if (tree_.remainingNeed(node, world_) == 0) {
+							current_task_[aid] = -1;
+						}
 						harvested_since_leave_[aid] = 0;
 						current_batch_[aid] = 0;
 					}
@@ -165,7 +164,12 @@ void Simulator::run(int ticks) {
 				const CraftingRecipe* recipe = world_.getCraftingSystem().getRecipe(node.crafting_id);
 				if (!recipe) { current_task_[aid] = -1; continue; }
 				if (ticks_left_[aid] == 0) {
-					if (!world_.hasEnoughItems(recipe->materials)) { current_task_[aid] = -1; continue; }
+					if (!world_.hasEnoughItems(recipe->materials)) {
+						node.allocated = std::max(0, node.allocated - current_batch_[aid]);
+						current_task_[aid] = -1;
+						current_batch_[aid] = 0;
+						continue;
+					}
 					for (size_t mi = 0; mi < recipe->materials.size(); ++mi) {
 						world_.removeItem(recipe->materials[mi].item_id, recipe->materials[mi].quantity_required);
 					}
@@ -179,7 +183,7 @@ void Simulator::run(int ticks) {
 					node.allocated = std::max(0, node.allocated - produced);
 					if (node.produced > node.demand) node.produced = node.demand;
 					log << "[Tick " << t << "] Agent " << aid << " crafted item " << node.item_id << std::endl;
-					if (node.produced >= node.demand) {
+					if (tree_.remainingNeed(node, world_) == 0) {
 						current_task_[aid] = -1;
 					}
 					current_batch_[aid] = 0;
@@ -195,7 +199,12 @@ void Simulator::run(int ticks) {
 					for (size_t mi = 0; mi < b->required_materials.size(); ++mi) {
 						mats.push_back(CraftingMaterial(b->required_materials[mi].first, b->required_materials[mi].second));
 					}
-					if (!world_.hasEnoughItems(mats)) { current_task_[aid] = -1; continue; }
+					if (!world_.hasEnoughItems(mats)) {
+						node.allocated = std::max(0, node.allocated - 1);
+						current_task_[aid] = -1;
+						current_batch_[aid] = 0;
+						continue;
+					}
 					for (size_t mi = 0; mi < mats.size(); ++mi) {
 						world_.removeItem(mats[mi].item_id, mats[mi].quantity_required);
 					}
@@ -231,11 +240,10 @@ void Simulator::run(int ticks) {
 					const TFNode& node = tree_.nodes()[n];
 					if (node.type == TaskType::Build) continue;
 					if (node.item_id == item_id) {
-						int rem = node.demand - node.produced;
-						if (rem > 0) need += rem;
+						need += tree_.remainingNeed(node, world_);
 					}
 				}
-				log << "I" << item_id << ":" << inv << "/" << need;
+				log << "I" << item_id << ":" << need << "/" << inv;
 				if (item_id != 4) log << " ";
 			}
 			log << std::endl;

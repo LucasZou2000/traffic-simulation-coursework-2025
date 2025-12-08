@@ -115,7 +115,7 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 	for (size_t j = 0; j < ready.size(); ++j) {
 		int tid = ready[j];
 		const TFNode& n = tree.get(tid);
-		int remaining = n.demand - n.produced - n.allocated;
+		int remaining = tree.remainingNeed(n, world_);
 		std::map<int,int>::const_iterator prog = in_progress_cnt.find(tid);
 		if (prog != in_progress_cnt.end()) remaining -= prog->second;
 		if (remaining <= 0) continue;
