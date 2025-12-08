@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <set>
 
 Simulator::Simulator(WorldState& world, TaskTree& tree, Scheduler& scheduler, std::vector<Agent*>& agents)
 : world_(world), tree_(tree), scheduler_(scheduler), agents_(agents) {
@@ -34,6 +35,25 @@ void Simulator::run(int ticks) {
 		tree_.syncWithWorld(world_);
 		std::map<int, int> shortage = scheduler_.computeShortage(tree_, world_);
 		if (do_replan) {
+			// 调试：输出当前缺口与可执行任务
+			log << "[Tick " << t << "] Shortage:";
+			for (std::map<int,int>::const_iterator it = shortage.begin(); it != shortage.end(); ++it) {
+				log << " I" << it->first << ":" << it->second;
+			}
+			log << std::endl;
+
+			// 释放所有未被执行的采集任务的锁定，避免历史分配把需求“锁死”
+			std::set<int> in_use;
+			for (size_t i = 0; i < current_task_.size(); ++i) {
+				if (current_task_[i] != -1) in_use.insert(current_task_[i]);
+			}
+			for (size_t i = 0; i < tree_.nodes().size(); ++i) {
+				TFNode& n = tree_.get(static_cast<int>(i));
+				if (n.type == TaskType::Gather && in_use.find(static_cast<int>(i)) == in_use.end()) {
+					n.allocated = 0;
+				}
+			}
+
 			// 根据缺口和估价决定是否中断采集任务
 			for (size_t aid = 0; aid < current_task_.size(); ++aid) {
 				if (current_task_[aid] == -1) continue;
@@ -70,12 +90,50 @@ void Simulator::run(int ticks) {
 				}
 			}
 			std::vector<int> ready = tree_.ready(world_);
+			log << "[Tick " << t << "] Ready:";
+			for (size_t i = 0; i < ready.size(); ++i) {
+				const TFNode& n = tree_.get(ready[i]);
+				int need = tree_.remainingNeed(n, world_);
+				log << " #" << ready[i] << "("
+				    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
+				    << "," << n.item_id << ",need=" << need << ")";
+			}
+			log << std::endl;
+
+			// 调试：输出未完成但未 ready 的节点及其未完成子节点
+			int blocked_cnt = 0;
+			for (size_t i = 0; i < tree_.nodes().size(); ++i) {
+				const TFNode& n = tree_.nodes()[i];
+				int raw_need = tree_.remainingNeedRaw(n, world_);
+				if (raw_need <= 0) continue;
+				bool already_ready = false;
+				for (size_t r = 0; r < ready.size(); ++r) {
+					if (ready[r] == static_cast<int>(i)) { already_ready = true; break; }
+				}
+				if (already_ready) continue;
+				log << "[Tick " << t << "] Blocked #" << i << "("
+				    << (n.type == TaskType::Build ? "B" : (n.type == TaskType::Craft ? "C" : "G"))
+				    << "," << n.item_id << ",need=" << raw_need << ") children:";
+				int printed = 0;
+				for (size_t c = 0; c < n.children.size(); ++c) {
+					const TFNode& ch = tree_.get(n.children[c]);
+					int child_need = tree_.remainingNeedRaw(ch, world_);
+					if (child_need > 0) {
+						log << " #" << ch.id << "(need=" << child_need << ")";
+						if (++printed >= 4) break;
+					}
+				}
+				log << std::endl;
+				if (++blocked_cnt >= 20) break; // 防止日志爆炸
+			}
+
 			std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_, t);
 			// assign new tasks to idle agents
 			for (size_t i = 0; i < plan.size(); ++i) {
 				int aid = plan[i].second;
 				if (aid < 0 || aid >= static_cast<int>(current_task_.size())) continue;
 				if (current_task_[aid] == -1) {
+					log << "[Tick " << t << "] Assign task " << plan[i].first << " -> Agent " << aid << std::endl;
 					current_task_[aid] = plan[i].first;
 					ticks_left_[aid] = 0; // will be set when starts working
 					// 锁定一批
@@ -99,7 +157,7 @@ void Simulator::run(int ticks) {
 			if (current_task_[aid] == -1) continue;
 			TFNode& node = tree_.get(current_task_[aid]);
 			if (node.type == TaskType::Gather) {
-				int need = tree_.remainingNeed(node, world_);
+				int need = tree_.remainingNeedRaw(node, world_);
 				if (need <= 0) { current_task_[aid] = -1; continue; }
 				// 实时缺口，用于批次结束后是否停止
 				std::map<int,int> live_shortage = scheduler_.computeShortage(tree_, world_);
@@ -132,7 +190,7 @@ void Simulator::run(int ticks) {
 						node.produced += harvest;
 						harvested_since_leave_[aid] += harvest;
 					}
-					node.allocated = std::max(0, node.allocated - harvest);
+					if (node.allocated > 0) node.allocated = std::max(0, node.allocated - harvest);
 					// 如果全局缺口已补足，立即停止采集
 					live_shortage = scheduler_.computeShortage(tree_, world_);
 					if (live_shortage.count(node.item_id) && live_shortage[node.item_id] <= 0) {

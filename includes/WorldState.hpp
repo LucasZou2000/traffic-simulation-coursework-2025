@@ -21,6 +21,7 @@ public:
 	const Building* getBuilding(int id) const;
 	const Item* getItemMeta(int id) const;
 	CraftingSystem& getCraftingSystem() { return crafting_system; }
+	const CraftingSystem& getCraftingSystem() const { return crafting_system; }
 
 	// inventory ops
 	void addItem(int item_id, int qty);

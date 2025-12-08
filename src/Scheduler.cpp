@@ -8,14 +8,21 @@ std::map<int, int> Scheduler::computeShortage(const TaskTree& tree, const WorldS
 	std::map<int, int> need;
 	for (const TFNode& n : tree.nodes()) {
 		if (n.item_id >= 10000) continue; // 建筑节点不计入物资缺口
-		// 解锁检查：需要工作台但未完成则跳过
-		const Item* meta = world.getItemMeta(n.item_id);
-		if (meta && meta->requires_building) {
-			const Building* req = world.getBuilding(meta->required_building_id);
-			if (!req || !req->isCompleted) continue;
-		}
 		int remaining = tree.remainingNeed(n, world);
-		if (remaining > 0) need[n.item_id] += remaining;
+		if (remaining <= 0) continue;
+		need[n.item_id] += remaining;
+		// 对 Craft 节点，将材料需求也折算到缺口里，驱动采集/前置生产
+		if (n.type == TaskType::Craft) {
+			const CraftingRecipe* r = world.getCraftingSystem().getRecipe(n.crafting_id);
+			if (r) {
+				int batch_out = (r->quantity_produced > 0) ? r->quantity_produced : 1;
+				int batches = (remaining + batch_out - 1) / batch_out;
+				for (size_t mi = 0; mi < r->materials.size(); ++mi) {
+					int need_mat = r->materials[mi].quantity_required * batches;
+					if (need_mat > 0) need[r->materials[mi].item_id] += need_mat;
+				}
+			}
+		}
 	}
 	return need;
 }
@@ -123,7 +130,8 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 		if (n.type == TaskType::Gather) {
 			std::map<int,int>::const_iterator itNeed = shortage.find(n.item_id);
 			if (itNeed == shortage.end() || itNeed->second <= 0) continue; // 缺口为0，不采
-			batch = 10;
+			int raw_need = tree.remainingNeedRaw(n, world_);
+			batch = std::min(10, raw_need > 0 ? raw_need : 10);
 		} else if (n.type == TaskType::Craft) {
 			const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
 			if (r && r->required_building_id > 0) {

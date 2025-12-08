@@ -59,7 +59,8 @@ public:
 
 	// Queries
 	const std::vector<std::pair<int,int> >& getBuildingCoords(int building_type) const;
-	int remainingNeed(const TFNode& n, const WorldState& world) const;
+	int remainingNeed(const TFNode& n, const WorldState& world) const;      // 计入 allocated，用于缺口/分配
+	int remainingNeedRaw(const TFNode& n, const WorldState& world) const;   // 不计 allocated，用于判断子任务是否完成
 	bool isCompleted(int id, const WorldState& world) const;
 
 private:
