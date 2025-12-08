@@ -85,11 +85,18 @@ def parse_log(path):
                 for item_id, need_v, inv_v in needs_match:
                     needs[int(item_id)] = int(need_v)
                     inv[int(item_id)] = int(inv_v)
+                tasks = []
+                m_tasks = re.search(r"Tasks:\s*(.*)$", line)
+                if m_tasks:
+                    task_part = m_tasks.group(1).strip()
+                    if task_part and task_part != "None":
+                        tasks = task_part.split()
                 frames.append({
                     "tick": tick,
                     "npcs": positions,
                     "needs": needs,
                     "inv": inv,
+                    "tasks": tasks,
                     "building_done": deepcopy(building_done)
                 })
     return resource_points, list(buildings.values()), frames
@@ -247,7 +254,7 @@ def main():
 
         needs = frame["needs"]
         inv = frame["inv"]
-        y_items = win_h - 160
+        y_items = win_h - 320
         x_items = 16
         lines = []
         for item_id in sorted(set(list(needs.keys()) + list(inv.keys()))):
@@ -255,9 +262,20 @@ def main():
             lines.append(line)
         if not lines:
             lines.append("No item stats")
-        for i, line in enumerate(lines[:6]):
+        for i, line in enumerate(lines[:10]):
             surf = font.render(line, True, (0, 0, 0))
             screen.blit(surf, (x_items, y_items + i * 28))
+
+        tasks = frame.get("tasks", [])
+        tx = win_w - 300
+        ty = win_h - 320
+        if tasks:
+            title = font.render("Tasks", True, (0, 0, 0))
+            screen.blit(title, (tx, ty))
+            ty += 28
+            for i, tstr in enumerate(tasks[:10]):
+                surf = font.render(tstr, True, (0, 0, 0))
+                screen.blit(surf, (tx, ty + i * 28))
 
         pygame.display.flip()
         clock.tick(fps)

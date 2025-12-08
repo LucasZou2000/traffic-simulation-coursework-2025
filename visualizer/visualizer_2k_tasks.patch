@@ -1,0 +1,25 @@
+@@
+         needs = frame["needs"]
+         inv = frame["inv"]
+         y_items = win_h - 320
+         x_items = 16
+         lines = []
+         for item_id in sorted(set(list(needs.keys()) + list(inv.keys()))):
+             line = f"I{item_id} = {inv.get(item_id,0)} (need {needs.get(item_id,0)})"
+             lines.append(line)
+         if not lines:
+             lines.append("No item stats")
+         for i, line in enumerate(lines[:10]):
+             surf = font.render(line, True, (0, 0, 0))
+             screen.blit(surf, (x_items, y_items + i * 28))
+
+         tasks = frame.get("tasks", [])
+         tx = win_w - 300
+         ty = win_h - 320
+         if tasks:
+             title = font.render("Tasks", True, (0, 0, 0))
+             screen.blit(title, (tx, ty))
+             ty += 28
+             for i, tstr in enumerate(tasks[:10]):
+                 surf = font.render(tstr, True, (0, 0, 0))
+                 screen.blit(surf, (tx, ty + i * 28))

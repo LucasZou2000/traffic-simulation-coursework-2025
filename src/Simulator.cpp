@@ -288,21 +288,45 @@ void Simulator::run(int ticks) {
 				log << "(" << agents_[i]->x << "," << agents_[i]->y << ")";
 				if (i + 1 < agents_.size()) log << " ";
 			}
+			// 汇总所有物品的缺口与库存（不含建筑伪 ID）
+			std::map<int,int> inv_map;
+			for (std::map<int, Item>::const_iterator it = world_.getItems().begin(); it != world_.getItems().end(); ++it) {
+				if (it->first >= 10000) continue;
+				inv_map[it->first] = it->second.quantity;
+			}
+			std::map<int,int> need_map;
+			for (size_t n = 0; n < tree_.nodes().size(); ++n) {
+				const TFNode& node = tree_.nodes()[n];
+				if (node.type == TaskType::Build) continue;
+				if (node.item_id >= 10000) continue;
+				int rem = tree_.remainingNeed(node, world_);
+				if (rem > 0) need_map[node.item_id] += rem;
+			}
 			log << " | Needs/Inv: ";
-			// 简单输出前 4 种物资的需求和库存（id 1-4）
-			for (int item_id = 1; item_id <= 4; ++item_id) {
-				std::map<int, Item>::const_iterator it = world_.getItems().find(item_id);
-				int inv = (it != world_.getItems().end()) ? it->second.quantity : 0;
-				int need = 0;
-				for (size_t n = 0; n < tree_.nodes().size(); ++n) {
-					const TFNode& node = tree_.nodes()[n];
-					if (node.type == TaskType::Build) continue;
-					if (node.item_id == item_id) {
-						need += tree_.remainingNeed(node, world_);
-					}
+			std::set<int> all_ids;
+			for (std::map<int,int>::const_iterator it = inv_map.begin(); it != inv_map.end(); ++it) all_ids.insert(it->first);
+			for (std::map<int,int>::const_iterator it = need_map.begin(); it != need_map.end(); ++it) all_ids.insert(it->first);
+			if (all_ids.empty()) log << "None";
+			size_t cnt = 0;
+			for (std::set<int>::const_iterator it = all_ids.begin(); it != all_ids.end(); ++it, ++cnt) {
+				int iid = *it;
+				int need = need_map.count(iid) ? need_map[iid] : 0;
+				int inv = inv_map.count(iid) ? inv_map[iid] : 0;
+				log << "I" << iid << ":" << need << "/" << inv;
+				if (cnt + 1 < all_ids.size()) log << " ";
+			}
+			// NPC 当前任务概览
+			log << " | Tasks: ";
+			for (size_t i = 0; i < current_task_.size(); ++i) {
+				if (i > 0) log << " ";
+				if (current_task_[i] == -1) {
+					log << "A" << i << ":Idle";
+				} else {
+					const TFNode& n = tree_.get(current_task_[i]);
+					char tcode = (n.type == TaskType::Gather ? 'G' : (n.type == TaskType::Craft ? 'C' : 'B'));
+					int target = (n.type == TaskType::Build) ? n.building_id : n.item_id;
+					log << "A" << i << ":" << tcode << target;
 				}
-				log << "I" << item_id << ":" << need << "/" << inv;
-				if (item_id != 4) log << " ";
 			}
 			log << std::endl;
 		}
