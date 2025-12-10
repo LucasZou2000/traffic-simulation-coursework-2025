@@ -236,20 +236,14 @@ std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const 
 	// 选取每个 agent 在自己赢得的 bundle 中分值最高的任务
 	for (size_t ai = 0; ai < idle.size(); ++ai) {
 		int aid = idle[ai];
-		double best = -1e18;
-		int best_task = -1;
-		for (size_t k = 0; k < scored_per_agent[aid].size(); ++k) {
+		int limit = 5; // 每个空闲 agent 本轮最多获取的任务数
+		for (size_t k = 0; k < scored_per_agent[aid].size() && limit > 0; ++k) {
 			int tid = scored_per_agent[aid][k].second;
-			double s = scored_per_agent[aid][k].first;
-			if (winners_[tid].agent == aid && s > best) {
-				best = s;
-				best_task = tid;
-			}
-		}
-		if (best_task != -1) {
-			result.push_back(std::make_pair(best_task, aid));
+			if (winners_[tid].agent != aid) continue;
+			result.push_back(std::make_pair(tid, aid));
+			--limit;
 			// 预扣材料，确保后续分配不会超额（这里仅对 Craft/Build 一批）
-			const TFNode& n = tree.get(best_task);
+			const TFNode& n = tree.get(tid);
 			if (n.type == TaskType::Craft) {
 				const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
 				if (r) {

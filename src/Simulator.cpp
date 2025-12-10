@@ -3,6 +3,7 @@
 #include <map>
 #include <fstream>
 #include <set>
+#include <random>
 #include <algorithm>
 
 Simulator::Simulator(WorldState& world, TaskTree& tree, Scheduler& scheduler, std::vector<Agent*>& agents)
@@ -19,6 +20,7 @@ void Simulator::run(int ticks) {
 		std::cerr << "Failed to open Simulation.log for writing" << std::endl;
 		return;
 	}
+	std::mt19937 rng(114514);
 	// debug_flag: 0 = no debug; 1 = basic (shortage/needs/tasks for visualizer); 2 = verbose (ready/blocked/assign)
 	const int debug_flag = 1;
 
@@ -49,11 +51,6 @@ void Simulator::run(int ticks) {
 			std::set<int> in_use;
 			for (size_t i = 0; i < current_task_.size(); ++i) {
 				if (current_task_[i] != -1) in_use.insert(current_task_[i]);
-			}
-			for (size_t i = 0; i < agents_.size(); ++i) {
-				if (current_task_[i] == -1) {
-					agents_[i]->bundle.clear(); // 空闲的 bundle 直接清空，重算
-				}
 			}
 			for (size_t i = 0; i < tree_.nodes().size(); ++i) {
 				TFNode& n = tree_.get(static_cast<int>(i));
@@ -188,6 +185,161 @@ void Simulator::run(int ticks) {
 				}
 				current_batch_[aid] = batch;
 				log << "[Tick " << t << "] Start task " << tid << " -> Agent " << aid << std::endl;
+			}
+			// 空闲仍无任务的，尝试从他人 bundle 尾部拿一个最低优先级任务
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				if (current_task_[aid] != -1) continue;
+				if (!agents_[aid]->bundle.empty()) continue;
+				int donor = -1;
+				int donor_tid = -1;
+				for (size_t other = 0; other < agents_.size(); ++other) {
+					if (other == aid) continue;
+					std::vector<int>& ob = agents_[other]->bundle;
+					if (ob.size() <= 1) continue; // 保留至少一个
+					donor = static_cast<int>(other);
+					donor_tid = ob.back();
+					ob.pop_back();
+					break;
+				}
+				if (donor != -1 && donor_tid != -1) {
+					// 避免重复
+					if (std::find(agents_[aid]->bundle.begin(), agents_[aid]->bundle.end(), donor_tid) == agents_[aid]->bundle.end()) {
+						agents_[aid]->bundle.push_back(donor_tid);
+					}
+					log << "[Tick " << t << "] Steal lowest task " << donor_tid << " from Agent " << donor << " -> Agent " << aid << std::endl;
+					// 立即开始执行
+					current_task_[aid] = donor_tid;
+					ticks_left_[aid] = 0;
+					const TFNode& n = tree_.get(donor_tid);
+					int batch = 1;
+					if (n.type == TaskType::Gather) batch = 10;
+					else if (n.type == TaskType::Craft) {
+						const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+						if (r && r->quantity_produced > 0) batch = r->quantity_produced;
+					}
+					current_batch_[aid] = batch;
+					// 弹出刚开始执行的这个任务
+					std::vector<int>& b = agents_[aid]->bundle;
+					for (std::vector<int>::iterator it = b.begin(); it != b.end(); ++it) {
+						if (*it == donor_tid) { b.erase(it); break; }
+					}
+					log << "[Tick " << t << "] Start task " << donor_tid << " -> Agent " << aid << " (stolen)" << std::endl;
+				}
+			}
+			// 交易：分配后做一轮 bundle 尾部和随机任务的交换
+			auto scoreTaskFor = [&](int aid, int tid) -> double {
+				const TFNode& n = tree_.get(tid);
+				return scheduler_.publicScore(n, *agents_[aid], shortage);
+			};
+			auto resortBundle = [&](int aid) {
+				std::vector<int>& b = agents_[aid]->bundle;
+				if (b.empty()) return;
+				std::sort(b.begin(), b.end(), [&](int a, int btid){
+					double sa = scoreTaskFor(aid, a);
+					double sb = scoreTaskFor(aid, btid);
+					if (std::abs(sa - sb) < 1e-6) return a < btid;
+					return sa > sb;
+				});
+			};
+			auto attemptMove = [&](int from, int to, int tid) -> bool {
+				if (from == to) return false;
+				// 目的 bundle 已有则跳过
+				if (std::find(agents_[to]->bundle.begin(), agents_[to]->bundle.end(), tid) != agents_[to]->bundle.end()) return false;
+				double s_from = scoreTaskFor(from, tid);
+				double s_to = scoreTaskFor(to, tid);
+				if (s_to <= s_from + 1e-6) return false;
+				// 从 from 移除
+				std::vector<int>& bf = agents_[from]->bundle;
+				for (std::vector<int>::iterator it = bf.begin(); it != bf.end(); ++it) {
+					if (*it == tid) { bf.erase(it); break; }
+				}
+				agents_[to]->bundle.push_back(tid);
+				resortBundle(from);
+				resortBundle(to);
+				log << "[Tick " << t << "] Trade task " << tid << " from Agent " << from << " -> Agent " << to << std::endl;
+				return true;
+			};
+
+			// 尾部 3 个任务尝试交出去
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				std::vector<int>& b = agents_[aid]->bundle;
+				if (b.empty()) continue;
+				int take = std::min<int>(3, static_cast<int>(b.size()));
+				for (int k = 0; k < take; ++k) {
+					int tid = b[b.size() - 1 - k];
+					int best_to = -1;
+					double best_gain = 0.0;
+					double s_from = scoreTaskFor(aid, tid);
+					for (size_t other = 0; other < agents_.size(); ++other) {
+						if (other == aid) continue;
+						double s_to = scoreTaskFor(static_cast<int>(other), tid);
+						double gain = s_to - s_from;
+						if (gain > best_gain + 1e-6) {
+							best_gain = gain;
+							best_to = static_cast<int>(other);
+						}
+					}
+					if (best_to != -1) {
+						attemptMove(static_cast<int>(aid), best_to, tid);
+					}
+				}
+			}
+
+			// 随机抽取 10 个任务尝试交易
+			std::vector<std::pair<int,int> > pool;
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				for (size_t k = 0; k < agents_[aid]->bundle.size(); ++k) {
+					pool.push_back(std::make_pair(static_cast<int>(aid), agents_[aid]->bundle[k]));
+				}
+			}
+			if (!pool.empty()) {
+				std::shuffle(pool.begin(), pool.end(), rng);
+				int limit = std::min<int>(10, static_cast<int>(pool.size()));
+				for (int idx = 0; idx < limit; ++idx) {
+					int from = pool[idx].first;
+					int tid = pool[idx].second;
+					// 找一个更高分的 agent
+					int best_to = -1;
+					double best_gain = 0.0;
+					double s_from = scoreTaskFor(from, tid);
+					for (size_t other = 0; other < agents_.size(); ++other) {
+						if (static_cast<int>(other) == from) continue;
+						double s_to = scoreTaskFor(static_cast<int>(other), tid);
+						double gain = s_to - s_from;
+						if (gain > best_gain + 1e-6) {
+							best_gain = gain;
+							best_to = static_cast<int>(other);
+						}
+					}
+					if (best_to != -1) {
+						attemptMove(from, best_to, tid);
+					}
+				}
+			}
+
+			// 如果某个 agent 任务数超过 40，尾部 20 尝试交出去
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				std::vector<int>& b = agents_[aid]->bundle;
+				if (b.size() <= 40) continue;
+				int take = std::min<int>(20, static_cast<int>(b.size()));
+				for (int k = 0; k < take; ++k) {
+					int tid = b[b.size() - 1 - k];
+					int best_to = -1;
+					double best_gain = 0.0;
+					double s_from = scoreTaskFor(static_cast<int>(aid), tid);
+					for (size_t other = 0; other < agents_.size(); ++other) {
+						if (static_cast<int>(other) == static_cast<int>(aid)) continue;
+						double s_to = scoreTaskFor(static_cast<int>(other), tid);
+						double gain = s_to - s_from;
+						if (gain > best_gain + 1e-6) {
+							best_gain = gain;
+							best_to = static_cast<int>(other);
+						}
+					}
+					if (best_to != -1) {
+						attemptMove(static_cast<int>(aid), best_to, tid);
+					}
+				}
 			}
 		}
 
