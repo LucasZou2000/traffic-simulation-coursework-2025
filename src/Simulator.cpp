@@ -241,19 +241,23 @@ void Simulator::run(int ticks) {
 					return sa > sb;
 				});
 			};
-			auto attemptMove = [&](int from, int to, int tid) -> bool {
+			auto attemptMove = [&](int from, int to, int tid, int current_tick) -> bool {
 				if (from == to) return false;
 				// 目的 bundle 已有则跳过
 				if (std::find(agents_[to]->bundle.begin(), agents_[to]->bundle.end(), tid) != agents_[to]->bundle.end()) return false;
 				double s_from = scoreTaskFor(from, tid);
 				double s_to = scoreTaskFor(to, tid);
-				if (s_to <= s_from + 1e-6) return false;
+				if (s_to <= s_from + 50.0) return false; // 最小增益门槛
 				// 从 from 移除
 				std::vector<int>& bf = agents_[from]->bundle;
 				for (std::vector<int>::iterator it = bf.begin(); it != bf.end(); ++it) {
 					if (*it == tid) { bf.erase(it); break; }
 				}
 				agents_[to]->bundle.push_back(tid);
+				// 退火/计数：增加 trade_count，记录 last_trade_tick
+				TFNode& n = tree_.get(tid);
+				n.trade_count += 1;
+				n.last_trade_tick = current_tick;
 				resortBundle(from);
 				resortBundle(to);
 				log << "[Tick " << t << "] Trade task " << tid << " from Agent " << from << " -> Agent " << to << std::endl;
@@ -267,6 +271,9 @@ void Simulator::run(int ticks) {
 				int take = std::min<int>(3, static_cast<int>(b.size()));
 				for (int k = 0; k < take; ++k) {
 					int tid = b[b.size() - 1 - k];
+					TFNode& n = tree_.get(tid);
+					// 简单退火：如果本轮距离上次交易太近，跳过
+					if (t - n.last_trade_tick < 50) continue;
 					int best_to = -1;
 					double best_gain = 0.0;
 					double s_from = scoreTaskFor(aid, tid);
@@ -280,7 +287,7 @@ void Simulator::run(int ticks) {
 						}
 					}
 					if (best_to != -1) {
-						attemptMove(static_cast<int>(aid), best_to, tid);
+						attemptMove(static_cast<int>(aid), best_to, tid, t);
 					}
 				}
 			}
@@ -298,6 +305,8 @@ void Simulator::run(int ticks) {
 				for (int idx = 0; idx < limit; ++idx) {
 					int from = pool[idx].first;
 					int tid = pool[idx].second;
+					TFNode& n = tree_.get(tid);
+					if (t - n.last_trade_tick < 50) continue;
 					// 找一个更高分的 agent
 					int best_to = -1;
 					double best_gain = 0.0;
@@ -312,7 +321,7 @@ void Simulator::run(int ticks) {
 						}
 					}
 					if (best_to != -1) {
-						attemptMove(from, best_to, tid);
+						attemptMove(from, best_to, tid, t);
 					}
 				}
 			}
@@ -324,6 +333,8 @@ void Simulator::run(int ticks) {
 				int take = std::min<int>(20, static_cast<int>(b.size()));
 				for (int k = 0; k < take; ++k) {
 					int tid = b[b.size() - 1 - k];
+					TFNode& n = tree_.get(tid);
+					if (t - n.last_trade_tick < 50) continue;
 					int best_to = -1;
 					double best_gain = 0.0;
 					double s_from = scoreTaskFor(static_cast<int>(aid), tid);
@@ -337,7 +348,7 @@ void Simulator::run(int ticks) {
 						}
 					}
 					if (best_to != -1) {
-						attemptMove(static_cast<int>(aid), best_to, tid);
+						attemptMove(static_cast<int>(aid), best_to, tid, t);
 					}
 				}
 			}

@@ -21,10 +21,12 @@ struct TFNode {
 	std::pair<int,int> coord;
 	bool unique_target;
 	double priority_weight;
+	int trade_count;
+	int last_trade_tick;
 	std::vector<int> parents;
 	std::vector<int> children;
 	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
-	           allocated(0), priority_weight(1.0),
+	           allocated(0), priority_weight(1.0), trade_count(0), last_trade_tick(-1000000),
 	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
 };
 
