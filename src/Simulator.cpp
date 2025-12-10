@@ -3,6 +3,7 @@
 #include <map>
 #include <fstream>
 #include <set>
+#include <algorithm>
 
 Simulator::Simulator(WorldState& world, TaskTree& tree, Scheduler& scheduler, std::vector<Agent*>& agents)
 : world_(world), tree_(tree), scheduler_(scheduler), agents_(agents) {
@@ -48,6 +49,11 @@ void Simulator::run(int ticks) {
 			std::set<int> in_use;
 			for (size_t i = 0; i < current_task_.size(); ++i) {
 				if (current_task_[i] != -1) in_use.insert(current_task_[i]);
+			}
+			for (size_t i = 0; i < agents_.size(); ++i) {
+				if (current_task_[i] == -1) {
+					agents_[i]->bundle.clear(); // 空闲的 bundle 直接清空，重算
+				}
 			}
 			for (size_t i = 0; i < tree_.nodes().size(); ++i) {
 				TFNode& n = tree_.get(static_cast<int>(i));
@@ -132,25 +138,56 @@ void Simulator::run(int ticks) {
 			}
 
 			std::vector<std::pair<int,int> > plan = scheduler_.assign(tree_, ready, agents_, shortage, current_task_, current_task_, t);
-			// assign new tasks to idle agents
+			// 将分配结果加入各自 bundle
 			for (size_t i = 0; i < plan.size(); ++i) {
 				int aid = plan[i].second;
 				if (aid < 0 || aid >= static_cast<int>(current_task_.size())) continue;
-				if (current_task_[aid] == -1) {
-					log << "[Tick " << t << "] Assign task " << plan[i].first << " -> Agent " << aid << std::endl;
-					current_task_[aid] = plan[i].first;
-					ticks_left_[aid] = 0; // will be set when starts working
-					// 锁定一批
-					const TFNode& n = tree_.get(current_task_[aid]);
-					int batch = 1;
-					if (n.type == TaskType::Gather) batch = 10;
-					else if (n.type == TaskType::Craft) {
-						const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
-						if (r && r->quantity_produced > 0) batch = r->quantity_produced;
-					}
-					current_batch_[aid] = batch;
-					tree_.get(current_task_[aid]).allocated += batch;
+				int tid = plan[i].first;
+				// 避免重复插入
+				if (std::find(agents_[aid]->bundle.begin(), agents_[aid]->bundle.end(), tid) != agents_[aid]->bundle.end()) continue;
+				const TFNode& n = tree_.get(tid);
+				int batch = 1;
+				if (n.type == TaskType::Gather) batch = 10;
+				else if (n.type == TaskType::Craft) {
+					const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+					if (r && r->quantity_produced > 0) batch = r->quantity_produced;
 				}
+				tree_.get(tid).allocated += batch; // 锁定一批
+				agents_[aid]->bundle.push_back(tid);
+				log << "[Tick " << t << "] Assign task " << tid << " -> Agent " << aid << " (queued)" << std::endl;
+			}
+			// 按估值对每个 bundle 排序（高到低）
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				std::vector<int>& b = agents_[aid]->bundle;
+				if (b.empty()) continue;
+				std::sort(b.begin(), b.end(), [&](int a, int btid){
+					const TFNode& na = tree_.get(a);
+					const TFNode& nb = tree_.get(btid);
+					double sa = scheduler_.publicScore(na, *agents_[aid], shortage);
+					double sb = scheduler_.publicScore(nb, *agents_[aid], shortage);
+					if (std::abs(sa - sb) < 1e-6) return a < btid;
+					return sa > sb;
+				});
+			}
+			// 将空闲的 agent 拉起 bundle 里的任务
+			for (size_t aid = 0; aid < agents_.size(); ++aid) {
+				if (current_task_[aid] != -1) continue;
+				std::vector<int>& b = agents_[aid]->bundle;
+				if (b.empty()) continue;
+				int tid = b.front();
+				b.erase(b.begin());
+				current_task_[aid] = tid;
+				ticks_left_[aid] = 0;
+				// 设置当前批量（锁定已在分配时处理）
+				const TFNode& n = tree_.get(tid);
+				int batch = 1;
+				if (n.type == TaskType::Gather) batch = 10;
+				else if (n.type == TaskType::Craft) {
+					const CraftingRecipe* r = world_.getCraftingSystem().getRecipe(n.crafting_id);
+					if (r && r->quantity_produced > 0) batch = r->quantity_produced;
+				}
+				current_batch_[aid] = batch;
+				log << "[Tick " << t << "] Start task " << tid << " -> Agent " << aid << std::endl;
 			}
 		}
 

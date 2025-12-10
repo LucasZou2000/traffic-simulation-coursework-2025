@@ -90,6 +90,8 @@ public:
 	int x = 0, y = 0;
 	static const int speed = 180;
 	std::map<int,int> inventory;
+	// Future use: pending tasks/bundle (ordered by priority)
+	std::vector<int> bundle;
 	Agent(const std::string& n, const std::string& r, int e, int px, int py, CraftingSystem* = nullptr)
 	    : name(n), role(r), energyLevel(e), x(px), y(py) {}
 	// move towards target by at most speed/20 (per tick), Manhattan
