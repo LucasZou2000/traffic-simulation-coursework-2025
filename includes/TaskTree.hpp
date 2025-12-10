@@ -20,10 +20,11 @@ struct TFNode {
 	int building_id;
 	std::pair<int,int> coord;
 	bool unique_target;
+	double priority_weight;
 	std::vector<int> parents;
 	std::vector<int> children;
 	TFNode() : id(-1), type(TaskType::Gather), item_id(0), demand(0), produced(0),
-	           allocated(0),
+	           allocated(0), priority_weight(1.0),
 	           crafting_id(0), building_id(0), coord(std::make_pair(0,0)), unique_target(false) {}
 };
 
@@ -40,7 +41,7 @@ struct TaskInfo {
 class TaskTree {
 public:
 	// Build from database data
-	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings);
+	void buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings, double weight = 1.0);
 
 	// Query
 	std::vector<int> ready(const WorldState& world) const;
@@ -66,7 +67,7 @@ public:
 private:
 	int addNode(const TFNode& node);
 	void addEdge(int parent, int child);
-	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting); // internal helper
+	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight = 1.0); // internal helper
 	bool isCompleted(int id) const;
 	void retireSubtree(int id); // 将节点及其子节点需求清零（用于建造完成后避免重复需求）
 

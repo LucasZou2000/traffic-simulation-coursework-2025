@@ -43,7 +43,7 @@
 - `struct TaskInfo`：事件（type:1建造完成/2产出/3建筑生成；target_id；item_id；quantity；coord）。  
 - `class TaskTree`  
   - 字段：`nodes_`（所有任务节点）；`building_cons_`（每类建筑的坐标需求列表）。  
-  - 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int,Building>&)` 递归展开配方，建边父->子。  
+- 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int,Building>&, double weight=1.0)` 递归展开配方，建边父->子。  
   - 查询：`ready(const WorldState&) const`（所有子已完成的节点）；`get(int id)`；`nodes() const`；`getBuildingCoords(int) const`。  
   - 缺口：`remainingNeed(const TFNode&, const WorldState&) const`（含 allocated）；`remainingNeedRaw(...) const`（不含 allocated，判完成/依赖）；`isCompleted(int,const WorldState&) const`；`isCompleted(int) const`（内部使用）。  
   - 同步：`syncWithWorld(WorldState&)`（建筑完成同步，物品 produced 对齐库存）。  
@@ -77,7 +77,7 @@
 ## src/TaskTree.cpp 额外实现细节
 - `syncWithWorld`：建筑完成同步；物品节点 produced 对齐当前库存。  
 - `applyEvent`：处理 type 1/2/3；type 1 会 `retireSubtree` 清零材料需求。  
-- `buildFromDatabase`/`buildItemTask`：递归展开配方，建边父->子。  
+- `buildFromDatabase`/`buildItemTask`：递归展开配方，建边父->子，可传入权重 `weight`（默认 1.0）作为手动优先级倍率。  
 - `retireSubtree`：清理 demand/produced/allocated 并递归子任务。
 
 ## src/Scheduler.cpp 额外实现细节

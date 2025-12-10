@@ -27,7 +27,7 @@
   - `struct TFNode`：任务节点（id、type、item_id、demand、produced、allocated、crafting_id、building_id、coord、parents/children）。
   - `struct TaskInfo`：事件（type:1建造完成/2产出/3建筑生成，target_id、item_id、quantity、coord）。
 - 类：`TaskTree`  
-  - 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int, Building>&)`  
+- 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int, Building>&, double weight=1.0)`  
   - 查询：`ready(const WorldState&) const`、`get(int id)`、`nodes() const`、`getBuildingCoords(int) const`  
   - 缺口：`remainingNeed(const TFNode&, const WorldState&) const`（含 allocated）；`remainingNeedRaw(...) const`（不含 allocated）；`isCompleted(int,const WorldState&) const`  
   - 同步：`syncWithWorld(WorldState&)`  

@@ -106,7 +106,7 @@ void TaskTree::applyEvent(const TaskInfo& info, WorldState& world) {
 	}
 }
 
-int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting) {
+int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight) {
 	const CraftingRecipe* recipe = nullptr;
 	const std::map<int, CraftingRecipe>& all = crafting.getAllRecipes();
 	for (std::map<int, CraftingRecipe>::const_iterator it = all.begin(); it != all.end(); ++it) {
@@ -121,6 +121,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 	node.item_id = item_id;
 	node.demand = qty;
 	node.produced = 0;
+	node.priority_weight = weight;
 	if (recipe) {
 		node.crafting_id = recipe->crafting_id;
 		int parent = addNode(node);
@@ -128,7 +129,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 		int batches = (qty + produced - 1) / produced;
 		for (size_t i = 0; i < recipe->materials.size(); ++i) {
 			int mat_qty = recipe->materials[i].quantity_required * batches;
-			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting);
+			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting, weight);
 			addEdge(parent, child);
 		}
 		return parent;
@@ -137,7 +138,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 	}
 }
 
-void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings) {
+void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<int, Building>& buildings, double weight) {
 	nodes_.clear();
 	building_cons_.clear();
 
@@ -152,12 +153,13 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 		build.produced = 0;
 		build.unique_target = true;
 		build.coord = std::make_pair(b.x, b.y);
+		build.priority_weight = weight;
 		int build_id = addNode(build);
 		addBuildingRequire(b.building_id, build.coord);
 		for (size_t mi = 0; mi < b.required_materials.size(); ++mi) {
 			int mat_id = b.required_materials[mi].first;
 			int mat_qty = b.required_materials[mi].second;
-			int child = buildItemTask(mat_id, mat_qty, crafting);
+			int child = buildItemTask(mat_id, mat_qty, crafting, weight);
 			addEdge(build_id, child);
 		}
 	}

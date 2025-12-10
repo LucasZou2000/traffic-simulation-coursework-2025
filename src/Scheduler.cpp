@@ -61,7 +61,7 @@ double Scheduler::scoreTask(const TFNode& node, const Agent& ag, const std::map<
 		}
 		dist = (best_dist < 1e9) ? best_dist : 10000;
 	}
-	return value - 10.0 * dist;
+	return (value - 10.0 * dist) * node.priority_weight;
 }
 
 std::vector<std::pair<int, int> > Scheduler::assign(const TaskTree& tree, const std::vector<int>& ready,
