@@ -24,6 +24,7 @@ import re
 import pygame
 from copy import deepcopy
 import socket
+import time
 
 
 class BuildingState:
@@ -177,6 +178,7 @@ def main():
     ESP_PORT = 8765
     esp_sock = None
     last_sent_status = None
+    last_link_time = None
     if ESP_ENABLED:
         try:
             esp_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -245,6 +247,17 @@ def main():
                     fps = min(120, fps + 5)
                 if event.key == pygame.K_DOWN:
                     fps = max(5, fps - 5)
+
+        # Poll ESP heartbeat (non-blocking)
+        if ESP_ENABLED and esp_sock:
+            try:
+                while True:
+                    data, addr = esp_sock.recvfrom(64)
+                    last_link_time = time.time()
+            except BlockingIOError:
+                pass
+            except Exception:
+                pass
 
         if not paused:
             idx = (idx + speed) % len(frames)
@@ -318,6 +331,10 @@ def main():
             screen.blit(surf, (x_items, y_items + i * 28))
 
         # tasks (bottom-right)
+        link_active = False
+        if last_link_time is not None and (time.time() - last_link_time) <= 5.0:
+            link_active = True
+
         tasks = frame.get("tasks", [])
         tx = win_w - 300
         ty = win_h - 320
@@ -326,7 +343,10 @@ def main():
             screen.blit(title, (tx, ty))
             ty += 28
             for i, tstr in enumerate(tasks[:10]):
-                surf = font.render(tstr, True, (0, 0, 0))
+                display = tstr
+                if link_active and tstr.startswith("A0:"):
+                    display = tstr + " (linked)"
+                surf = font.render(display, True, (0, 0, 0))
                 screen.blit(surf, (tx, ty + i * 28))
 
         pygame.display.flip()

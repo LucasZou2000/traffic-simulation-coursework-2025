@@ -13,6 +13,12 @@ try:
 except ImportError:
     neopixel = None
 
+FRAMERATE = 30
+SLEEP_TIME = 1.0 / FRAMERATE
+
+last_client_addr = None
+last_heartbeat_sent = 0.0
+
 
 # Wi-Fi config (fill with your hotspot/router)
 WIFI_SSID = "YOUR_WIFI_SSID"
@@ -53,6 +59,8 @@ def main():
         np = neopixel.NeoPixel(machine.Pin(LED_PIN), LED_COUNT)
         set_color(np, (0, 0, 0))
 
+    global last_client_addr, last_heartbeat_sent
+
     colors = {
         "idle": (0, 0, 0),
         "gather": (0, 120, 0),   # green
@@ -62,10 +70,11 @@ def main():
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind(("0.0.0.0", UDP_PORT))
-    sock.settimeout(1)
+    sock.settimeout(0)
     print("Listening UDP on port", UDP_PORT)
     last = "idle"
     while True:
+        now = time.time()
         try:
             data, addr = sock.recvfrom(64)
             msg = data.decode().strip()
@@ -73,10 +82,17 @@ def main():
                 last = msg
                 set_color(np, colors[msg])
                 print("From", addr, "->", msg)
+            last_client_addr = addr
         except Exception:
             # timeout or other errors; keep last color
             pass
-        time.sleep(0.05)
+        if last_client_addr is not None and (now - last_heartbeat_sent) >= 1.0:
+            try:
+                sock.sendto(b"alive", last_client_addr)
+            except Exception:
+                pass
+            last_heartbeat_sent = now
+        time.sleep(SLEEP_TIME)
 
 
 if __name__ == "__main__":
