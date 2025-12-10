@@ -248,19 +248,26 @@ void Simulator::run(int ticks) {
 				double s_from = scoreTaskFor(from, tid);
 				double s_to = scoreTaskFor(to, tid);
 				if (s_to <= s_from + 50.0) return false; // 最小增益门槛
-				// 从 from 移除
 				std::vector<int>& bf = agents_[from]->bundle;
+				std::vector<int>& bt = agents_[to]->bundle;
+				size_t size_from_before = bf.size();
+				size_t size_to_before = bt.size();
+				// 从 from 移除
 				for (std::vector<int>::iterator it = bf.begin(); it != bf.end(); ++it) {
 					if (*it == tid) { bf.erase(it); break; }
 				}
-				agents_[to]->bundle.push_back(tid);
+				bt.push_back(tid);
 				// 退火/计数：增加 trade_count，记录 last_trade_tick
 				TFNode& n = tree_.get(tid);
 				n.trade_count += 1;
 				n.last_trade_tick = current_tick;
 				resortBundle(from);
 				resortBundle(to);
-				log << "[Tick " << t << "] Trade task " << tid << " from Agent " << from << " -> Agent " << to << std::endl;
+				double gain = s_to - s_from;
+				log << "[Tick " << t << "] Trade task " << tid << " from Agent " << from << " -> Agent " << to
+				    << " gain=" << gain
+				    << " bundle " << size_from_before << "->" << bf.size()
+				    << " / " << size_to_before << "->" << bt.size() << std::endl;
 				return true;
 			};
 

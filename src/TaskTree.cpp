@@ -25,6 +25,10 @@ const std::vector<TFNode>& TaskTree::nodes() const {
 	return nodes_;
 }
 
+void TaskTree::setPriorityWeights(const std::map<int,double>& weights) {
+	priority_weights_ = weights;
+}
+
 int TaskTree::addNode(const TFNode& node) {
 	TFNode copy = node;
 	copy.id = static_cast<int>(nodes_.size());
@@ -51,6 +55,12 @@ const std::vector<std::pair<int,int> >& TaskTree::getBuildingCoords(int building
 	static const std::vector<std::pair<int,int> > empty;
 	if (building_type < 0 || static_cast<size_t>(building_type) >= building_cons_.size()) return empty;
 	return building_cons_[building_type];
+}
+
+double TaskTree::lookupWeight(int item_id) const {
+	std::map<int,double>::const_iterator it = priority_weights_.find(item_id);
+	if (it != priority_weights_.end()) return it->second;
+	return 1.0;
 }
 
 void TaskTree::syncWithWorld(WorldState& world) {
@@ -121,7 +131,8 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 	node.item_id = item_id;
 	node.demand = qty;
 	node.produced = 0;
-	node.priority_weight = weight;
+	double node_weight = weight * lookupWeight(item_id);
+	node.priority_weight = node_weight;
 	if (recipe) {
 		node.crafting_id = recipe->crafting_id;
 		int parent = addNode(node);
@@ -129,7 +140,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 		int batches = (qty + produced - 1) / produced;
 		for (size_t i = 0; i < recipe->materials.size(); ++i) {
 			int mat_qty = recipe->materials[i].quantity_required * batches;
-			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting, weight);
+			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting, node_weight);
 			addEdge(parent, child);
 		}
 		return parent;
@@ -153,13 +164,14 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 		build.produced = 0;
 		build.unique_target = true;
 		build.coord = std::make_pair(b.x, b.y);
-		build.priority_weight = weight;
+		double node_weight = weight * lookupWeight(build.item_id);
+		build.priority_weight = node_weight;
 		int build_id = addNode(build);
 		addBuildingRequire(b.building_id, build.coord);
 		for (size_t mi = 0; mi < b.required_materials.size(); ++mi) {
 			int mat_id = b.required_materials[mi].first;
 			int mat_qty = b.required_materials[mi].second;
-			int child = buildItemTask(mat_id, mat_qty, crafting, weight);
+			int child = buildItemTask(mat_id, mat_qty, crafting, node_weight);
 			addEdge(build_id, child);
 		}
 	}

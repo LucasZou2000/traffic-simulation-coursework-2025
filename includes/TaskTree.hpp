@@ -50,6 +50,7 @@ public:
 	TFNode& get(int id);
 	const TFNode& get(int id) const;
 	const std::vector<TFNode>& nodes() const;
+	void setPriorityWeights(const std::map<int,double>& weights);
 
 	// Sync node produced values with world inventory/buildings (greedy fill)
 	void syncWithWorld(WorldState& world);
@@ -70,11 +71,13 @@ private:
 	int addNode(const TFNode& node);
 	void addEdge(int parent, int child);
 	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight = 1.0); // internal helper
+	double lookupWeight(int item_id) const;
 	bool isCompleted(int id) const;
 	void retireSubtree(int id); // 将节点及其子节点需求清零（用于建造完成后避免重复需求）
 
 	std::vector<TFNode> nodes_;
 	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
+	std::map<int,double> priority_weights_;
 };
 
 #endif

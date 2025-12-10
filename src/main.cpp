@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include <random>
 #include "Scheduler.hpp"
 #include "TaskTree.hpp"
 #include "Simulator.hpp"
@@ -25,10 +28,39 @@ int main() {
 		return 1;
 	}
 
+	// 可选优先级权重配置：resources/priority_weights.txt
+	std::map<int,double> priority_weights;
+	{
+		std::ifstream fin("resources/priority_weights.txt");
+		if (fin.is_open()) {
+			std::string line;
+			while (std::getline(fin, line)) {
+				if (line.empty() || line[0] == '#') continue;
+				std::istringstream iss(line);
+				int id; double w;
+				if (iss >> id >> w) {
+					priority_weights[id] = w;
+				}
+			}
+		}
+	}
+
 	WorldState world(db);
 	world.CreateRandomWorld(2000, 2000);
 	Scheduler scheduler(world);
 	TaskTree task_tree;
+	if (priority_weights.empty()) {
+		// 若无配置文件，则为每个建筑随机一个权重（用于测试/演示），物品权重沿树传递乘积
+		std::mt19937 rng(114514);
+		std::uniform_real_distribution<double> dist(0.5, 2.0);
+		for (std::map<int, Building>::const_iterator it = world.getBuildings().begin(); it != world.getBuildings().end(); ++it) {
+			int bid = it->first;
+			if (bid == 256) continue; // storage
+			int item_key = 10000 + bid;
+			priority_weights[item_key] = dist(rng);
+		}
+	}
+	task_tree.setPriorityWeights(priority_weights);
 
 	// 从数据库数据生成任务图
 	task_tree.buildFromDatabase(world.getCraftingSystem(), world.getBuildings());
