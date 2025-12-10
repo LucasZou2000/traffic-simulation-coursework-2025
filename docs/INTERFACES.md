@@ -30,6 +30,7 @@
 - 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int, Building>&, double weight=1.0)`  
   - 权重：`setPriorityWeights(const std::map<int,double>&)` 设置 item/building 的手动优先级倍率（缺省 1.0，item_id=10000+building_id 可作用于建筑）。
     - 若未提供配置文件，主程序会为每个建筑随机生成一个倍率（0.5~2.0），沿任务树递归传递乘积。
+  - 置顶：`setPinnedItems(const std::set<int>&)` 设置需要置顶的 item/building（建筑用 item_id=10000+building_id）；置顶节点权重为大基数+深度，保证子节点先于父节点。
   - 查询：`ready(const WorldState&) const`、`get(int id)`、`nodes() const`、`getBuildingCoords(int) const`  
   - 缺口：`remainingNeed(const TFNode&, const WorldState&) const`（含 allocated）；`remainingNeedRaw(...) const`（不含 allocated）；`isCompleted(int,const WorldState&) const`  
   - 同步：`syncWithWorld(WorldState&)`  

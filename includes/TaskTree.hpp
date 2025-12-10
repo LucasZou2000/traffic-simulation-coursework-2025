@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <set>
 
 // Node definition (unified for scheduler/task tree)
 enum class TaskType { Gather, Craft, Build };
@@ -51,6 +52,7 @@ public:
 	const TFNode& get(int id) const;
 	const std::vector<TFNode>& nodes() const;
 	void setPriorityWeights(const std::map<int,double>& weights);
+	void setPinnedItems(const std::set<int>& pins);
 
 	// Sync node produced values with world inventory/buildings (greedy fill)
 	void syncWithWorld(WorldState& world);
@@ -70,14 +72,18 @@ public:
 private:
 	int addNode(const TFNode& node);
 	void addEdge(int parent, int child);
-	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight = 1.0); // internal helper
+	int buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight = 1.0, int depth = 0); // internal helper
 	double lookupWeight(int item_id) const;
+	double pinWeight(int depth) const;
+	bool isPinned(int item_id) const;
 	bool isCompleted(int id) const;
 	void retireSubtree(int id); // 将节点及其子节点需求清零（用于建造完成后避免重复需求）
 
 	std::vector<TFNode> nodes_;
 	std::vector<std::vector<std::pair<int,int> > > building_cons_; // building_type indexed, coords list
 	std::map<int,double> priority_weights_;
+	std::set<int> pinned_items_;
+	static const double PIN_BASE;
 };
 
 #endif

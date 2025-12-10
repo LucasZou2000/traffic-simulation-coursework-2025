@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <random>
+#include <set>
 #include "Scheduler.hpp"
 #include "TaskTree.hpp"
 #include "Simulator.hpp"
@@ -30,6 +31,7 @@ int main() {
 
 	// 可选优先级权重配置：resources/priority_weights.txt
 	std::map<int,double> priority_weights;
+	std::set<int> pinned_items;
 	{
 		std::ifstream fin("resources/priority_weights.txt");
 		if (fin.is_open()) {
@@ -40,6 +42,20 @@ int main() {
 				int id; double w;
 				if (iss >> id >> w) {
 					priority_weights[id] = w;
+				}
+			}
+		}
+	}
+	{
+		std::ifstream fin("resources/pinned_items.txt");
+		if (fin.is_open()) {
+			std::string line;
+			while (std::getline(fin, line)) {
+				if (line.empty() || line[0] == '#') continue;
+				std::istringstream iss(line);
+				int id;
+				if (iss >> id) {
+					pinned_items.insert(id);
 				}
 			}
 		}
@@ -61,6 +77,9 @@ int main() {
 		}
 	}
 	task_tree.setPriorityWeights(priority_weights);
+	if (!pinned_items.empty()) {
+		task_tree.setPinnedItems(pinned_items);
+	}
 
 	// 从数据库数据生成任务图
 	task_tree.buildFromDatabase(world.getCraftingSystem(), world.getBuildings());

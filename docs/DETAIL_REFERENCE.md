@@ -45,11 +45,11 @@
   - 字段：`nodes_`（所有任务节点）；`building_cons_`（每类建筑的坐标需求列表）。  
 - 构建：`buildFromDatabase(const CraftingSystem&, const std::map<int,Building>&, double weight=1.0)` 递归展开配方，建边父->子，可传入权重。  
   - 手动/随机权重：`setPriorityWeights(const std::map<int,double>&)`（按 item_id 查倍数，建筑可用 item_id=10000+building_id，未命中默认 1.0；若未配置，主程序为每个建筑生成 0.5~2.0 随机权重并沿树递归乘积传递）。  
+  - 置顶：`setPinnedItems(const std::set<int>&)`，置顶节点权重为大基数+深度，确保子节点优于父节点执行。  
   - 查询：`ready(const WorldState&) const`（所有子已完成的节点）；`get(int id)`；`nodes() const`；`getBuildingCoords(int) const`。  
   - 缺口：`remainingNeed(const TFNode&, const WorldState&) const`（含 allocated）；`remainingNeedRaw(...) const`（不含 allocated，判完成/依赖）；`isCompleted(int,const WorldState&) const`；`isCompleted(int) const`（内部使用）。  
   - 同步：`syncWithWorld(WorldState&)`（建筑完成同步，物品 produced 对齐库存）。  
   - 需求/事件：`addBuildingRequire(int,const std::pair<int,int>&)`；`applyEvent(const TaskInfo&, WorldState&)`（建造完成会退役子树需求，产出写库存）。  
-  - 手动权重：`setPriorityWeights(const std::map<int,double>&)`（按 item_id 查倍数，建筑可用 item_id=10000+building_id，未命中默认 1.0）。  
   - 内部辅助：`addNode`、`addEdge`、`buildItemTask`（递归生成子任务）、`retireSubtree(int)`（子树需求清零）。
 
 ## includes/Scheduler.hpp

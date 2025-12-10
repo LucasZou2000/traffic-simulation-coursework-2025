@@ -29,6 +29,10 @@ void TaskTree::setPriorityWeights(const std::map<int,double>& weights) {
 	priority_weights_ = weights;
 }
 
+void TaskTree::setPinnedItems(const std::set<int>& pins) {
+	pinned_items_ = pins;
+}
+
 int TaskTree::addNode(const TFNode& node) {
 	TFNode copy = node;
 	copy.id = static_cast<int>(nodes_.size());
@@ -61,6 +65,15 @@ double TaskTree::lookupWeight(int item_id) const {
 	std::map<int,double>::const_iterator it = priority_weights_.find(item_id);
 	if (it != priority_weights_.end()) return it->second;
 	return 1.0;
+}
+
+double TaskTree::pinWeight(int depth) const {
+	// 置顶任务的权重：大基数 + 深度，保证子节点优于父节点
+	return PIN_BASE + static_cast<double>(depth);
+}
+
+bool TaskTree::isPinned(int item_id) const {
+	return pinned_items_.count(item_id) > 0;
 }
 
 void TaskTree::syncWithWorld(WorldState& world) {
@@ -116,7 +129,7 @@ void TaskTree::applyEvent(const TaskInfo& info, WorldState& world) {
 	}
 }
 
-int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight) {
+int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting, double weight, int depth) {
 	const CraftingRecipe* recipe = nullptr;
 	const std::map<int, CraftingRecipe>& all = crafting.getAllRecipes();
 	for (std::map<int, CraftingRecipe>::const_iterator it = all.begin(); it != all.end(); ++it) {
@@ -132,6 +145,9 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 	node.demand = qty;
 	node.produced = 0;
 	double node_weight = weight * lookupWeight(item_id);
+	if (isPinned(item_id)) {
+		node_weight = pinWeight(depth);
+	}
 	node.priority_weight = node_weight;
 	if (recipe) {
 		node.crafting_id = recipe->crafting_id;
@@ -140,7 +156,7 @@ int TaskTree::buildItemTask(int item_id, int qty, const CraftingSystem& crafting
 		int batches = (qty + produced - 1) / produced;
 		for (size_t i = 0; i < recipe->materials.size(); ++i) {
 			int mat_qty = recipe->materials[i].quantity_required * batches;
-			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting, node_weight);
+			int child = buildItemTask(recipe->materials[i].item_id, mat_qty, crafting, node_weight, depth + 1);
 			addEdge(parent, child);
 		}
 		return parent;
@@ -165,17 +181,22 @@ void TaskTree::buildFromDatabase(const CraftingSystem& crafting, const std::map<
 		build.unique_target = true;
 		build.coord = std::make_pair(b.x, b.y);
 		double node_weight = weight * lookupWeight(build.item_id);
+		if (isPinned(build.item_id)) {
+			node_weight = pinWeight(0);
+		}
 		build.priority_weight = node_weight;
 		int build_id = addNode(build);
 		addBuildingRequire(b.building_id, build.coord);
 		for (size_t mi = 0; mi < b.required_materials.size(); ++mi) {
 			int mat_id = b.required_materials[mi].first;
 			int mat_qty = b.required_materials[mi].second;
-			int child = buildItemTask(mat_id, mat_qty, crafting, node_weight);
+			int child = buildItemTask(mat_id, mat_qty, crafting, node_weight, 1);
 			addEdge(build_id, child);
 		}
 	}
 }
+
+const double TaskTree::PIN_BASE = 1e6;
 
 bool TaskTree::isCompleted(int id) const {
 	if (id < 0 || id >= static_cast<int>(nodes_.size())) return false;
