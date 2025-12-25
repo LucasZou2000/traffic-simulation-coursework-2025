@@ -9,10 +9,7 @@
 - **调试日志粒度**：`src/Simulator.cpp` 顶部 `debug_flag`（0=无，1=基础/可视化所需，2=详细 Ready/Blocked/Assign）。当前为 1。
 
 ## 可视化相关
-- **FPS / 速度**：`visualizer/visualizer.py`（及 `_FHD.py`, `_2k.py`）内的 `fps` 和 `speed`（每帧前进的 tick 数，30fps 且 speed=15 表示约 450 tick/s 播放）。直接修改变量即可。
-- **分辨率脚本**：  
-  - `visualizer/visualizer.py` / `_FHD.py`：1920x960  
-  - `visualizer/visualizer_2k.py`：2560x1600
+- **FPS / 速度**：`visualizer/visualizer.py` 内的 `fps` 和 `speed`（每帧前进的 tick 数，30fps 且 speed=15 表示约 450 tick/s 播放）。直接修改变量即可。
 - **样式**：同文件中可调整 NPC 半径、建筑/资源点大小、颜色等。
 
 ## 估价函数位置
@@ -28,4 +25,3 @@
 - **TaskTree 构建/需求**：`src/TaskTree.cpp`（`buildFromDatabase`、`remainingNeed` 等）。
 - **调度周期**：`src/Simulator.cpp` 中重分配周期 `do_replan`（默认每 100 tick，即 5s）。
 - **采集/制作/建造速度**：`src/Simulator.cpp`，采集 2 tick/批 10，制作/建造按配方/建筑时间 * 20 tick。
-

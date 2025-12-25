@@ -2,7 +2,7 @@
 
 简述：从 SQLite 数据库加载物品/配方/建筑，生成任务树（Gather/Craft/Build），用调度器做缺口估价 + bundle 竞价分配，模拟器按 20 tick/s 驱动 NPC 采集、制造、建造并输出日志（`Simulation.log`）。  
 接口总览请见 [接口说明](docs/INTERFACES.md)；更细的内部成员说明见 [详细说明](docs/DETAIL_REFERENCE.md)。  
-项目概览与可视化说明见 [Project Overview](docs/PROJECT_OVERVIEW.md)，常用自定义操作见 [User Tweaks](docs/USER_TWEAKS.md)。
+项目概览与可视化说明见 [项目概览](docs/PROJECT_OVERVIEW.md)，常用自定义操作见 [快速自定义](docs/USER_TWEAKS.md)。
 
 ## 运行方式
 - 配置依赖：CMake + SQLite3（已通过 `resources/game_data.db` 提供数据）。
